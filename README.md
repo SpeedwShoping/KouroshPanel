@@ -6,8 +6,15 @@
 
 **پنل مدیریت Xray مدرن و پیشرفته — الهام‌گرفته از میراث کوروش کبیر**
 
-[![Release](https://img.shields.io/github/v/release/SpeedwShoping/KouroshPanel?style=flat-square&color=c9a227)](https://github.com/SpeedwShoping/KouroshPanel/releases)
-[![License](https://img.shields.io/github/license/SpeedwShoping/KouroshPanel?style=flat-square&color=2ec4b6)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/SpeedwShoping/KouroshPanel?style=for-the-badge&color=c9a227&label=Release&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/SpeedwShoping/KouroshPanel/total?style=for-the-badge&color=2ec4b6&label=Downloads&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/releases)
+[![Stars](https://img.shields.io/github/stars/SpeedwShoping/KouroshPanel?style=for-the-badge&color=e8c547&label=Stars&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/stargazers)
+[![License](https://img.shields.io/github/license/SpeedwShoping/KouroshPanel?style=for-the-badge&color=0a0e1a&label=License)](LICENSE)
+
+[![Go](https://img.shields.io/badge/Go-1.26-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![Xray](https://img.shields.io/badge/Xray-Core-c9a227?style=for-the-badge)](https://github.com/XTLS/Xray-core)
+[![Telegram](https://img.shields.io/badge/Telegram-@SpeedShopw-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/SpeedShopw)
 
 </div>
 
