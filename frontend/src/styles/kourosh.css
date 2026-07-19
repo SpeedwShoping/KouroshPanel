@@ -1,0 +1,183 @@
+/* ============================================================
+   KOUROSH PANEL — Achaemenid Modern Theme
+   Deep midnight base, imperial gold, Persian turquoise.
+   Animated grid backdrop + glassmorphism cards.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --kp-gold: #c9a227;
+  --kp-gold-bright: #e8c547;
+  --kp-gold-dim: rgba(201, 162, 39, 0.35);
+  --kp-turquoise: #2ec4b6;
+  --kp-turquoise-dim: rgba(46, 196, 182, 0.28);
+  --kp-midnight: #0a0e1a;
+  --kp-midnight-2: #101527;
+  --kp-midnight-3: #171e33;
+  --kp-glass: rgba(23, 30, 51, 0.62);
+  --kp-glass-border: rgba(201, 162, 39, 0.16);
+  --kp-grid-line: rgba(201, 162, 39, 0.055);
+  --kp-font: 'Vazirmatn', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body.light {
+  --kp-glass: rgba(255, 255, 255, 0.72);
+  --kp-glass-border: rgba(160, 120, 20, 0.18);
+  --kp-grid-line: rgba(160, 120, 20, 0.06);
+}
+
+body {
+  font-family: var(--kp-font);
+}
+
+/* ---------- Animated grid backdrop ---------- */
+.kp-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--kp-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--kp-grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  animation: kp-grid-drift 26s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 40%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 40%, #000 40%, transparent 100%);
+}
+.kp-grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 18% 22%, var(--kp-gold-dim) 0%, transparent 32%),
+    radial-gradient(circle at 82% 74%, var(--kp-turquoise-dim) 0%, transparent 34%);
+  filter: blur(70px);
+  opacity: 0.5;
+  animation: kp-aurora 18s ease-in-out infinite alternate;
+}
+@keyframes kp-grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 44px 44px, 44px 44px; }
+}
+@keyframes kp-aurora {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to   { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+
+[data-theme-animations='off'] .kp-grid-bg,
+[data-theme-animations='off'] .kp-grid-bg::after {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kp-grid-bg, .kp-grid-bg::after { animation: none; }
+}
+
+/* ---------- Glass cards ---------- */
+.kp-glass-card,
+.dark .ant-card,
+[data-theme='ultra-dark'] .ant-card {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.dark .ant-card {
+  background: var(--kp-glass) !important;
+  border: 1px solid var(--kp-glass-border) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.dark .ant-card:hover {
+  border-color: rgba(201, 162, 39, 0.38) !important;
+  box-shadow: 0 8px 32px rgba(201, 162, 39, 0.08), 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Gold accents ---------- */
+.kp-gold-text {
+  background: linear-gradient(120deg, var(--kp-gold) 15%, var(--kp-gold-bright) 50%, var(--kp-gold) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.kp-shimmer {
+  background: linear-gradient(120deg, var(--kp-gold) 25%, #fff3c4 50%, var(--kp-gold) 75%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: kp-shimmer 5s linear infinite;
+}
+@keyframes kp-shimmer {
+  to { background-position: -220% center; }
+}
+
+/* ---------- Faravahar wing divider ---------- */
+.kp-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--kp-gold);
+  opacity: 0.85;
+}
+.kp-divider::before,
+.kp-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--kp-gold-dim), transparent);
+}
+
+/* ---------- Entrance animations ---------- */
+@keyframes kp-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.kp-rise { animation: kp-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kp-rise-1 { animation-delay: 0.05s; }
+.kp-rise-2 { animation-delay: 0.14s; }
+.kp-rise-3 { animation-delay: 0.23s; }
+.kp-rise-4 { animation-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .kp-rise { animation: none; }
+}
+
+/* ---------- Dashboard polish ---------- */
+.content-area .ant-card {
+  animation: kp-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.content-area .ant-col:nth-child(2) .ant-card { animation-delay: 0.08s; }
+.content-area .ant-col:nth-child(3) .ant-card { animation-delay: 0.16s; }
+.content-area .ant-col:nth-child(4) .ant-card { animation-delay: 0.24s; }
+@media (prefers-reduced-motion: reduce) {
+  .content-area .ant-card { animation: none; }
+}
+
+.ant-statistic-content {
+  transition: color 0.3s ease;
+}
+.ant-card:hover .ant-statistic-content {
+  color: var(--kp-gold-bright);
+}
+
+/* gauge labels pick up the gold on hover */
+.status-card .ant-progress-text {
+  transition: color 0.3s ease;
+}

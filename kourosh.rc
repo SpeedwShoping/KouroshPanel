@@ -1,0 +1,18 @@
+#!/sbin/openrc-run
+
+command="/usr/local/kourosh/kourosh"
+command_background=true
+pidfile="/run/kourosh.pid"
+description="kourosh Service"
+procname="kourosh"
+depend() {
+    need net
+}
+start_pre(){
+    cd /usr/local/kourosh
+}
+reload() {
+  ebegin "Reloading ${RC_SVCNAME}"
+  kill -USR1 $(cat $pidfile)
+  eend $?
+}
