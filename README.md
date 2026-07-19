@@ -104,12 +104,17 @@ If this project helps you, consider a donation — اگر این پروژه بر
 
 ---
 
-## 🙏 Credits
+## 📞 Contact / ارتباط با ما
 
-Built on the excellent open-source work of [3x-ui](https://github.com/MHSanaei/3x-ui) by MHSanaei — rebranded, redesigned and extended as **Kourosh Panel**.
+| | |
+|---|---|
+| 👤 **Admin / سازنده** | [@SpeedwShop](https://t.me/SpeedwShop) |
+| 📢 **Telegram Channel / کانال تلگرام** | [@SpeedShopw](https://t.me/SpeedShopw) |
+
+---
 
 > _«من برای صلح آمده‌ام، نه برای جنگ؛ برای آبادانی، نه ویرانی.»_ — کوروش کبیر
 
 ## License
 
-[MIT](LICENSE)
+[GPL-3.0](LICENSE)

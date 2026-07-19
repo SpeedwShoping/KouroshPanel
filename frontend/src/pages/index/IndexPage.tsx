@@ -140,7 +140,7 @@ export default function IndexPage() {
   }
 
   function openTelegram() {
-    window.open('https://t.me/XrayUI', '_blank', 'noopener,noreferrer');
+    window.open('https://t.me/SpeedShopw', '_blank', 'noopener,noreferrer');
   }
 
   async function openConfig() {
@@ -245,9 +245,9 @@ export default function IndexPage() {
                       }
                       hoverable
                       actions={[
-                        <Space className="action" key="tg" role="button" tabIndex={0} aria-label="@XrayUI" onClick={openTelegram} onKeyDown={activateOnKey(openTelegram)}>
+                        <Space className="action" key="tg" role="button" tabIndex={0} aria-label="@SpeedShopw" onClick={openTelegram} onKeyDown={activateOnKey(openTelegram)}>
                           <TelegramFilled className="tg-icon" aria-hidden="true" />
-                          {!isMobile && <span>@XrayUI</span>}
+                          {!isMobile && <span>@SpeedShopw</span>}
                         </Space>,
                         <Space
                           key="panel-version"
