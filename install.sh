@@ -1498,7 +1498,7 @@ install_kourosh() {
             exit 1
         fi
         echo -e "Got kourosh latest version: ${tag_version}, beginning the installation..."
-        curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/kourosh-linux-$(arch).tar.gz
+        curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Downloading kourosh failed, please be sure that your server can access GitHub ${plain}"
             exit 1
@@ -1526,7 +1526,7 @@ install_kourosh() {
             fi
         fi
 
-        url="https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/kourosh-linux-$(arch).tar.gz"
+        url="https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz"
         echo -e "Beginning to install kourosh ${tag_version}"
         curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
@@ -1569,14 +1569,14 @@ install_kourosh() {
     fi
 
     # Extract resources and set permissions
-    tar zxvf kourosh-linux-$(arch).tar.gz
+    tar zxvf k-ui-linux-$(arch).tar.gz
     if [[ $? -ne 0 ]]; then
-        rm kourosh-linux-$(arch).tar.gz -f
+        rm k-ui-linux-$(arch).tar.gz -f
         rm -f "${kourosh_script_temp}"
         echo -e "${red}Failed to extract the kourosh release archive -- the previous installation has already been removed, so the panel will not start until this is fixed; try running the installer again${plain}"
         exit 1
     fi
-    rm kourosh-linux-$(arch).tar.gz -f
+    rm k-ui-linux-$(arch).tar.gz -f
 
     cd kourosh
     if [[ $? -ne 0 || ! -s kourosh ]]; then

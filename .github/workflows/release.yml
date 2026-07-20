@@ -183,13 +183,13 @@ jobs:
           cd ../..
 
       - name: Package
-        run: tar -zcvf kourosh-linux-${{ matrix.platform }}.tar.gz kourosh
+        run: tar -zcvf k-ui-linux-${{ matrix.platform }}.tar.gz kourosh
 
       - name: Upload files to Artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: kourosh-linux-${{ matrix.platform }}
-          path: ./kourosh-linux-${{ matrix.platform }}.tar.gz
+          name: k-ui-linux-${{ matrix.platform }}
+          path: ./k-ui-linux-${{ matrix.platform }}.tar.gz
 
       - name: Upload files to GH release
         uses: svenstaro/upload-release-action@v2
@@ -197,8 +197,8 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
-          file: kourosh-linux-${{ matrix.platform }}.tar.gz
-          asset_name: kourosh-linux-${{ matrix.platform }}.tar.gz
+          file: k-ui-linux-${{ matrix.platform }}.tar.gz
+          asset_name: k-ui-linux-${{ matrix.platform }}.tar.gz
           overwrite: true
           prerelease: true
 
