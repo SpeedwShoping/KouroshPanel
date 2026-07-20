@@ -126,3 +126,81 @@
 .hosts-page .ant-card .ant-card-actions {
   background: transparent;
 }
+
+/* ---------- Kourosh card identity (all panel pages) ---------- */
+.index-page .ant-card,
+.clients-page .ant-card,
+.inbounds-page .ant-card,
+.xray-page .ant-card,
+.settings-page .ant-card,
+.nodes-page .ant-card,
+.groups-page .ant-card,
+.api-docs-page .ant-card {
+  border: 1px solid rgba(160, 120, 20, 0.16);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.index-page.is-dark .ant-card,
+.clients-page.is-dark .ant-card,
+.inbounds-page.is-dark .ant-card,
+.xray-page.is-dark .ant-card,
+.settings-page.is-dark .ant-card,
+.nodes-page.is-dark .ant-card,
+.groups-page.is-dark .ant-card,
+.api-docs-page.is-dark .ant-card {
+  border-color: rgba(201, 162, 39, 0.16);
+}
+
+.index-page .ant-card:hover,
+.clients-page .ant-card:hover,
+.inbounds-page .ant-card:hover,
+.xray-page .ant-card:hover,
+.settings-page .ant-card:hover,
+.nodes-page .ant-card:hover,
+.groups-page .ant-card:hover,
+.api-docs-page .ant-card:hover {
+  border-color: rgba(201, 162, 39, 0.42);
+}
+
+.index-page .ant-card-head,
+.clients-page .ant-card-head,
+.inbounds-page .ant-card-head,
+.xray-page .ant-card-head,
+.settings-page .ant-card-head,
+.nodes-page .ant-card-head,
+.groups-page .ant-card-head,
+.api-docs-page .ant-card-head {
+  border-bottom: 1px solid rgba(160, 120, 20, 0.14);
+  position: relative;
+}
+
+.index-page .ant-card-head::after,
+.clients-page .ant-card-head::after,
+.inbounds-page .ant-card-head::after,
+.xray-page .ant-card-head::after,
+.settings-page .ant-card-head::after,
+.nodes-page .ant-card-head::after,
+.groups-page .ant-card-head::after,
+.api-docs-page .ant-card-head::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 64px;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #c9a227, #2ec4b6);
+}
+
+[dir='rtl'] .index-page .ant-card-head::after,
+[dir='rtl'] .clients-page .ant-card-head::after,
+[dir='rtl'] .inbounds-page .ant-card-head::after,
+[dir='rtl'] .xray-page .ant-card-head::after,
+[dir='rtl'] .settings-page .ant-card-head::after,
+[dir='rtl'] .nodes-page .ant-card-head::after,
+[dir='rtl'] .groups-page .ant-card-head::after,
+[dir='rtl'] .api-docs-page .ant-card-head::after {
+  left: auto;
+  right: 0;
+}

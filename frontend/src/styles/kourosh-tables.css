@@ -24,7 +24,7 @@
   text-transform: uppercase;
   padding: 16px 16px !important;
   position: relative;
-  transition: all 0.3s;
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .ant-table-thead > tr > th::before {
@@ -52,7 +52,7 @@
   border: 1px solid rgba(201, 162, 39, 0.15) !important;
   border-radius: var(--kp-table-border-radius) !important;
   margin-bottom: var(--kp-table-row-gap);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
 }
 
@@ -107,7 +107,7 @@
   background: rgba(18, 24, 49, 0.4);
   border: 1px solid rgba(201, 162, 39, 0.2);
   border-radius: 8px;
-  transition: all 0.25s;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .ant-pagination .ant-pagination-item:hover {
@@ -136,7 +136,7 @@
   font-size: 13px;
   height: 30px;
   padding: 0 12px;
-  transition: all 0.25s;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .ant-table-tbody .ant-btn-primary {
@@ -172,7 +172,7 @@
   font-size: 12px;
   font-weight: 500;
   border: 1px solid;
-  transition: all 0.2s;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .ant-tag-success {
@@ -225,55 +225,55 @@
 }
 
 /* ---------- Light theme ---------- */
-body:not(.dark-theme) .ant-table-thead > tr > th {
+body.light .ant-table-thead > tr > th {
   background: rgba(201, 162, 39, 0.1) !important;
   color: rgba(0, 0, 0, 0.85) !important;
   border-bottom-color: rgba(201, 162, 39, 0.3) !important;
 }
 
-body:not(.dark-theme) .ant-table-tbody > tr {
+body.light .ant-table-tbody > tr {
   background: rgba(255, 255, 255, 0.6) !important;
   border-color: rgba(201, 162, 39, 0.2) !important;
 }
 
-body:not(.dark-theme) .ant-table-tbody > tr > td {
+body.light .ant-table-tbody > tr > td {
   color: rgba(0, 0, 0, 0.85) !important;
 }
 
-body:not(.dark-theme) .ant-table-tbody > tr:hover {
+body.light .ant-table-tbody > tr:hover {
   background: rgba(201, 162, 39, 0.15) !important;
   border-color: rgba(201, 162, 39, 0.45) !important;
 }
 
-body:not(.dark-theme) .ant-table-tbody > tr.ant-table-row-selected {
+body.light .ant-table-tbody > tr.ant-table-row-selected {
   background: rgba(201, 162, 39, 0.22) !important;
   border-color: rgba(201, 162, 39, 0.55) !important;
 }
 
-body:not(.dark-theme) .ant-pagination .ant-pagination-item {
+body.light .ant-pagination .ant-pagination-item {
   background: rgba(255, 255, 255, 0.7);
   border-color: rgba(201, 162, 39, 0.25);
 }
 
-body:not(.dark-theme) .ant-pagination .ant-pagination-item:hover {
+body.light .ant-pagination .ant-pagination-item:hover {
   background: rgba(201, 162, 39, 0.15);
   border-color: rgba(201, 162, 39, 0.45);
 }
 
-body:not(.dark-theme) .ant-pagination .ant-pagination-item-active {
+body.light .ant-pagination .ant-pagination-item-active {
   background: linear-gradient(135deg, rgba(201, 162, 39, 0.28) 0%, rgba(46, 196, 182, 0.18) 100%);
   border-color: rgba(201, 162, 39, 0.55);
 }
 
-body:not(.dark-theme) .ant-pagination .ant-pagination-item a {
+body.light .ant-pagination .ant-pagination-item a {
   color: rgba(0, 0, 0, 0.75);
 }
 
-body:not(.dark-theme) .ant-pagination .ant-pagination-item-active a {
+body.light .ant-pagination .ant-pagination-item-active a {
   color: #8a6d13;
 }
 
-body:not(.dark-theme) .ant-empty-description {
+body.light .ant-empty-description {
   color: rgba(0, 0, 0, 0.45);
 }
 

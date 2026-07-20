@@ -95,29 +95,12 @@
     linear-gradient(rgba(201, 162, 39, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(201, 162, 39, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: kp-grid-slow 60s linear infinite;
   pointer-events: none;
 }
 
 @keyframes kp-grid-slow {
   0% { transform: translate(0, 0); }
   100% { transform: translate(40px, 40px); }
-}
-
-/* Shimmer effect */
-.kp-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent 0%, rgba(201, 162, 39, 0.08) 50%, transparent 100%);
-  transform: translateX(-100%);
-  animation: kp-hero-shimmer 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes kp-hero-shimmer {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
 }
 
 .index-page:not(.is-dark) .kp-hero {
@@ -152,7 +135,6 @@
   inset: -8px;
   background: radial-gradient(circle, rgba(201, 162, 39, 0.25) 0%, transparent 70%);
   border-radius: 50%;
-  animation: kp-glyph-pulse 3s ease-in-out infinite;
 }
 
 @keyframes kp-glyph-pulse {
@@ -213,7 +195,7 @@
   border: 1px solid rgba(201, 162, 39, 0.2);
   border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   position: relative;
 }
@@ -281,7 +263,7 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
-  transition: all 0.3s;
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .index-page .ant-card:hover .ant-statistic-content-value {
@@ -307,7 +289,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .index-page .ant-space-item .ant-btn:hover,

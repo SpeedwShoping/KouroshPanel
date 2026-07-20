@@ -61,7 +61,6 @@ body {
     linear-gradient(var(--kp-grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--kp-grid-line) 1px, transparent 1px);
   background-size: 44px 44px;
-  animation: kp-grid-drift 26s linear infinite;
   -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 40%, #000 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 90% 75% at 50% 40%, #000 40%, transparent 100%);
 }
@@ -117,14 +116,9 @@ body {
 }
 .kp-shimmer {
   background: linear-gradient(120deg, var(--kp-gold) 25%, #fff3c4 50%, var(--kp-gold) 75%);
-  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: kp-shimmer 5s linear infinite;
-}
-@keyframes kp-shimmer {
-  to { background-position: -220% center; }
 }
 
 /* ---------- Faravahar wing divider ---------- */
@@ -178,4 +172,87 @@ body {
 /* gauge labels pick up the gold on hover */
 .status-card .ant-progress-text {
   transition: color 0.3s ease;
+}
+
+/* ---------- Buttons — Kourosh identity ---------- */
+.ant-btn {
+  border-radius: 10px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.ant-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+.ant-btn:not(:disabled):active {
+  transform: translateY(0);
+}
+.ant-btn-primary:not(:disabled) {
+  background: linear-gradient(135deg, #c9a227 0%, #a07814 100%);
+  border: none;
+  box-shadow: 0 4px 14px rgba(201, 162, 39, 0.22);
+}
+.ant-btn-primary:not(:disabled):hover {
+  background: linear-gradient(135deg, #e8c547 0%, #c9a227 100%) !important;
+  box-shadow: 0 8px 22px rgba(201, 162, 39, 0.32);
+}
+
+/* ---------- Table identity ---------- */
+.ant-table {
+  border-radius: 12px;
+}
+.ant-table-thead > tr > th {
+  border-bottom: 2px solid rgba(201, 162, 39, 0.25) !important;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.dark .ant-table-tbody > tr:hover > td {
+  background: rgba(201, 162, 39, 0.06) !important;
+}
+body.light .ant-table-tbody > tr:hover > td {
+  background: rgba(201, 162, 39, 0.07) !important;
+}
+
+/* ---------- Tabs / segmented ---------- */
+.ant-tabs-ink-bar {
+  background: linear-gradient(90deg, #c9a227, #2ec4b6) !important;
+  height: 3px !important;
+  border-radius: 2px;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #c9a227 !important;
+  font-weight: 600;
+}
+
+/* ---------- Modal / drawer polish ---------- */
+.ant-modal .ant-modal-content,
+.ant-drawer .ant-drawer-content {
+  border-radius: 16px;
+  border: 1px solid rgba(201, 162, 39, 0.18);
+}
+.ant-modal .ant-modal-content {
+  animation: kp-rise 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Switches, tags, progress in gold ---------- */
+.ant-switch.ant-switch-checked {
+  background: linear-gradient(135deg, #c9a227, #a07814) !important;
+}
+.ant-progress-inner .ant-progress-bg {
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 162, 39, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.3);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 162, 39, 0.5);
 }

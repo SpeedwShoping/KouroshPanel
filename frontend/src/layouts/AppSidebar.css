@@ -39,7 +39,6 @@
   inset: 0;
   background: linear-gradient(120deg, transparent 0%, rgba(201, 162, 39, 0.03) 50%, transparent 100%);
   transform: translateX(-100%);
-  animation: kp-shimmer-slide 3s ease-in-out infinite;
 }
 
 @keyframes kp-shimmer-slide {
@@ -91,7 +90,7 @@
   color: #c9a227;
   text-decoration: none;
   flex-shrink: 0;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .sidebar-donate:hover,
@@ -143,7 +142,7 @@
   color: rgba(255, 255, 255, 0.75) !important;
   font-weight: 500;
   font-size: 14.5px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -240,7 +239,7 @@
   color: #c9a227;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,7 +290,7 @@
   justify-content: center;
   color: rgba(255, 255, 255, 0.65);
   cursor: pointer;
-  transition: all 0.25s;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .drawer-close:hover {
@@ -313,7 +312,7 @@
   justify-content: center;
   color: #c9a227;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .theme-toggle-btn:hover {
@@ -328,43 +327,43 @@
 }
 
 /* Light theme overrides */
-body:not(.dark-theme) .ant-sidebar > .ant-layout-sider {
+body.light .ant-sidebar > .ant-layout-sider {
   background: linear-gradient(180deg, #fdfaf0 0%, #f5efdd 100%) !important;
   border-right-color: rgba(201, 162, 39, 0.25);
   box-shadow: 2px 0 16px rgba(0, 0, 0, 0.06);
 }
 
-body:not(.dark-theme) .sider-brand {
+body.light .sider-brand {
   background: linear-gradient(135deg, rgba(201, 162, 39, 0.12) 0%, rgba(46, 196, 182, 0.08) 100%);
   border-bottom-color: rgba(201, 162, 39, 0.3);
   color: #8a6d13;
 }
 
-body:not(.dark-theme) .ant-sidebar .ant-menu-item,
-body:not(.dark-theme) .ant-sidebar .ant-menu-submenu-title {
+body.light .ant-sidebar .ant-menu-item,
+body.light .ant-sidebar .ant-menu-submenu-title {
   background: rgba(255, 255, 255, 0.6) !important;
   border-color: rgba(201, 162, 39, 0.18) !important;
   color: rgba(0, 0, 0, 0.75) !important;
 }
 
-body:not(.dark-theme) .ant-sidebar .ant-menu-item:hover,
-body:not(.dark-theme) .ant-sidebar .ant-menu-submenu-title:hover {
+body.light .ant-sidebar .ant-menu-item:hover,
+body.light .ant-sidebar .ant-menu-submenu-title:hover {
   background: rgba(201, 162, 39, 0.12) !important;
   border-color: rgba(201, 162, 39, 0.4) !important;
   color: #8a6d13 !important;
 }
 
-body:not(.dark-theme) .ant-sidebar .ant-menu-item-selected {
+body.light .ant-sidebar .ant-menu-item-selected {
   background: linear-gradient(135deg, rgba(201, 162, 39, 0.22) 0%, rgba(46, 196, 182, 0.15) 100%) !important;
   border-color: rgba(201, 162, 39, 0.55) !important;
   color: #8a6d13 !important;
 }
 
-body:not(.dark-theme) .sidebar-footer {
+body.light .sidebar-footer {
   background: rgba(201, 162, 39, 0.05);
   border-top-color: rgba(201, 162, 39, 0.2);
 }
 
-body:not(.dark-theme) .sidebar-version {
+body.light .sidebar-version {
   color: rgba(0, 0, 0, 0.5);
 }
