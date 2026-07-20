@@ -125,6 +125,103 @@ confirm_restart() {
     fi
 }
 
+show_menu() {
+    clear
+    echo -e "${cyan}"
+    echo "╔══════════════════════════════════════════════════════════════════╗"
+    echo "║                                                                  ║"
+    echo "║           ██╗  ██╗      ██╗   ██╗ ██╗                          ║"
+    echo "║           ██║ ██╔╝      ██║   ██║ ██║                          ║"
+    echo "║           █████╔╝ █████╗██║   ██║ ██║                          ║"
+    echo "║           ██╔═██╗ ╚════╝██║   ██║ ██║                          ║"
+    echo "║           ██║  ██╗      ╚██████╔╝ ██║                          ║"
+    echo "║           ╚═╝  ╚═╝       ╚═════╝  ╚═╝                          ║"
+    echo "║                                                                  ║"
+    echo "║              🏛️  Kourosh Panel — Achaemenid Power  🏛️            ║"
+    echo "║                                                                  ║"
+    echo "╚══════════════════════════════════════════════════════════════════╝"
+    echo -e "${plain}"
+
+    # System Info
+    echo -e "${green}━━━━━━━━━━━━━━━━━━ System Status ━━━━━━━━━━━━━━━━━━${plain}"
+    echo -e "${yellow}CPU:${plain} $(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf "%.1f%%", usage}')"
+    echo -e "${yellow}RAM:${plain} $(free -h | awk '/^Mem:/ {print $3 "/" $2}')"
+    echo -e "${yellow}Disk:${plain} $(df -h / | awk 'NR==2 {print $3 "/" $2 " (" $5 " used)"}')"
+    echo -e "${green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${plain}"
+    echo ""
+
+    echo -e "${cyan}╔═══════════════════ Panel Management ═══════════════════╗${plain}"
+    echo -e "  ${green}1.${plain}  Install Panel               ${green}16.${plain} X-ray Log"
+    echo -e "  ${green}2.${plain}  Update Panel                ${green}17.${plain} Clear X-ray Log"
+    echo -e "  ${green}3.${plain}  Update Menu                 ${green}18.${plain} Ban Log"
+    echo -e "  ${green}4.${plain}  Legacy Version              ${green}19.${plain} Check Config"
+    echo -e "  ${green}5.${plain}  Uninstall Panel             ${green}20.${plain} Set Port"
+    echo -e "${cyan}╠════════════════════ Panel Control ═════════════════════╣${plain}"
+    echo -e "  ${green}6.${plain}  Reset Username/Password     ${green}21.${plain} Enable Auto Start"
+    echo -e "  ${green}7.${plain}  Reset Panel Settings        ${green}22.${plain} Disable Auto Start"
+    echo -e "  ${green}8.${plain}  Set Panel Port              ${green}23.${plain} Setup Firewall"
+    echo -e "  ${green}9.${plain}  View Current Settings       ${green}24.${plain} SSL Certificate"
+    echo -e "  ${green}10.${plain} Start Panel                 ${green}25.${plain} Cloudflare SSL"
+    echo -e "  ${green}11.${plain} Stop Panel                  ${green}26.${plain} Reset X-ray Certificate"
+    echo -e "  ${green}12.${plain} Restart Panel               ${green}27.${plain} Backup & Restore"
+    echo -e "  ${green}13.${plain} Restart Panel & X-ray       ${green}28.${plain} Update GeoIP Files"
+    echo -e "  ${green}14.${plain} Check Panel Status          ${green}29.${plain} Speedtest"
+    echo -e "  ${green}15.${plain} Check X-ray Status          ${green}30.${plain} Setup Fail2ban & IP Limit"
+    echo -e "${cyan}╠═══════════════════ Advanced Tools ═════════════════════╣${plain}"
+    echo -e "  ${green}31.${plain} System Optimization         ${green}34.${plain} Telegram Bot Manager"
+    echo -e "  ${green}32.${plain} Warp+ Integration           ${green}35.${plain} Database Migration"
+    echo -e "  ${green}33.${plain} Traffic Monitor             ${green}36.${plain} PostgreSQL Client Upgrade"
+    echo -e "${cyan}╠════════════════════════════════════════════════════════╣${plain}"
+    echo -e "  ${red}0.${plain}  Exit"
+    echo -e "${cyan}╚════════════════════════════════════════════════════════╝${plain}"
+    echo ""
+    read -rp "$(echo -e ${yellow}Enter option [0-36]: ${plain})" num
+
+    case "${num}" in
+    1) check_uninstall 0 && install 0 ;;
+    2) check_install 0 && update 0 ;;
+    3) check_install 0 && update_menu 0 ;;
+    4) check_install 0 && legacy_version 0 ;;
+    5) check_install 0 && uninstall 0 ;;
+    6) check_install 0 && reset_user 0 ;;
+    7) check_install 0 && reset_config 0 ;;
+    8) check_install 0 && set_port 0 ;;
+    9) check_install 0 && check_config 0 ;;
+    10) check_install 0 && start 0 ;;
+    11) check_install 0 && stop 0 ;;
+    12) check_install 0 && restart 0 ;;
+    13) check_install 0 && restart 0 && restart_xray 0 ;;
+    14) check_install 0 && status 0 ;;
+    15) check_install 0 && show_xray_status 0 ;;
+    16) check_install 0 && show_log 0 ;;
+    17) check_install 0 && clear_log 0 ;;
+    18) check_install 0 && show_banlog 0 ;;
+    19) check_install 0 && check_config 0 ;;
+    20) check_install 0 && set_port 0 ;;
+    21) check_install 0 && enable 0 ;;
+    22) check_install 0 && disable 0 ;;
+    23) check_install 0 && update_firewall 0 ;;
+    24) check_install 0 && ssl_cert_issue_main 0 ;;
+    25) check_install 0 && ssl_cert_issue_CF 0 ;;
+    26) check_install 0 && reset_ssl_certificate 0 ;;
+    27) backup_restore_menu ;;
+    28) check_install 0 && update_all_geofiles 0 ;;
+    29) run_speedtest 0 ;;
+    30) setup_fail2ban_iplimit ;;
+    31) system_optimization_menu ;;
+    32) warp_menu ;;
+    33) traffic_monitor_menu ;;
+    34) telegram_bot_menu ;;
+    35) migrate_db "$2" "$3" ;;
+    36) pg_upgrade_client "$2" ;;
+    0) exit 0 ;;
+    *)
+        LOGE "Please enter correct number [0-36]"
+        before_show_menu
+        ;;
+    esac
+}
+
 before_show_menu() {
     echo && echo -n -e "${yellow}Press enter to return to the main menu: ${plain}" && read -r temp
     show_menu
@@ -178,11 +275,11 @@ update_dev() {
 replace_kourosh_script() {
     local url="$1"
     local use_if_modified_since="$2"
-    local temp_file="/usr/bin/kourosh-temp.$$"
+    local temp_file="/usr/bin/k-ui-temp.$$"
 
     rm -f "$temp_file"
     if [[ "$use_if_modified_since" == "true" ]]; then
-        curl -fLRo "$temp_file" -z /usr/bin/kourosh "$url"
+        curl -fLRo "$temp_file" -z /usr/bin/k-ui "$url"
     else
         curl -fLRo "$temp_file" "$url"
     fi
@@ -193,20 +290,20 @@ replace_kourosh_script() {
 
     if [[ ! -s "$temp_file" ]]; then
         rm -f "$temp_file"
-        # -z above means "not modified since /usr/bin/kourosh" rather than a
+        # -z above means "not modified since /usr/bin/k-ui" rather than a
         # real failure, so an empty download here is success, not an error.
         [[ "$use_if_modified_since" == "true" ]] && return 0
         return 1
     fi
 
-    mv -f "$temp_file" /usr/bin/kourosh
+    mv -f "$temp_file" /usr/bin/k-ui
     if [[ $? != 0 ]]; then
         rm -f "$temp_file"
         return 1
     fi
     # The move already landed the new script; a transient chmod failure here
     # shouldn't make callers think the whole replace failed.
-    chmod +x /usr/bin/kourosh
+    chmod +x /usr/bin/k-ui
     return 0
 }
 
@@ -221,8 +318,8 @@ update_menu() {
         return 0
     fi
 
-    if replace_kourosh_script "https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.sh" "false"; then
-        chmod +x ${kourosh_folder}/kourosh.sh
+    if replace_kourosh_script "https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/k-ui.sh" "false"; then
+        chmod +x ${kourosh_folder}/k-ui.sh
         echo -e "${green}Update successful. The panel has automatically restarted.${plain}"
         exit 0
     else
@@ -838,7 +935,7 @@ enable_bbr() {
 }
 
 update_shell() {
-    if replace_kourosh_script "https://github.com/SpeedwShoping/KouroshPanel/raw/main/kourosh.sh" "true"; then
+    if replace_kourosh_script "https://github.com/SpeedwShoping/KouroshPanel/raw/main/k-ui.sh" "true"; then
         LOGI "Upgrade script succeeded, Please rerun the script"
         before_show_menu
     else
@@ -3445,141 +3542,553 @@ show_usage() {
 └────────────────────────────────────────────────────────────────┘"
 }
 
-show_menu() {
-    echo -e "
-${gold}    ██╗  ██╗ ██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗██╗  ██╗${plain}
-${gold}    ██║ ██╔╝██╔═══██╗██║   ██║██╔══██╗██╔═══██╗██╔════╝██║  ██║${plain}
-${gold}    █████╔╝ ██║   ██║██║   ██║██████╔╝██║   ██║███████╗███████║${plain}
-${gold}    ██╔═██╗ ██║   ██║██║   ██║██╔══██╗██║   ██║╚════██║██╔══██║${plain}
-${gold}    ██║  ██╗╚██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║██║  ██║${plain}
-${gold}    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝${plain}
-${cyan}          ─── K O U R O S H   P A N E L · by SpeedwShoping ───${plain}
-"
-    show_status
-    echo -e "
-${gold}╔══════════════════════════════════════════════════╗${plain}
-${gold}║${plain}  ${cyan}▸ INSTALL / UPDATE${plain}                              ${gold}║${plain}
-${gold}║${plain}  ${green}1.${plain} Install          ${green}2.${plain} Update                   ${gold}║${plain}
-${gold}║${plain}  ${green}3.${plain} Update (Dev)     ${green}4.${plain} Update Menu              ${gold}║${plain}
-${gold}║${plain}  ${green}5.${plain} Legacy Version   ${green}6.${plain} Uninstall                ${gold}║${plain}
-${gold}║${plain}                                                  ${gold}║${plain}
-${gold}║${plain}  ${cyan}▸ PANEL SETTINGS${plain}                                ${gold}║${plain}
-${gold}║${plain}  ${green}7.${plain} Reset User/Pass  ${green}8.${plain} Reset Web Path           ${gold}║${plain}
-${gold}║${plain}  ${green}9.${plain} Reset Settings   ${green}10.${plain} Change Port             ${gold}║${plain}
-${gold}║${plain}  ${green}11.${plain} View Settings                                ${gold}║${plain}
-${gold}║${plain}                                                  ${gold}║${plain}
-${gold}║${plain}  ${cyan}▸ SERVICE${plain}                                       ${gold}║${plain}
-${gold}║${plain}  ${green}12.${plain} Start           ${green}13.${plain} Stop                    ${gold}║${plain}
-${gold}║${plain}  ${green}14.${plain} Restart         ${green}15.${plain} Restart Xray            ${gold}║${plain}
-${gold}║${plain}  ${green}16.${plain} Status          ${green}17.${plain} Logs                    ${gold}║${plain}
-${gold}║${plain}  ${green}18.${plain} Autostart ON    ${green}19.${plain} Autostart OFF           ${gold}║${plain}
-${gold}║${plain}                                                  ${gold}║${plain}
-${gold}║${plain}  ${cyan}▸ SECURITY / NETWORK${plain}                            ${gold}║${plain}
-${gold}║${plain}  ${green}20.${plain} SSL Certs       ${green}21.${plain} Cloudflare SSL          ${gold}║${plain}
-${gold}║${plain}  ${green}22.${plain} IP Limit        ${green}23.${plain} Firewall                ${gold}║${plain}
-${gold}║${plain}  ${green}24.${plain} SSH Forwarding  ${green}25.${plain} PostgreSQL              ${gold}║${plain}
-${gold}║${plain}                                                  ${gold}║${plain}
-${gold}║${plain}  ${cyan}▸ TOOLS${plain}                                         ${gold}║${plain}
-${gold}║${plain}  ${green}26.${plain} Enable BBR      ${green}27.${plain} Update Geo Files        ${gold}║${plain}
-${gold}║${plain}  ${green}28.${plain} Speedtest                                    ${gold}║${plain}
-${gold}║${plain}                                                  ${gold}║${plain}
-${gold}║${plain}  ${green}0.${plain} Exit                                          ${gold}║${plain}
-${gold}╚══════════════════════════════════════════════════╝${plain}
-"
-    echo && read -rp "Please enter your selection [0-28]: " num
 
-    case "${num}" in
-        0)
-            exit 0
-            ;;
-        1)
-            check_uninstall && install
-            ;;
-        2)
-            check_install && update
-            ;;
-        3)
-            check_install && update_dev
-            ;;
-        4)
-            check_install && update_menu
-            ;;
-        5)
-            check_install && legacy_version
-            ;;
-        6)
-            check_install && uninstall
-            ;;
-        7)
-            check_install && reset_user
-            ;;
-        8)
-            check_install && reset_webbasepath
-            ;;
-        9)
-            check_install && reset_config
-            ;;
-        10)
-            check_install && set_port
-            ;;
-        11)
-            check_install && check_config
-            ;;
-        12)
-            check_install && start
-            ;;
-        13)
-            check_install && stop
-            ;;
-        14)
-            check_install && restart
-            ;;
-        15)
-            check_install && restart_xray
-            ;;
-        16)
-            check_install && status
-            ;;
-        17)
-            check_install && show_log
-            ;;
-        18)
-            check_install && enable
-            ;;
-        19)
-            check_install && disable
-            ;;
-        20)
-            ssl_cert_issue_main
-            ;;
-        21)
-            ssl_cert_issue_CF
-            ;;
-        22)
-            iplimit_main
-            ;;
-        23)
-            firewall_menu
-            ;;
-        24)
-            SSH_port_forwarding
-            ;;
-        25)
-            postgresql_menu
-            ;;
-        26)
-            bbr_menu
-            ;;
-        27)
-            update_geo
-            ;;
-        28)
-            run_speedtest
-            ;;
+# System Optimization Menu
+system_optimization_menu() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      System Optimization${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e ""
+    echo -e "${green}1.${plain} Optimize Network (BBR + TCP)"
+    echo -e "${green}2.${plain} Set DNS to 1.1.1.1 & 8.8.8.8"
+    echo -e "${green}3.${plain} Increase File Descriptors"
+    echo -e "${green}4.${plain} Disable IPv6"
+    echo -e "${green}5.${plain} Full Optimization (All Above)"
+    echo -e "${green}0.${plain} Back to Main Menu"
+    echo ""
+    read -rp "Select option [0-5]: " opt_choice
+
+    case "${opt_choice}" in
+        1) optimize_network ;;
+        2) optimize_dns ;;
+        3) optimize_limits ;;
+        4) disable_ipv6 ;;
+        5) full_optimization ;;
+        0) show_menu ;;
         *)
-            LOGE "Please enter the correct number [0-28]"
+            LOGE "Invalid option"
+            system_optimization_menu
             ;;
     esac
+}
+
+optimize_network() {
+    echo -e "${yellow}Optimizing network settings...${plain}"
+
+    # Enable BBR
+    if ! grep -q "net.core.default_qdisc=fq" /etc/sysctl.conf; then
+        echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+        echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+    fi
+
+    # TCP optimizations
+    cat >> /etc/sysctl.conf << 'OPTEOF'
+net.ipv4.tcp_fastopen=3
+net.ipv4.tcp_slow_start_after_idle=0
+net.ipv4.tcp_notsent_lowat=16384
+net.ipv4.tcp_keepalive_time=300
+net.ipv4.tcp_keepalive_intvl=30
+net.ipv4.tcp_keepalive_probes=3
+OPTEOF
+
+    sysctl -p >/dev/null 2>&1
+    echo -e "${green}✓ Network optimized! BBR enabled.${plain}"
+    before_show_menu
+}
+
+optimize_dns() {
+    echo -e "${yellow}Setting DNS servers...${plain}"
+    cat > /etc/resolv.conf << 'DNSEOF'
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+DNSEOF
+    chattr +i /etc/resolv.conf
+    echo -e "${green}✓ DNS set to Cloudflare & Google${plain}"
+    before_show_menu
+}
+
+optimize_limits() {
+    echo -e "${yellow}Increasing file descriptors...${plain}"
+    echo "* soft nofile 51200" >> /etc/security/limits.conf
+    echo "* hard nofile 51200" >> /etc/security/limits.conf
+    ulimit -n 51200
+    echo -e "${green}✓ File descriptors increased to 51200${plain}"
+    before_show_menu
+}
+
+disable_ipv6() {
+    echo -e "${yellow}Disabling IPv6...${plain}"
+    echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf
+    echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf
+    sysctl -p >/dev/null 2>&1
+    echo -e "${green}✓ IPv6 disabled${plain}"
+    before_show_menu
+}
+
+full_optimization() {
+    echo -e "${yellow}Running full system optimization...${plain}"
+    optimize_network
+    optimize_dns
+    optimize_limits
+    disable_ipv6
+    echo -e "${green}✓ Full optimization complete!${plain}"
+    before_show_menu
+}
+
+# Backup & Restore Menu
+backup_restore_menu() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      Backup & Restore${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e ""
+    echo -e "${green}1.${plain} Backup Database & Config"
+    echo -e "${green}2.${plain} Restore from Backup"
+    echo -e "${green}3.${plain} List Backups"
+    echo -e "${green}4.${plain} Delete Old Backups"
+    echo -e "${green}0.${plain} Back to Main Menu"
+    echo ""
+    read -rp "Select option [0-4]: " backup_choice
+
+    case "${backup_choice}" in
+        1) create_backup ;;
+        2) restore_backup ;;
+        3) list_backups ;;
+        4) delete_old_backups ;;
+        0) show_menu ;;
+        *)
+            LOGE "Invalid option"
+            backup_restore_menu
+            ;;
+    esac
+}
+
+create_backup() {
+    echo -e "${yellow}Creating backup...${plain}"
+    backup_dir="/root/kourosh-backups"
+    mkdir -p "$backup_dir"
+
+    timestamp=$(date +%Y%m%d_%H%M%S)
+    backup_file="$backup_dir/kourosh_backup_$timestamp.tar.gz"
+
+    tar -czf "$backup_file" \
+        /etc/kourosh/ \
+        /usr/local/kourosh/bin/kourosh.db 2>/dev/null
+
+    if [[ -f "$backup_file" ]]; then
+        echo -e "${green}✓ Backup created: $backup_file${plain}"
+        echo -e "${cyan}Size: $(du -h $backup_file | cut -f1)${plain}"
+    else
+        LOGE "Backup failed"
+    fi
+
+    before_show_menu
+}
+
+restore_backup() {
+    backup_dir="/root/kourosh-backups"
+
+    if [[ ! -d "$backup_dir" ]] || [[ -z "$(ls -A $backup_dir)" ]]; then
+        LOGE "No backups found"
+        before_show_menu
+        return
+    fi
+
+    echo -e "${cyan}Available backups:${plain}"
+    ls -lh "$backup_dir" | grep ".tar.gz"
+    echo ""
+    read -rp "Enter backup filename: " backup_name
+
+    if [[ ! -f "$backup_dir/$backup_name" ]]; then
+        LOGE "Backup file not found"
+        before_show_menu
+        return
+    fi
+
+    if ! confirm "Restore from $backup_name? This will overwrite current config!"; then
+        before_show_menu
+        return
+    fi
+
+    tar -xzf "$backup_dir/$backup_name" -C / 2>/dev/null
+    echo -e "${green}✓ Backup restored! Restarting panel...${plain}"
+    restart 0
+}
+
+list_backups() {
+    backup_dir="/root/kourosh-backups"
+
+    if [[ ! -d "$backup_dir" ]] || [[ -z "$(ls -A $backup_dir 2>/dev/null)" ]]; then
+        LOGE "No backups found"
+    else
+        echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+        ls -lh "$backup_dir" | grep ".tar.gz"
+        echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    fi
+
+    before_show_menu
+}
+
+delete_old_backups() {
+    backup_dir="/root/kourosh-backups"
+
+    if [[ ! -d "$backup_dir" ]]; then
+        LOGE "No backups directory found"
+        before_show_menu
+        return
+    fi
+
+    echo -e "${yellow}Deleting backups older than 30 days...${plain}"
+    find "$backup_dir" -name "*.tar.gz" -mtime +30 -delete
+    echo -e "${green}✓ Old backups deleted${plain}"
+
+    before_show_menu
+}
+
+# Traffic Monitor Menu
+traffic_monitor_menu() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      Traffic Monitor${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e ""
+    echo -e "${green}1.${plain} Real-time Traffic (Live)"
+    echo -e "${green}2.${plain} Traffic Summary"
+    echo -e "${green}3.${plain} Top Bandwidth Users"
+    echo -e "${green}4.${plain} Connection Count"
+    echo -e "${green}0.${plain} Back to Main Menu"
+    echo ""
+    read -rp "Select option [0-4]: " traffic_choice
+
+    case "${traffic_choice}" in
+        1) realtime_traffic ;;
+        2) traffic_summary ;;
+        3) top_bandwidth_users ;;
+        4) connection_count ;;
+        0) show_menu ;;
+        *)
+            LOGE "Invalid option"
+            traffic_monitor_menu
+            ;;
+    esac
+}
+
+realtime_traffic() {
+    echo -e "${cyan}Real-time Traffic Monitor (Press Ctrl+C to stop)${plain}"
+    echo ""
+    iftop -t -s 5 2>/dev/null || {
+        echo -e "${yellow}Installing iftop...${plain}"
+        apt install iftop -y >/dev/null 2>&1
+        iftop -t -s 5
+    }
+    before_show_menu
+}
+
+traffic_summary() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}Traffic Summary${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+
+    vnstat 2>/dev/null || {
+        echo -e "${yellow}Installing vnstat...${plain}"
+        apt install vnstat -y >/dev/null 2>&1
+        systemctl enable vnstat
+        systemctl start vnstat
+        sleep 2
+        vnstat
+    }
+
+    before_show_menu
+}
+
+top_bandwidth_users() {
+    echo -e "${cyan}Top Bandwidth Users:${plain}"
+    echo ""
+    netstat -tn | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -10
+    echo ""
+    before_show_menu
+}
+
+connection_count() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    total=$(netstat -an | grep :443 | wc -l)
+    established=$(netstat -an | grep :443 | grep ESTABLISHED | wc -l)
+
+    echo -e "${yellow}Total Connections:${plain} $total"
+    echo -e "${yellow}Established:${plain} $established"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+
+    before_show_menu
+}
+
+# Speedtest
+run_speedtest() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      Server Speed Test${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo ""
+
+    if ! command -v speedtest-cli >/dev/null 2>&1; then
+        echo -e "${yellow}Installing speedtest-cli...${plain}"
+        apt install speedtest-cli -y >/dev/null 2>&1
+    fi
+
+    echo -e "${yellow}Testing server speed...${plain}"
+    echo ""
+    speedtest-cli --simple
+    echo ""
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+
+    before_show_menu
+}
+
+# Warp+ Integration
+warp_menu() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      Warp+ Integration${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e ""
+    echo -e "${green}1.${plain} Install Warp+"
+    echo -e "${green}2.${plain} Uninstall Warp+"
+    echo -e "${green}3.${plain} Warp+ Status"
+    echo -e "${green}4.${plain} Configure Warp+"
+    echo -e "${green}0.${plain} Back to Main Menu"
+    echo ""
+    read -rp "Select option [0-4]: " warp_choice
+
+    case "${warp_choice}" in
+        1)
+            install_warp
+            ;;
+        2)
+            uninstall_warp
+            ;;
+        3)
+            warp_status
+            ;;
+        4)
+            configure_warp
+            ;;
+        0)
+            show_menu
+            ;;
+        *)
+            LOGE "Invalid option"
+            warp_menu
+            ;;
+    esac
+}
+
+install_warp() {
+    echo -e "${yellow}Installing Warp+...${plain}"
+
+    if command -v warp-cli >/dev/null 2>&1; then
+        LOGI "Warp+ is already installed"
+        before_show_menu
+        return
+    fi
+
+    curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg 2>/dev/null
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/cloudflare-client.list
+    apt update && apt install cloudflare-warp -y
+
+    warp-cli register
+    warp-cli set-mode proxy
+    warp-cli connect
+
+    echo -e "${green}✓ Warp+ installed and connected!${plain}"
+    echo -e "${cyan}Proxy available at: 127.0.0.1:40000${plain}"
+
+    before_show_menu
+}
+
+uninstall_warp() {
+    if ! confirm "Remove Warp+?"; then
+        before_show_menu
+        return
+    fi
+
+    warp-cli disconnect 2>/dev/null
+    apt remove cloudflare-warp -y
+    rm -f /etc/apt/sources.list.d/cloudflare-client.list
+
+    echo -e "${green}✓ Warp+ removed${plain}"
+    before_show_menu
+}
+
+warp_status() {
+    if ! command -v warp-cli >/dev/null 2>&1; then
+        LOGE "Warp+ is not installed"
+    else
+        warp-cli status
+    fi
+    before_show_menu
+}
+
+configure_warp() {
+    echo -e "${yellow}Warp+ Configuration${plain}"
+    echo ""
+    echo -e "${green}1.${plain} Set Proxy Mode"
+    echo -e "${green}2.${plain} Set Warp Mode"
+    echo -e "${green}3.${plain} Connect"
+    echo -e "${green}4.${plain} Disconnect"
+    echo ""
+    read -rp "Select option: " warp_config_choice
+
+    case "${warp_config_choice}" in
+        1)
+            warp-cli set-mode proxy
+            echo -e "${green}✓ Proxy mode enabled (127.0.0.1:40000)${plain}"
+            ;;
+        2)
+            warp-cli set-mode warp
+            echo -e "${green}✓ Warp mode enabled${plain}"
+            ;;
+        3)
+            warp-cli connect
+            echo -e "${green}✓ Connected${plain}"
+            ;;
+        4)
+            warp-cli disconnect
+            echo -e "${green}✓ Disconnected${plain}"
+            ;;
+    esac
+
+    before_show_menu
+}
+
+# Telegram Bot Setup
+telegram_bot_menu() {
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e "${cyan}      Telegram Bot Manager${plain}"
+    echo -e "${cyan}═══════════════════════════════════════════════${plain}"
+    echo -e ""
+    echo -e "${green}1.${plain} Install Telegram Bot"
+    echo -e "${green}2.${plain} Configure Bot"
+    echo -e "${green}3.${plain} Start Bot"
+    echo -e "${green}4.${plain} Stop Bot"
+    echo -e "${green}5.${plain} Bot Status"
+    echo -e "${green}0.${plain} Back to Main Menu"
+    echo ""
+    read -rp "Select option [0-5]: " tg_choice
+
+    case "${tg_choice}" in
+        1)
+            install_telegram_bot
+            ;;
+        2)
+            configure_telegram_bot
+            ;;
+        3)
+            systemctl start kourosh-tgbot 2>/dev/null && echo -e "${green}✓ Bot started${plain}" || LOGE "Bot not installed"
+            before_show_menu
+            ;;
+        4)
+            systemctl stop kourosh-tgbot 2>/dev/null && echo -e "${green}✓ Bot stopped${plain}" || LOGE "Bot not installed"
+            before_show_menu
+            ;;
+        5)
+            systemctl status kourosh-tgbot 2>/dev/null || LOGE "Bot not installed"
+            before_show_menu
+            ;;
+        0)
+            show_menu
+            ;;
+        *)
+            LOGE "Invalid option"
+            telegram_bot_menu
+            ;;
+    esac
+}
+
+install_telegram_bot() {
+    echo -e "${yellow}Installing Telegram Bot...${plain}"
+
+    apt install python3-pip -y
+    pip3 install python-telegram-bot requests
+
+    mkdir -p /opt/kourosh-tgbot
+
+    cat > /opt/kourosh-tgbot/bot.py << 'BOTPY'
+#!/usr/bin/env python3
+import os
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
+
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'YOUR_BOT_TOKEN')
+ADMIN_ID = int(os.getenv('TELEGRAM_ADMIN_ID', '0'))
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        await update.message.reply_text("⛔ Unauthorized")
+        return
+    await update.message.reply_text(
+        "👑 Kourosh Panel Bot\n\n"
+        "/status - Panel status\n"
+        "/traffic - Traffic stats\n"
+        "/restart - Restart panel"
+    )
+
+async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_user.id != ADMIN_ID:
+        return
+    os.system("systemctl is-active kourosh > /tmp/bot_status")
+    with open("/tmp/bot_status") as f:
+        status = f.read().strip()
+    await update.message.reply_text(f"📊 Panel Status: {status}")
+
+def main():
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("status", status))
+    app.run_polling()
+
+if __name__ == '__main__':
+    main()
+BOTPY
+
+    chmod +x /opt/kourosh-tgbot/bot.py
+
+    cat > /etc/systemd/system/kourosh-tgbot.service << 'BOTSVC'
+[Unit]
+Description=Kourosh Panel Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/kourosh-tgbot
+EnvironmentFile=/opt/kourosh-tgbot/.env
+ExecStart=/usr/bin/python3 /opt/kourosh-tgbot/bot.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+BOTSVC
+
+    systemctl daemon-reload
+
+    echo -e "${green}✓ Telegram Bot installed!${plain}"
+    echo -e "${yellow}Configure it using option 2${plain}"
+
+    before_show_menu
+}
+
+configure_telegram_bot() {
+    echo -e "${cyan}Telegram Bot Configuration${plain}"
+    echo ""
+    read -rp "Enter your Bot Token (from @BotFather): " bot_token
+    read -rp "Enter your Telegram User ID (from @userinfobot): " admin_id
+
+    cat > /opt/kourosh-tgbot/.env << BOTENV
+TELEGRAM_BOT_TOKEN=${bot_token}
+TELEGRAM_ADMIN_ID=${admin_id}
+BOTENV
+
+    echo -e "${green}✓ Bot configured!${plain}"
+    echo -e "${yellow}Start the bot using option 3${plain}"
+
+    before_show_menu
 }
 
 if [[ $# > 0 ]]; then

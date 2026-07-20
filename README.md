@@ -29,7 +29,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/mai
 After install, run the management menu with:
 
 ```bash
-kourosh
+k-ui
 ```
 
 ---
@@ -51,7 +51,7 @@ kourosh
 - 👥 مدیریت کاربران، گروه‌ها، محدودیت حجم/زمان/IP
 - 🔗 لینک سابسکریپشن (عادی / JSON / Clash) با صفحه اختصاصی لوکس
 - 🤖 ربات تلگرام، نوتیفیکیشن، بکاپ خودکار
-- 🖥️ منوی ترمینال حرفه‌ای رنگی با دستور `kourosh`
+- 🖥️ منوی ترمینال حرفه‌ای رنگی با دستور `k-ui`
 - 🐳 پشتیبانی Docker و PostgreSQL
 
 ### 📥 نصب
@@ -125,3 +125,26 @@ If this project helps you, consider a donation — اگر این پروژه بر
 ## License
 
 [GPL-3.0](LICENSE)
+
+---
+
+## 💰 Support & Donation — حمایت مالی
+
+If you find this project helpful, consider supporting its development:
+
+اگر این پروژه برایتان مفید بود، از توسعه آن حمایت کنید:
+
+### Cryptocurrency Wallets — کیف پول‌های ارز دیجیتال
+
+**USDT (BEP-20 — Binance Smart Chain):**
+```
+0xEaE80700A282970C2d7d7993F9F31a2689e37E31
+```
+
+**TRX (TRC-20 — TRON Network):**
+```
+TWUcNhGugfjTdMiREsWfDbrZR2yq5WLsyR
+```
+
+---
+

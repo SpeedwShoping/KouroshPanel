@@ -919,13 +919,13 @@ setup_fail2ban() {
         return 0
     fi
 
-    if [[ ! -x /usr/bin/kourosh ]]; then
+    if [[ ! -x /usr/bin/k-ui ]]; then
         echo -e "${yellow}kourosh CLI not found; skipping Fail2ban auto-setup.${plain}"
         return 0
     fi
 
     echo -e "${green}Setting up Fail2ban for the IP Limit feature...${plain}"
-    if /usr/bin/kourosh setup-fail2ban; then
+    if /usr/bin/k-ui setup-fail2ban; then
         echo -e "${green}Fail2ban setup complete.${plain}"
     else
         echo -e "${yellow}Fail2ban setup did not finish; IP Limit stays disabled until you run 'kourosh' and open the IP Limit menu. Continuing.${plain}"
@@ -937,7 +937,7 @@ setup_fail2ban() {
 # atomic mv, so a failed cp/curl or an interrupted mv never leaves a
 # truncated unit file at the live path -- systemd would then fail to parse
 # it on the next daemon-reload/start. Same pattern already used for
-# /usr/bin/kourosh elsewhere in this script. source_is_url picks cp (from a
+# /usr/bin/k-ui elsewhere in this script. source_is_url picks cp (from a
 # file already extracted from the release tarball) vs curl (GitHub fallback).
 _install_kourosh_service_unit() {
     local source="$1"
@@ -1038,7 +1038,7 @@ update_kourosh() {
         rm ${kourosh_folder}/kourosh.service.arch -f > /dev/null 2>&1
         rm ${kourosh_folder}/kourosh.service.rhel -f > /dev/null 2>&1
         rm ${kourosh_folder}/kourosh -f > /dev/null 2>&1
-        rm ${kourosh_folder}/kourosh.sh -f > /dev/null 2>&1
+        rm ${kourosh_folder}/k-ui.sh -f > /dev/null 2>&1
         echo -e "${green}Removing old mtg version...${plain}"
         rm ${kourosh_folder}/bin/mtg-linux-$(arch) -f > /dev/null 2>&1
         echo -e "${green}Removing old xray version...${plain}"
@@ -1083,26 +1083,26 @@ update_kourosh() {
         chmod +x bin/mtg-linux-$(arch) > /dev/null 2>&1
     fi
 
-    echo -e "${green}Downloading and installing kourosh.sh script...${plain}"
-    local kourosh_script_temp="/usr/bin/kourosh-temp.$$"
+    echo -e "${green}Downloading and installing k-ui.sh script...${plain}"
+    local kourosh_script_temp="/usr/bin/k-ui-temp.$$"
     rm -f "${kourosh_script_temp}"
-    ${curl_bin} -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.sh > /dev/null 2>&1
+    ${curl_bin} -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/k-ui.sh > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         rm -f "${kourosh_script_temp}"
-        _fail "ERROR: Failed to download kourosh.sh script, please be sure that your server can access GitHub"
+        _fail "ERROR: Failed to download k-ui.sh script, please be sure that your server can access GitHub"
     fi
     if [[ ! -s "${kourosh_script_temp}" ]]; then
         rm -f "${kourosh_script_temp}"
-        _fail "ERROR: Downloaded kourosh.sh script is empty, please be sure that your server can access GitHub"
+        _fail "ERROR: Downloaded k-ui.sh script is empty, please be sure that your server can access GitHub"
     fi
-    mv -f "${kourosh_script_temp}" /usr/bin/kourosh
+    mv -f "${kourosh_script_temp}" /usr/bin/k-ui
     if [[ $? -ne 0 ]]; then
         rm -f "${kourosh_script_temp}"
-        _fail "ERROR: Failed to install kourosh.sh script"
+        _fail "ERROR: Failed to install k-ui.sh script"
     fi
 
-    chmod +x ${kourosh_folder}/kourosh.sh > /dev/null 2>&1
-    chmod +x /usr/bin/kourosh > /dev/null 2>&1
+    chmod +x ${kourosh_folder}/k-ui.sh > /dev/null 2>&1
+    chmod +x /usr/bin/k-ui > /dev/null 2>&1
     mkdir -p /var/log/kourosh > /dev/null 2>&1
 
     echo -e "${green}Changing owner...${plain}"
