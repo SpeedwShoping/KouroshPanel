@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/eventbus"
+	"github.com/SpeedwiT/KouroshPanel/internal/eventbus"
 )
 
 var cachedHostname string

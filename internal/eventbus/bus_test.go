@@ -8,7 +8,7 @@ import (
 
 	"github.com/op/go-logging"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 func TestMain(m *testing.M) {

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
 
 	"github.com/gin-gonic/gin"
 )

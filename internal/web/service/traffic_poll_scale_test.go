@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 func pollReport(ds scaleDataset, k int) ([]*xray.Traffic, []*xray.ClientTraffic) {

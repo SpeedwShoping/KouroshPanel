@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/runtime"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/runtime"
 )
 
 func TestNormalizeBasePath(t *testing.T) {

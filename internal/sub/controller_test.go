@@ -14,9 +14,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // newTestSUBController builds a controller with just the bits loadSubTemplate

@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"net/http"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
 
 	"github.com/gin-gonic/gin"
 )

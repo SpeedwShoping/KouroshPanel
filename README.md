@@ -6,15 +6,15 @@
 
 **پنل مدیریت Xray مدرن و پیشرفته — الهام‌گرفته از میراث کوروش کبیر**
 
-[![Release](https://img.shields.io/github/v/release/SpeedwShoping/KouroshPanel?style=for-the-badge&color=c9a227&label=Release&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/SpeedwShoping/KouroshPanel/total?style=for-the-badge&color=2ec4b6&label=Downloads&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/releases)
-[![Stars](https://img.shields.io/github/stars/SpeedwShoping/KouroshPanel?style=for-the-badge&color=e8c547&label=Stars&logo=github)](https://github.com/SpeedwShoping/KouroshPanel/stargazers)
-[![License](https://img.shields.io/github/license/SpeedwShoping/KouroshPanel?style=for-the-badge&color=0a0e1a&label=License)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/SpeedwiT/KouroshPanel?style=for-the-badge&color=c9a227&label=Release&logo=github)](https://github.com/SpeedwiT/KouroshPanel/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/SpeedwiT/KouroshPanel/total?style=for-the-badge&color=2ec4b6&label=Downloads&logo=github)](https://github.com/SpeedwiT/KouroshPanel/releases)
+[![Stars](https://img.shields.io/github/stars/SpeedwiT/KouroshPanel?style=for-the-badge&color=e8c547&label=Stars&logo=github)](https://github.com/SpeedwiT/KouroshPanel/stargazers)
+[![License](https://img.shields.io/github/license/SpeedwiT/KouroshPanel?style=for-the-badge&color=0a0e1a&label=License)](LICENSE)
 
 [![Go](https://img.shields.io/badge/Go-1.26-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
 [![Xray](https://img.shields.io/badge/Xray-Core-c9a227?style=for-the-badge)](https://github.com/XTLS/Xray-core)
-[![Telegram](https://img.shields.io/badge/Telegram-@SpeedShopw-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/SpeedShopw)
+[![Telegram](https://img.shields.io/badge/Telegram-@Speedw_IT-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Speedw_IT)
 
 </div>
 
@@ -23,7 +23,7 @@
 ## ⚡ Quick Install — نصب سریع
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/install.sh)
 ```
 
 After install, run the management menu with:
@@ -57,7 +57,7 @@ k-ui
 ### 📥 نصب
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/install.sh)
 ```
 
 پس از نصب، پورت و مسیر وب به‌صورت تصادفی و امن ساخته می‌شود و در پایان نصب نمایش داده می‌شود. برای مدیریت پنل کافیست دستور `k-ui` را در ترمینال بزنید.
@@ -87,7 +87,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/mai
 ### 📥 Install
 
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/install.sh)
 ```
 
 Manage the panel any time by running `k-ui` in your terminal.
@@ -115,8 +115,8 @@ If this project helps you, consider a donation — اگر این پروژه بر
 
 | | |
 |---|---|
-| 👤 **Admin / سازنده** | [@SpeedwShop](https://t.me/SpeedwShop) |
-| 📢 **Telegram Channel / کانال تلگرام** | [@SpeedShopw](https://t.me/SpeedShopw) |
+| 👤 **Admin / سازنده** | [@SpeedwIT](https://t.me/SpeedwIT) |
+| 📢 **Telegram Channel / کانال تلگرام** | [@Speedw_IT](https://t.me/Speedw_IT) |
 
 ---
 

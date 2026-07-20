@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // N1 — externalProxyToEndpoint maps the scalar fields and carries the source

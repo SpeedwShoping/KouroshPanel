@@ -9,7 +9,7 @@ import (
 
 	"github.com/op/go-logging"
 
-	xuilogger "github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	xuilogger "github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 func TestMain(m *testing.M) {

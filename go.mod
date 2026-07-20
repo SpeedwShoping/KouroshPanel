@@ -1,4 +1,4 @@
-module github.com/SpeedwShoping/KouroshPanel
+module github.com/SpeedwiT/KouroshPanel
 
 go 1.26.5
 

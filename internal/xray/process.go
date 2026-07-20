@@ -17,9 +17,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
 )
 
 // GetBinaryName returns the Xray binary filename for the current OS and architecture.

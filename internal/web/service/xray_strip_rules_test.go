@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
 )
 
 // rulesOf unmarshals a router config and returns its rules for assertions.

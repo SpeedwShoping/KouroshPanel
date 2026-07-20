@@ -3,7 +3,7 @@ package sub
 import (
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // ShareEndpoint is one render target for a subscription link: the address/port

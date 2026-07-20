@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // stubProcess implements batchProcess without an xray binary. When serveSocks

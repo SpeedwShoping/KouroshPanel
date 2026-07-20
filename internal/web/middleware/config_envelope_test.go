@@ -10,7 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/wirecodec"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/wirecodec"
 )
 
 func envelopeTestEngine(t *testing.T, onHandler func()) *gin.Engine {

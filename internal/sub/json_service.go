@@ -7,10 +7,10 @@ import (
 	"maps"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/random"
-	wgutil "github.com/SpeedwShoping/KouroshPanel/internal/util/wireguard"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/random"
+	wgutil "github.com/SpeedwiT/KouroshPanel/internal/util/wireguard"
 )
 
 //go:embed default.json

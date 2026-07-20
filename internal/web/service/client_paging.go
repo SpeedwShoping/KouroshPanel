@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // ClientSlim is the row-shape used by the clients page. It drops fields the

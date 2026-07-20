@@ -6,12 +6,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/websocket"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/websocket"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 
 	"github.com/gin-gonic/gin"
 )

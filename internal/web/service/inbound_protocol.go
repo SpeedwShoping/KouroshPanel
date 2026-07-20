@@ -3,7 +3,7 @@ package service
 import (
 	"encoding/json"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // inboundShadowsocksMethod extracts settings.method for Shadowsocks inbounds so

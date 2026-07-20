@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	wgutil "github.com/SpeedwShoping/KouroshPanel/internal/util/wireguard"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	wgutil "github.com/SpeedwiT/KouroshPanel/internal/util/wireguard"
 )
 
 func TestAllocateWireguardAddress(t *testing.T) {

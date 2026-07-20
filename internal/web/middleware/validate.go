@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
 )
 
 var validate = validator.New(validator.WithRequiredStructEnabled())

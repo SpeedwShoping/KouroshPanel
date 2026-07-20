@@ -3,8 +3,8 @@ package controller
 import (
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 
 	"github.com/gin-gonic/gin"
 )

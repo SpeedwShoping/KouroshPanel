@@ -4,10 +4,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	ldaputil "github.com/SpeedwShoping/KouroshPanel/internal/util/ldap"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	ldaputil "github.com/SpeedwiT/KouroshPanel/internal/util/ldap"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 var DefaultTruthyValues = []string{"true", "1", "yes", "on"}

@@ -3,9 +3,9 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
 )
 
 func mkHost(t *testing.T, svc *HostService, inboundId int, remark string, order int) *entity.HostGroup {

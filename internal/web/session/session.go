@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"

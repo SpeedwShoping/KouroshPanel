@@ -3,7 +3,7 @@ package xray
 import (
 	"bytes"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
 )
 
 // Config represents the complete Xray configuration structure.

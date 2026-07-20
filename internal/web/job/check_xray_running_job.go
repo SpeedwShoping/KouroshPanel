@@ -3,9 +3,9 @@
 package job
 
 import (
-	"github.com/SpeedwShoping/KouroshPanel/internal/eventbus"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/eventbus"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // EventBus is set from web layer to publish events.

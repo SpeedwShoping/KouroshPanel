@@ -3,9 +3,9 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 func seedClientRow(t *testing.T, email string, inboundId int, up, down, total int64) {

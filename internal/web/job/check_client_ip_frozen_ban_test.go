@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
 )
 
 func banLineCount(t *testing.T, email string) int {

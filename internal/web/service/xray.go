@@ -10,11 +10,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 
 	"go.uber.org/atomic"
 )

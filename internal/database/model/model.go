@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // Protocol represents the protocol type for Xray inbounds.

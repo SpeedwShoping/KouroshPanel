@@ -3,9 +3,9 @@ package job
 import (
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/integration"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/integration"
 )
 
 type WarpIpJob struct {

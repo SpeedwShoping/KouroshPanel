@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/integration"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/outbound"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/integration"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/outbound"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 
 	"github.com/gin-gonic/gin"
 )

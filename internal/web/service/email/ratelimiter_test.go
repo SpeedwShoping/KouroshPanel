@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/eventbus"
+	"github.com/SpeedwiT/KouroshPanel/internal/eventbus"
 )
 
 func TestRateLimiterAllow(t *testing.T) {

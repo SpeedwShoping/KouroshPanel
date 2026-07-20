@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/random"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/random"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
 
 	"gorm.io/gorm"
 )

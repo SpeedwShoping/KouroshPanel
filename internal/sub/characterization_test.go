@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // Characterization snapshots (Phase 0 of the Hosts feature). These lock the

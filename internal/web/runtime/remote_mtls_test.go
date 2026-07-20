@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // nodeForPlainServer builds an http (non-TLS) node so do()'s token handling can

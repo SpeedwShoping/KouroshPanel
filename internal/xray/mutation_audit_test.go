@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
 )
 
 // ---------------------------------------------------------------------------

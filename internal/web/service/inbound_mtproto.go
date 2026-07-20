@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/mtproto"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/mtproto"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // DesiredMtprotoInstances derives the mtg sidecar configs this panel should be

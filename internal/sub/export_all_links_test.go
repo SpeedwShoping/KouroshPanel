@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // inboundLinks (the "Export all inbound links" path) must render the remark

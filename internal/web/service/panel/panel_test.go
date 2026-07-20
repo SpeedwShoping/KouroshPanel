@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 func TestIsNewerVersion(t *testing.T) {

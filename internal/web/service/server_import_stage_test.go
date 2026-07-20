@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
 )
 
 func TestStageSQLiteUploadRebuildsFromDump(t *testing.T) {

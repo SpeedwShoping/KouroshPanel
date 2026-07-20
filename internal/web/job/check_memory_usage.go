@@ -1,7 +1,7 @@
 package job
 
 import (
-	"github.com/SpeedwShoping/KouroshPanel/internal/eventbus"
+	"github.com/SpeedwiT/KouroshPanel/internal/eventbus"
 
 	"github.com/shirou/gopsutil/v4/mem"
 )

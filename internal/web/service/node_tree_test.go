@@ -3,8 +3,8 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // #4983: a transitive sub-node learned from a direct node must surface as its

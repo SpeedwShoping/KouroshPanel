@@ -13,8 +13,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 func TestBuildMessageIsRFC5322(t *testing.T) {

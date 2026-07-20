@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netproxy"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netproxy"
 )
 
 const (

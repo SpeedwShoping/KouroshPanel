@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 func TestSubscriptionExpiryFromClient(t *testing.T) {

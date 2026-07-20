@@ -5,9 +5,9 @@ package controller
 import (
 	"net/http"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/locale"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/locale"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
 
 	"github.com/gin-gonic/gin"
 )

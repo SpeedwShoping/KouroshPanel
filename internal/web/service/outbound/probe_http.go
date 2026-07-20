@@ -18,9 +18,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // HTTP-mode probing works by spinning up ONE temporary xray instance per

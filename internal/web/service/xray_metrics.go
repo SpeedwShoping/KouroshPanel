@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/eventbus"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/eventbus"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 type xrayMetricsState struct {

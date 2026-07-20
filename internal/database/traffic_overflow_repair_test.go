@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // TestRepairOverflowedTrafficCounters_HealsSQLiteRealPromotion reproduces

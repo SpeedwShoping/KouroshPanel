@@ -1,8 +1,8 @@
 package job
 
 import (
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // Period represents the time period for traffic resets.

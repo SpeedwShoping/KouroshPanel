@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 
 	"github.com/gin-gonic/gin"
 )

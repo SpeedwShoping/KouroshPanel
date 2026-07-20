@@ -41,9 +41,9 @@ import KouroshLogo from '@/components/ui/KouroshLogo';
 import './AppSidebar.css';
 
 const SIDEBAR_COLLAPSED_KEY = 'isSidebarCollapsed';
-const DONATE_URL = 'https://github.com/SpeedwShoping/KouroshPanel#-support--حمایت';
-const DOCS_URL = 'https://github.com/SpeedwShoping/KouroshPanel#readme';
-const REPO_URL = 'https://github.com/SpeedwShoping/KouroshPanel';
+const DONATE_URL = 'https://github.com/SpeedwiT/KouroshPanel#-support--حمایت';
+const DOCS_URL = 'https://github.com/SpeedwiT/KouroshPanel#readme';
+const REPO_URL = 'https://github.com/SpeedwiT/KouroshPanel';
 const LOGOUT_KEY = '__logout__';
 
 type IconName = 'dashboard' | 'inbound' | 'team' | 'groups' | 'setting' | 'tool' | 'cluster' | 'hosts' | 'logout' | 'apidocs' | 'outbound' | 'routing';

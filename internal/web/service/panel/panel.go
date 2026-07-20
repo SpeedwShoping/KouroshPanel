@@ -17,10 +17,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/global"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/global"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // PanelService provides business logic for panel management operations.
@@ -40,7 +40,7 @@ type PanelUpdateInfo struct {
 }
 
 const (
-	panelUpdaterURL      = "https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/update.sh"
+	panelUpdaterURL      = "https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/update.sh"
 	maxPanelUpdaterBytes = 2 << 20
 	// devReleaseTag is the fixed-tag rolling pre-release the CI force-moves to the
 	// newest main commit; the dev update channel installs from it.
@@ -413,9 +413,9 @@ func fetchLatestPanelVersion() (string, error) {
 // fetchPanelRelease fetches a release from GitHub. An empty tag resolves the
 // latest stable release; a non-empty tag (e.g. dev-latest) resolves that tag.
 func fetchPanelRelease(tag string) (*service.Release, error) {
-	url := "https://api.github.com/repos/SpeedwShoping/KouroshPanel/releases/latest"
+	url := "https://api.github.com/repos/SpeedwiT/KouroshPanel/releases/latest"
 	if tag != "" {
-		url = "https://api.github.com/repos/SpeedwShoping/KouroshPanel/releases/tags/" + tag
+		url = "https://api.github.com/repos/SpeedwiT/KouroshPanel/releases/tags/" + tag
 	}
 	client := (&service.SettingService{}).NewProxiedHTTPClient(10 * time.Second)
 	req, reqErr := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)

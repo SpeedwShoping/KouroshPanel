@@ -1,8 +1,8 @@
 package job
 
 import (
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/tgbot"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/tgbot"
 )
 
 // LoginStatus represents the status of a login attempt.

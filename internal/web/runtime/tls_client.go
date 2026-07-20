@@ -11,10 +11,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netproxy"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netsafe"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netproxy"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netsafe"
 )
 
 // MasterClientCertProvider supplies the master client certificate this panel

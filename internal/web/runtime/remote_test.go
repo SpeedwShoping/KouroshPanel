@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // TestRemoteDo_RejectsOversizeResponse: a node streaming a body larger than

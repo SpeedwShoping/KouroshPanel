@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // remarkContext carries the per-client data a remark template can interpolate.

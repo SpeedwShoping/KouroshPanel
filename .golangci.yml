@@ -46,7 +46,7 @@ formatters:
   settings:
     goimports:
       local-prefixes:
-        - github.com/SpeedwShoping/KouroshPanel
+        - github.com/SpeedwiT/KouroshPanel
   exclusions:
     paths:
       - frontend

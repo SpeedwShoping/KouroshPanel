@@ -8,8 +8,8 @@ import (
 	"github.com/goccy/go-json"
 	yaml "github.com/goccy/go-yaml"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	wgutil "github.com/SpeedwShoping/KouroshPanel/internal/util/wireguard"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	wgutil "github.com/SpeedwiT/KouroshPanel/internal/util/wireguard"
 )
 
 type SubClashService struct {

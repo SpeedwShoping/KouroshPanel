@@ -7,10 +7,10 @@ import (
 
 	"github.com/goccy/go-json"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/link"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/link"
 )
 
 // externalLinkEntry is one client × external-link row, resolved for a

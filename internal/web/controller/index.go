@@ -5,12 +5,12 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/panel"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/tgbot"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/panel"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/tgbot"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
 
 	"github.com/gin-gonic/gin"
 )

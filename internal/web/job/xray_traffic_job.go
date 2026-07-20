@@ -3,11 +3,11 @@ package job
 import (
 	"encoding/json"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/outbound"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/websocket"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/outbound"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/websocket"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 
 	"github.com/valyala/fasthttp"
 )

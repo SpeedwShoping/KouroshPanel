@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 // MessageType identifies the kind of WebSocket message.

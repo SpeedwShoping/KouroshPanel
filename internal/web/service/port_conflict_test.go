@@ -8,9 +8,9 @@ import (
 
 	"github.com/op/go-logging"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	xuilogger "github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	xuilogger "github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 // the panel logger is a process-wide singleton. init it once per test

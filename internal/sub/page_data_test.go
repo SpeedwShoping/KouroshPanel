@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 // A single getSubs entry can hold several links (one per host of an inbound)

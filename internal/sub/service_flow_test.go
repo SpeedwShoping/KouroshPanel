@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // Issue #5232: a vision flow set on a VLESS+XHTTP+REALITY (vlessenc) client

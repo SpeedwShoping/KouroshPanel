@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	xuilogger "github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	xuilogger "github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 
 	"github.com/op/go-logging"
 )

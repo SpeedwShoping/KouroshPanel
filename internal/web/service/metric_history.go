@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 // MetricSample is one point of any time-series we keep in memory.

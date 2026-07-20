@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // EmailService sends email notifications via SMTP.

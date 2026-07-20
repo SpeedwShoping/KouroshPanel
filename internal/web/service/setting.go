@@ -18,16 +18,16 @@ import (
 	"github.com/xlzd/gotp"
 	"gorm.io/gorm"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netproxy"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/random"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/reflect_util"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netproxy"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/random"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/reflect_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 //go:embed config.json

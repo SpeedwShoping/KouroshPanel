@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
 )
 
 func setupSettingMtlsDB(t *testing.T) *SettingService {

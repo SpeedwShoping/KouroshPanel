@@ -987,13 +987,13 @@ update_kourosh() {
         tag_version="${XUI_UPDATE_TAG}"
         echo -e "${green}Using update tag: ${tag_version}${plain}"
     else
-        tag_version=$(${curl_bin} -Ls "https://api.github.com/repos/SpeedwShoping/KouroshPanel/releases/latest" 2> /dev/null | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        tag_version=$(${curl_bin} -Ls "https://api.github.com/repos/SpeedwiT/KouroshPanel/releases/latest" 2> /dev/null | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$tag_version" ]]; then
             _fail "ERROR: Failed to fetch kourosh version, it may be due to GitHub API restrictions, please try it later"
         fi
     fi
     echo -e "Got kourosh latest version: ${tag_version}, beginning the installation..."
-    ${curl_bin} -fLRo ${kourosh_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz 2> /dev/null
+    ${curl_bin} -fLRo ${kourosh_folder}-linux-$(arch).tar.gz https://github.com/SpeedwiT/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz 2> /dev/null
     if [[ $? -ne 0 ]]; then
         _fail "ERROR: Failed to download kourosh, please be sure that your server can access GitHub"
     fi
@@ -1086,7 +1086,7 @@ update_kourosh() {
     echo -e "${green}Downloading and installing k-ui.sh script...${plain}"
     local kourosh_script_temp="/usr/bin/k-ui-temp.$$"
     rm -f "${kourosh_script_temp}"
-    ${curl_bin} -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/k-ui.sh > /dev/null 2>&1
+    ${curl_bin} -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/k-ui.sh > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         rm -f "${kourosh_script_temp}"
         _fail "ERROR: Failed to download k-ui.sh script, please be sure that your server can access GitHub"
@@ -1117,7 +1117,7 @@ update_kourosh() {
         echo -e "${green}Downloading and installing startup unit kourosh.rc...${plain}"
         kourosh_rc_temp="/etc/init.d/kourosh.tmp.$$"
         rm -f "${kourosh_rc_temp}"
-        ${curl_bin} -fLRo "${kourosh_rc_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.rc > /dev/null 2>&1
+        ${curl_bin} -fLRo "${kourosh_rc_temp}" https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.rc > /dev/null 2>&1
         if [[ $? -ne 0 ]]; then
             rm -f "${kourosh_rc_temp}"
             _fail "ERROR: Failed to download startup unit kourosh.rc, please be sure that your server can access GitHub"
@@ -1176,13 +1176,13 @@ update_kourosh() {
                 echo -e "${yellow}Service files not found in tar.gz, downloading from GitHub...${plain}"
                 case "${release}" in
                     ubuntu | debian | armbian)
-                        service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.debian"
+                        service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.debian"
                         ;;
                     arch | manjaro | parch)
-                        service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.arch"
+                        service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.arch"
                         ;;
                     *)
-                        service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.rhel"
+                        service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.rhel"
                         ;;
                 esac
 

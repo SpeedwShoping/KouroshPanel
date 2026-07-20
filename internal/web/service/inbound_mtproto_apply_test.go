@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/mtproto"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/runtime"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/mtproto"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/runtime"
 )
 
 func mtgConfigPath(t *testing.T, inboundId int) string {

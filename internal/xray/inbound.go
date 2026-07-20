@@ -3,7 +3,7 @@ package xray
 import (
 	"bytes"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/json_util"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/json_util"
 )
 
 // InboundConfig represents an Xray inbound configuration.

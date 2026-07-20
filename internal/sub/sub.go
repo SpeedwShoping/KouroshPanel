@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/locale"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/network"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/locale"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/network"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 
 	"github.com/gin-gonic/gin"
 )

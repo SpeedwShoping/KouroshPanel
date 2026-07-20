@@ -23,11 +23,11 @@ Thanks for your interest in improving Kourosh Panel! 👑
 
 ## Reporting bugs / گزارش باگ
 
-Use the [issue templates](https://github.com/SpeedwShoping/KouroshPanel/issues/new/choose). Include your panel version, OS, and reproduction steps.
+Use the [issue templates](https://github.com/SpeedwiT/KouroshPanel/issues/new/choose). Include your panel version, OS, and reproduction steps.
 
 برای گزارش باگ از قالب‌های Issue استفاده کنید و نسخه پنل، سیستم‌عامل و مراحل بازتولید مشکل را ذکر کنید.
 
 ## Contact / ارتباط
 
-- Admin: [@SpeedwShop](https://t.me/SpeedwShop)
-- Channel: [@SpeedShopw](https://t.me/SpeedShopw)
+- Admin: [@SpeedwIT](https://t.me/SpeedwIT)
+- Channel: [@Speedw_IT](https://t.me/Speedw_IT)

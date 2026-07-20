@@ -17,12 +17,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netsafe"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/wirecodec"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
-	"github.com/SpeedwShoping/KouroshPanel/internal/xray"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netsafe"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/wirecodec"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/xray"
 )
 
 const remoteHTTPTimeout = 10 * time.Second

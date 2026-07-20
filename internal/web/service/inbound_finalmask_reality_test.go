@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 const realityFinalMaskStream = `{"network":"tcp","security":"reality","realitySettings":{},"finalmask":{"tcp":[{"type":"fragment","settings":{"packets":"tlshello"}}]}}`

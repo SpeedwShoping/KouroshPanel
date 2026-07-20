@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/netsafe"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/netsafe"
 )
 
 // dnsAllowRuleShape identifies routing rules this file manages: a plain

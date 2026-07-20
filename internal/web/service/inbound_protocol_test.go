@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 )
 
 // A representative vlessenc/ML-KEM encryption value as produced by `xray

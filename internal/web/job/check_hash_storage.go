@@ -1,6 +1,6 @@
 package job
 
-import "github.com/SpeedwShoping/KouroshPanel/internal/web/service/tgbot"
+import "github.com/SpeedwiT/KouroshPanel/internal/web/service/tgbot"
 
 // CheckHashStorageJob periodically cleans up expired hash entries from the Telegram bot's hash storage.
 type CheckHashStorageJob struct {

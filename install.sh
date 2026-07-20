@@ -29,7 +29,7 @@ show_install_banner() {
 EOF
     echo -e "${plain}"
     echo -e "${cyan}        Advanced Xray Management Panel ${yellow}•${plain} ${green}v1.0.0${plain}"
-    echo -e "${cyan}        github.com/SpeedwShoping/KouroshPanel${plain}"
+    echo -e "${cyan}        github.com/SpeedwiT/KouroshPanel${plain}"
     echo ""
     echo -e "${blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${plain}"
     echo ""
@@ -1485,13 +1485,13 @@ install_kourosh() {
 
     # Download resources
     if [ $# == 0 ]; then
-        tag_version=$(curl -Ls --retry 5 --retry-delay 3 --connect-timeout 15 --max-time 60 "https://api.github.com/repos/SpeedwShoping/KouroshPanel/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        tag_version=$(curl -Ls --retry 5 --retry-delay 3 --connect-timeout 15 --max-time 60 "https://api.github.com/repos/SpeedwiT/KouroshPanel/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$tag_version" ]]; then
             echo -e "${red}Failed to fetch kourosh version, it may be due to GitHub API restrictions, please try it later${plain}"
             exit 1
         fi
         echo -e "Got kourosh latest version: ${tag_version}, beginning the installation..."
-        curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz
+        curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz https://github.com/SpeedwiT/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Downloading kourosh failed, please be sure that your server can access GitHub ${plain}"
             exit 1
@@ -1519,7 +1519,7 @@ install_kourosh() {
             fi
         fi
 
-        url="https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz"
+        url="https://github.com/SpeedwiT/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz"
         echo -e "Beginning to install kourosh ${tag_version}"
         curl -fLR --retry 5 --retry-delay 3 --connect-timeout 15 --speed-limit 1 --speed-time 300 -o ${kui_folder}-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
@@ -1534,7 +1534,7 @@ install_kourosh() {
     fi
     local kourosh_script_temp="/usr/bin/k-ui-temp.$$"
     rm -f "${kourosh_script_temp}"
-    curl -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/k-ui.sh
+    curl -fLRo "${kourosh_script_temp}" https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/k-ui.sh
     if [[ $? -ne 0 ]]; then
         rm -f "${kourosh_script_temp}"
         echo -e "${red}Failed to download k-ui.sh${plain}"
@@ -1626,7 +1626,7 @@ install_kourosh() {
     if [[ $release == "alpine" ]]; then
         kourosh_rc_temp="/etc/init.d/kourosh.tmp.$$"
         rm -f "${kourosh_rc_temp}"
-        curl -fLRo "${kourosh_rc_temp}" https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.rc
+        curl -fLRo "${kourosh_rc_temp}" https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.rc
         if [[ $? -ne 0 ]]; then
             rm -f "${kourosh_rc_temp}"
             echo -e "${red}Failed to download kourosh.rc${plain}"
@@ -1691,13 +1691,13 @@ install_kourosh() {
             echo -e "${yellow}Service files not found in tar.gz, downloading from GitHub...${plain}"
             case "${release}" in
                 ubuntu | debian | armbian)
-                    service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.debian"
+                    service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.debian"
                     ;;
                 arch | manjaro | parch)
-                    service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.arch"
+                    service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.arch"
                     ;;
                 *)
-                    service_unit_url="https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/kourosh.service.rhel"
+                    service_unit_url="https://raw.githubusercontent.com/SpeedwiT/KouroshPanel/main/kourosh.service.rhel"
                     ;;
             esac
 
@@ -1733,7 +1733,7 @@ install_kourosh() {
     echo -e "${yellow}    ██║  ██╗╚██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║██║  ██║${plain}"
     echo -e "${yellow}    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝${plain}"
     echo -e "${blue}          KOUROSH PANEL ${tag_version} — installed & running${plain}"
-    echo -e "${blue}          Channel: https://t.me/SpeedShopw${plain}"
+    echo -e "${blue}          Channel: https://t.me/Speedw_IT${plain}"
     echo -e ""
     echo -e "┌───────────────────────────────────────────────────────┐
 │  ${blue}kourosh control menu usages (subcommands):${plain}              │

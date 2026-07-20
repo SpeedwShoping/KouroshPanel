@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/wirecodec"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/wirecodec"
 )
 
 // maxDecodedConfigBytes caps a decompressed request body (defense in depth on

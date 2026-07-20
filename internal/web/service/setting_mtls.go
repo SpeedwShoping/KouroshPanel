@@ -3,8 +3,8 @@ package service
 import (
 	"crypto/x509"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/crypto"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/crypto"
 )
 
 const (

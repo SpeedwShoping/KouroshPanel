@@ -9,9 +9,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 
 	"github.com/gin-gonic/gin"
 )

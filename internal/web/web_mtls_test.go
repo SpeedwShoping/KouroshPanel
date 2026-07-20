@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/crypto"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/crypto"
 )
 
 // TestPanelTLSAcceptsClientWithoutClientCert characterizes the invariant the

@@ -5,8 +5,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"

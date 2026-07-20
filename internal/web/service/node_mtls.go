@@ -5,7 +5,7 @@ import (
 	"encoding/pem"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/common"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/common"
 )
 
 // NodeMtlsCaCert returns the PEM of this panel's node-auth CA certificate (the

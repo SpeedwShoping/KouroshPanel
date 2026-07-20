@@ -6,14 +6,14 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/crypto"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/email"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service/panel"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/crypto"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/email"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service/panel"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
 
 	"github.com/gin-gonic/gin"
 )

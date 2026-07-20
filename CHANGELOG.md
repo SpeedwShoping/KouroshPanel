@@ -13,4 +13,4 @@ All notable changes to **Kourosh Panel** are documented here.
 - 📊 Animated statistics dashboard — داشبورد آماری انیمیشن‌دار
 - 🔒 Full Xray feature set: VLESS, VMess, Trojan, Shadowsocks, WireGuard, Hysteria, MTProto; Reality, TLS, gRPC, WS, XHTTP
 - 🤖 Telegram bot, notifications, automatic backups
-- 🐳 Docker (ghcr.io/speedwshoping/kouroshpanel) & PostgreSQL support
+- 🐳 Docker (ghcr.io/speedwit/kouroshpanel) & PostgreSQL support

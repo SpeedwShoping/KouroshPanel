@@ -4,9 +4,9 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	wgutil "github.com/SpeedwShoping/KouroshPanel/internal/util/wireguard"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	wgutil "github.com/SpeedwiT/KouroshPanel/internal/util/wireguard"
 )
 
 func TestGenWireguardLinkFields(t *testing.T) {

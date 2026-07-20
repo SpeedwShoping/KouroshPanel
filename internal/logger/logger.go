@@ -12,7 +12,7 @@ import (
 
 	"github.com/op/go-logging"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/config"
+	"github.com/SpeedwiT/KouroshPanel/internal/config"
 
 	"gopkg.in/natefinch/lumberjack.v2"
 )

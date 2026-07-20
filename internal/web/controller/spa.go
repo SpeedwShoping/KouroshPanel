@@ -5,9 +5,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/middleware"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/session"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/middleware"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/session"
 
 	"github.com/gin-gonic/gin"
 )

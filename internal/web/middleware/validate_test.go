@@ -9,7 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/entity"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/entity"
 )
 
 type sampleBody struct {

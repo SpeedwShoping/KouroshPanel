@@ -6,12 +6,12 @@ import (
 	"github.com/xlzd/gotp"
 	"gorm.io/gorm"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/database"
-	"github.com/SpeedwShoping/KouroshPanel/internal/database/model"
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/util/crypto"
-	ldaputil "github.com/SpeedwShoping/KouroshPanel/internal/util/ldap"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/service"
+	"github.com/SpeedwiT/KouroshPanel/internal/database"
+	"github.com/SpeedwiT/KouroshPanel/internal/database/model"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/util/crypto"
+	ldaputil "github.com/SpeedwiT/KouroshPanel/internal/util/ldap"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/service"
 )
 
 // UserService provides business logic for user management and authentication.

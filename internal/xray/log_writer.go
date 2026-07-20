@@ -6,7 +6,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
 )
 
 // Compiled once at package load: Write runs on every line Xray emits, so

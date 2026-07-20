@@ -10,12 +10,12 @@
 
 If you discover a security vulnerability in Kourosh Panel, please report it privately:
 
-- **Telegram (Admin):** [@SpeedwShop](https://t.me/SpeedwShop)
-- Or open a private [Security Advisory](https://github.com/SpeedwShoping/KouroshPanel/security/advisories/new) on GitHub
+- **Telegram (Admin):** [@SpeedwIT](https://t.me/SpeedwIT)
+- Or open a private [Security Advisory](https://github.com/SpeedwiT/KouroshPanel/security/advisories/new) on GitHub
 
 Please do **not** open a public issue for security problems.
 
-اگر آسیب‌پذیری امنیتی در پنل کوروش پیدا کردید، لطفاً به‌صورت خصوصی از طریق تلگرام [@SpeedwShop](https://t.me/SpeedwShop) گزارش دهید و آن را به‌صورت عمومی در Issues منتشر نکنید.
+اگر آسیب‌پذیری امنیتی در پنل کوروش پیدا کردید، لطفاً به‌صورت خصوصی از طریق تلگرام [@SpeedwIT](https://t.me/SpeedwIT) گزارش دهید و آن را به‌صورت عمومی در Issues منتشر نکنید.
 
 ## Hardening Tips — نکات امنیتی
 

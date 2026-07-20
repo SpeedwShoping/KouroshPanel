@@ -2,8 +2,8 @@
 package websocket
 
 import (
-	"github.com/SpeedwShoping/KouroshPanel/internal/logger"
-	"github.com/SpeedwShoping/KouroshPanel/internal/web/global"
+	"github.com/SpeedwiT/KouroshPanel/internal/logger"
+	"github.com/SpeedwiT/KouroshPanel/internal/web/global"
 )
 
 // GetHub returns the global WebSocket hub instance.
