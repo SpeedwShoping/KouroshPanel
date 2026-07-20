@@ -55,9 +55,9 @@ jobs:
             arm64) export GOARCH=arm64 CC=aarch64-linux-gnu-gcc ;;
             armv7) export GOARCH=arm GOARM=7 CC=arm-linux-gnueabihf-gcc ;;
           esac
-          go build -ldflags="-w -s" -o kourosh main.go
+          go build -ldflags="-w -s" -o kourosh-bin main.go
           mkdir -p kourosh/bin
-          mv kourosh kourosh/
+          mv kourosh-bin kourosh/kourosh
           cp k-ui.sh kourosh.service.* kourosh/
 
       - name: Download deps
@@ -65,13 +65,21 @@ jobs:
           cd kourosh/bin
           V=v26.7.11
           case "${{ matrix.platform }}" in
-            amd64) F=Xray-linux-64.zip ;;
-            arm64) F=Xray-linux-arm64-v8a.zip ;;
-            armv7) F=Xray-linux-arm32-v7a.zip ;;
+            amd64) F=Xray-linux-64.zip;      MTGARCH=amd64 ;;
+            arm64) F=Xray-linux-arm64-v8a.zip; MTGARCH=arm64 ;;
+            armv7) F=Xray-linux-arm32-v7a.zip; MTGARCH=armv7 ;;
           esac
           wget -q https://github.com/XTLS/Xray-core/releases/download/$V/$F
           unzip -q $F && rm $F
           mv xray xray-linux-${{ matrix.platform }}
+          MTG_VER=$(curl -sf -o /dev/null -w '%{redirect_url}' "https://github.com/mhsanaei/mtg-multi/releases/latest" | sed 's#.*/releases/tag/##')
+          if [ -n "$MTG_VER" ]; then
+            MTG_PKG="mtg-multi-${MTG_VER#v}-linux-${MTGARCH}"
+            wget -q "https://github.com/mhsanaei/mtg-multi/releases/download/${MTG_VER}/${MTG_PKG}.tar.gz" \
+              && tar -xzf "${MTG_PKG}.tar.gz" \
+              && mv "${MTG_PKG}/mtg-multi" "mtg-linux-${{ matrix.platform }}" \
+              && rm -rf "${MTG_PKG}" "${MTG_PKG}.tar.gz" || echo "mtg-multi download failed — MTProto disabled in this build"
+          fi
           wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
           wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
           wget -q -O geoip_IR.dat https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat

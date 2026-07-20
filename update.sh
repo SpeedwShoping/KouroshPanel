@@ -993,7 +993,7 @@ update_kourosh() {
         fi
     fi
     echo -e "Got kourosh latest version: ${tag_version}, beginning the installation..."
-    ${curl_bin} -fLRo ${kourosh_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/kourosh-linux-$(arch).tar.gz 2> /dev/null
+    ${curl_bin} -fLRo ${kourosh_folder}-linux-$(arch).tar.gz https://github.com/SpeedwShoping/KouroshPanel/releases/download/${tag_version}/k-ui-linux-$(arch).tar.gz 2> /dev/null
     if [[ $? -ne 0 ]]; then
         _fail "ERROR: Failed to download kourosh, please be sure that your server can access GitHub"
     fi
@@ -1011,7 +1011,7 @@ update_kourosh() {
                 echo -e "${green}Removing old service unit version...${plain}"
                 rm -f /etc/init.d/kourosh > /dev/null 2>&1
             else
-                rm kourosh-linux-$(arch).tar.gz -f > /dev/null 2>&1
+                rm ${kourosh_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
                 _fail "ERROR: kourosh service unit not installed."
             fi
         else
@@ -1022,7 +1022,7 @@ update_kourosh() {
                 rm ${kourosh_service}/kourosh.service -f > /dev/null 2>&1
                 systemctl daemon-reload > /dev/null 2>&1
             else
-                rm kourosh-linux-$(arch).tar.gz -f > /dev/null 2>&1
+                rm ${kourosh_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
                 _fail "ERROR: kourosh systemd unit not installed."
             fi
         fi
@@ -1047,17 +1047,17 @@ update_kourosh() {
         rm ${kourosh_folder}/bin/README.md -f > /dev/null 2>&1
         rm ${kourosh_folder}/bin/LICENSE -f > /dev/null 2>&1
     else
-        rm kourosh-linux-$(arch).tar.gz -f > /dev/null 2>&1
+        rm ${kourosh_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
         _fail "ERROR: kourosh not installed."
     fi
 
     echo -e "${green}Installing new kourosh version...${plain}"
-    tar zxvf kourosh-linux-$(arch).tar.gz > /dev/null 2>&1
+    tar zxvf ${kourosh_folder}-linux-$(arch).tar.gz > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
-        rm kourosh-linux-$(arch).tar.gz -f > /dev/null 2>&1
+        rm ${kourosh_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
         _fail "ERROR: Failed to extract the kourosh release archive -- the previous installation has already been removed, so the panel will not start until this is fixed; try running the update again"
     fi
-    rm kourosh-linux-$(arch).tar.gz -f > /dev/null 2>&1
+    rm ${kourosh_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
     cd kourosh > /dev/null 2>&1
     if [[ $? -ne 0 || ! -s kourosh ]]; then
         _fail "ERROR: Extracted kourosh archive is missing the kourosh binary -- the previous installation has already been removed, so the panel will not start until this is fixed; try running the update again"
