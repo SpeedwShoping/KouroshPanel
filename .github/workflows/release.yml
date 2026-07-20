@@ -197,10 +197,13 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
+          release_name: "Kourosh Panel ${{ github.ref_name }}"
+          body: "🏛️ Kourosh Panel - Modern Achaemenid-themed VPN management panel"
           file: k-ui-linux-${{ matrix.platform }}.tar.gz
           asset_name: k-ui-linux-${{ matrix.platform }}.tar.gz
           overwrite: true
           prerelease: true
+          make_latest: false
 
   # =================================
   #  Windows Build
@@ -328,10 +331,13 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
+          release_name: "Kourosh Panel ${{ github.ref_name }}"
+          body: "🏛️ Kourosh Panel - Modern Achaemenid-themed VPN management panel"
           file: kourosh-windows-amd64.zip
           asset_name: kourosh-windows-amd64.zip
           overwrite: true
           prerelease: true
+          make_latest: false
 
   # =================================
   #  Rolling dev channel (per-commit)
