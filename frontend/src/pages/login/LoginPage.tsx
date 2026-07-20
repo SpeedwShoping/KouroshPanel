@@ -131,6 +131,13 @@ export default function LoginPage() {
       {messageContextHolder}
       <Layout className={pageClass}>
         <Layout.Content className="login-content">
+          <div className="kp-sunrays" aria-hidden="true" />
+          <div className="kp-columns" aria-hidden="true">
+            <span /><span /><span /><span /><span /><span /><span /><span />
+          </div>
+          <div className="kp-sparks" aria-hidden="true">
+            <i /><i /><i /><i /><i /><i /><i /><i /><i /><i />
+          </div>
           <div className="login-toolbar">
             <Button
               id="login-theme-cycle"
@@ -176,8 +183,10 @@ export default function LoginPage() {
             ) : (
               <div className="login-card kp-glass-card kp-rise">
                 <div className="brand">
-                  <KouroshLogo size={56} className="kp-rise kp-rise-1" />
-                  <span className="brand-name kp-shimmer">KOUROSH</span>
+                  <div className="brand-logo-ring">
+                    <KouroshLogo size={56} />
+                  </div>
+                  <span className="brand-name">KOUROSH</span>
                   <span className="brand-accent" aria-hidden="true" />
                 </div>
                 <h2 className="welcome">

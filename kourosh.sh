@@ -1854,20 +1854,61 @@ ssl_cert_issue() {
     fi
     LOGI "Will use port: ${WebPort} to issue certificates. Please make sure this port is open."
 
+    # preflight: the standalone server must be able to bind the chosen port
+    if is_port_in_use "${WebPort}"; then
+        LOGE "Port ${WebPort} is already in use — acme.sh standalone mode cannot bind it."
+        if command -v ss > /dev/null 2>&1; then
+            LOGI "Process using port ${WebPort}:"
+            ss -ltnp 2> /dev/null | awk -v p=":${WebPort}$" '$4 ~ p {print "  " $0}'
+        fi
+        read -rp "Try to temporarily stop the kourosh panel to free the port? (y/n): " freePort
+        if [[ "$freePort" == "y" || "$freePort" == "Y" ]]; then
+            systemctl stop kourosh > /dev/null 2>&1
+            sleep 2
+            if is_port_in_use "${WebPort}"; then
+                LOGE "Port ${WebPort} is still busy (another service owns it). Free it and retry."
+                systemctl start kourosh > /dev/null 2>&1
+                exit 1
+            fi
+            SSL_RESTART_PANEL_AFTER=1
+        else
+            LOGE "Cannot issue a certificate while port ${WebPort} is busy. Aborting."
+            exit 1
+        fi
+    fi
+
+    # preflight: warn when the domain does not resolve to this server
+    local serverIP domainIP
+    serverIP=$(curl -s4 --max-time 8 https://api.ipify.org 2> /dev/null)
+    domainIP=$(getent ahostsv4 "${domain}" 2> /dev/null | awk '{print $1; exit}')
+    if [[ -n "$serverIP" && -n "$domainIP" && "$serverIP" != "$domainIP" ]]; then
+        LOGW "Domain ${domain} resolves to ${domainIP}, but this server's IP is ${serverIP}."
+        LOGW "If the domain is behind Cloudflare proxy (orange cloud), disable the proxy (grey cloud) before HTTP validation."
+        read -rp "Continue anyway? (y/n): " contAnyway
+        if [[ "$contAnyway" != "y" && "$contAnyway" != "Y" ]]; then
+            [[ "${SSL_RESTART_PANEL_AFTER}" == "1" ]] && systemctl start kourosh > /dev/null 2>&1
+            exit 1
+        fi
+    fi
+
     if [[ ${cert_exists} -eq 0 ]]; then
         # issue the certificate
         ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt --force
         ~/.acme.sh/acme.sh --issue -d ${domain} $(acme_listen_flag) --standalone --httpport ${WebPort} --force
         if [ $? -ne 0 ]; then
-            LOGE "Issuing certificate failed, please check logs."
+            LOGE "Issuing certificate failed. Last lines of the acme.sh log:"
+            tail -n 15 ~/.acme.sh/acme.sh.log 2> /dev/null | sed 's/^/  /'
+            LOGE "Common causes: port ${WebPort} not reachable from the internet (firewall/NAT), domain not pointing to this server, or Cloudflare proxy enabled."
             rm -rf ~/.acme.sh/${domain} ~/.acme.sh/${domain}_ecc
+            [[ "${SSL_RESTART_PANEL_AFTER}" == "1" ]] && systemctl start kourosh > /dev/null 2>&1
             exit 1
         else
-            LOGE "Issuing certificate succeeded, installing certificates..."
+            LOGI "Issuing certificate succeeded, installing certificates..."
         fi
     else
         LOGI "Using existing certificate, installing certificates..."
     fi
+    [[ "${SSL_RESTART_PANEL_AFTER}" == "1" ]] && systemctl start kourosh > /dev/null 2>&1
 
     reloadCmd="kourosh restart"
 
@@ -3412,7 +3453,7 @@ ${gold}    █████╔╝ ██║   ██║██║   ██║█�
 ${gold}    ██╔═██╗ ██║   ██║██║   ██║██╔══██╗██║   ██║╚════██║██╔══██║${plain}
 ${gold}    ██║  ██╗╚██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║██║  ██║${plain}
 ${gold}    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝${plain}
-${cyan}          ─── Kourosh Panel · پنل کوروش · by SpeedwShoping ───${plain}
+${cyan}          ─── K O U R O S H   P A N E L · by SpeedwShoping ───${plain}
 "
     show_status
     echo -e "

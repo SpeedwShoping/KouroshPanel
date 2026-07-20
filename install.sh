@@ -1658,7 +1658,15 @@ install_kourosh() {
     # works out of the box (no-op when XUI_ENABLE_FAIL2BAN=false). Never fatal.
     setup_fail2ban
 
-    echo -e "${green}kourosh ${tag_version}${plain} installation finished, it is running now..."
+    echo -e ""
+    echo -e "${yellow}    ██╗  ██╗ ██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗██╗  ██╗${plain}"
+    echo -e "${yellow}    ██║ ██╔╝██╔═══██╗██║   ██║██╔══██╗██╔═══██╗██╔════╝██║  ██║${plain}"
+    echo -e "${yellow}    █████╔╝ ██║   ██║██║   ██║██████╔╝██║   ██║███████╗███████║${plain}"
+    echo -e "${yellow}    ██╔═██╗ ██║   ██║██║   ██║██╔══██╗██║   ██║╚════██║██╔══██║${plain}"
+    echo -e "${yellow}    ██║  ██╗╚██████╔╝╚██████╔╝██║  ██║╚██████╔╝███████║██║  ██║${plain}"
+    echo -e "${yellow}    ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝${plain}"
+    echo -e "${blue}          KOUROSH PANEL ${tag_version} — installed & running${plain}"
+    echo -e "${blue}          Channel: https://t.me/SpeedShopw${plain}"
     echo -e ""
     echo -e "┌───────────────────────────────────────────────────────┐
 │  ${blue}kourosh control menu usages (subcommands):${plain}              │

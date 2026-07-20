@@ -68,13 +68,14 @@ body {
 .kp-grid-bg::after {
   content: '';
   position: absolute;
-  inset: -20%;
+  inset: -10%;
+  /* soft radial gradients — no filter: blur() so compositing stays cheap */
   background:
-    radial-gradient(circle at 18% 22%, var(--kp-gold-dim) 0%, transparent 32%),
-    radial-gradient(circle at 82% 74%, var(--kp-turquoise-dim) 0%, transparent 34%);
-  filter: blur(70px);
-  opacity: 0.5;
+    radial-gradient(ellipse 40% 35% at 18% 22%, var(--kp-gold-dim) 0%, transparent 70%),
+    radial-gradient(ellipse 42% 36% at 82% 74%, var(--kp-turquoise-dim) 0%, transparent 70%);
+  opacity: 0.35;
   animation: kp-aurora 18s ease-in-out infinite alternate;
+  will-change: transform;
 }
 @keyframes kp-grid-drift {
   from { background-position: 0 0, 0 0; }
@@ -93,17 +94,14 @@ body {
   .kp-grid-bg, .kp-grid-bg::after { animation: none; }
 }
 
-/* ---------- Glass cards ---------- */
-.kp-glass-card,
-.dark .ant-card,
-[data-theme='ultra-dark'] .ant-card {
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
+/* ---------- Cards (solid tint — no backdrop-filter for perf) ---------- */
 .dark .ant-card {
-  background: var(--kp-glass) !important;
+  background: #121831 !important;
   border: 1px solid var(--kp-glass-border) !important;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+[data-theme='ultra-dark'] .ant-card {
+  background: #0a0e1a !important;
 }
 .dark .ant-card:hover {
   border-color: rgba(201, 162, 39, 0.38) !important;

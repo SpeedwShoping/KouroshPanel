@@ -44,6 +44,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { useStatusQuery } from '@/api/queries/useStatusQuery';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import AppSidebar from '@/layouts/AppSidebar';
+import KouroshLogo from '@/components/ui/KouroshLogo';
 import { LazyMount } from '@/components/utility';
 import { setMessageInstance } from '@/utils/messageBus';
 import StatusCard from './StatusCard';
@@ -191,6 +192,18 @@ export default function IndexPage() {
                 />
               ) : (
                 <Row gutter={[isMobile ? 8 : 16, 12]}>
+                  <Col span={24}>
+                    <div className="kp-hero kp-rise">
+                      <div className="kp-hero-glyph" aria-hidden="true">
+                        <KouroshLogo size={isMobile ? 44 : 60} />
+                      </div>
+                      <div className="kp-hero-text">
+                        <span className="kp-hero-title kp-shimmer">KOUROSH</span>
+                        <span className="kp-hero-sub">{t('menu.dashboard')}</span>
+                      </div>
+                      <div className="kp-hero-frieze" aria-hidden="true" />
+                    </div>
+                  </Col>
                   <Col span={24}>
                     <StatusCard status={status} isMobile={isMobile} />
                   </Col>

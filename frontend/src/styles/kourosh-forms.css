@@ -1,0 +1,502 @@
+/* ---------- Kourosh Forms & Modals — modern glassmorphic style ---------- */
+
+/* ---------- Modal ---------- */
+.ant-modal .ant-modal-content {
+  background: rgba(18, 24, 49, 0.95) !important;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ant-modal .ant-modal-header {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.12) 0%, rgba(46, 196, 182, 0.08) 100%);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+  border-radius: 16px 16px 0 0;
+  padding: 20px 24px;
+}
+
+.ant-modal .ant-modal-title {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ant-modal .ant-modal-close {
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.25s;
+}
+
+.ant-modal .ant-modal-close:hover {
+  color: #c9a227;
+  transform: rotate(90deg);
+}
+
+.ant-modal .ant-modal-body {
+  padding: 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.ant-modal .ant-modal-footer {
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 16px 16px;
+}
+
+/* Custom scrollbar for modal body */
+.ant-modal .ant-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ant-modal .ant-modal-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.ant-modal .ant-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.3);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.ant-modal .ant-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 162, 39, 0.5);
+}
+
+/* ---------- Form items ---------- */
+.ant-form-item {
+  margin-bottom: 20px;
+}
+
+.ant-form-item-label > label {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+.ant-form-item-label > label.ant-form-item-required::before {
+  color: #ef4444;
+}
+
+/* Input fields */
+.ant-input,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker,
+.ant-input-affix-wrapper {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(201, 162, 39, 0.25) !important;
+  border-radius: 10px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 42px;
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-select-selector:hover,
+.ant-picker:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: rgba(201, 162, 39, 0.45) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-number:focus,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-input-affix-wrapper-focused {
+  border-color: #c9a227 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.12) !important;
+}
+
+/* Textarea */
+.ant-input-textarea textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  min-height: 100px;
+}
+
+.ant-input-textarea textarea:hover {
+  border-color: rgba(201, 162, 39, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ant-input-textarea textarea:focus {
+  border-color: #c9a227;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.12);
+}
+
+/* Select dropdown */
+.ant-select-dropdown {
+  background: rgba(18, 24, 49, 0.98);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.ant-select-item {
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.2s;
+}
+
+.ant-select-item:hover {
+  background: rgba(201, 162, 39, 0.12) !important;
+  color: #c9a227;
+}
+
+.ant-select-item-option-selected {
+  background: rgba(201, 162, 39, 0.2) !important;
+  color: #c9a227 !important;
+  font-weight: 600;
+}
+
+/* Radio & Checkbox */
+.ant-radio-wrapper,
+.ant-checkbox-wrapper {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.ant-radio-inner,
+.ant-checkbox-inner {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(201, 162, 39, 0.3);
+}
+
+.ant-radio:hover .ant-radio-inner,
+.ant-checkbox:hover .ant-checkbox-inner {
+  border-color: rgba(201, 162, 39, 0.5);
+}
+
+.ant-radio-checked .ant-radio-inner {
+  background: #c9a227;
+  border-color: #c9a227;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background: #c9a227;
+  border-color: #c9a227;
+}
+
+/* Switch */
+.ant-switch {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.ant-switch:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ant-switch-checked {
+  background: linear-gradient(135deg, #c9a227 0%, #a88820 100%);
+  border-color: #c9a227;
+}
+
+/* ---------- Buttons ---------- */
+.ant-btn {
+  border-radius: 10px;
+  font-weight: 500;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #c9a227 0%, #a88820 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(201, 162, 39, 0.25);
+}
+
+.ant-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d4ac2a 0%, #b6932a 100%);
+  box-shadow: 0 6px 16px rgba(201, 162, 39, 0.35);
+  transform: translateY(-2px);
+}
+
+.ant-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ant-btn-default {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ant-btn-default:hover:not(:disabled) {
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.45);
+  color: #c9a227;
+  transform: translateY(-1px);
+}
+
+.ant-btn-dangerous {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.ant-btn-dangerous:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+}
+
+.ant-btn-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ant-btn-text:hover:not(:disabled) {
+  background: rgba(201, 162, 39, 0.1);
+  color: #c9a227;
+}
+
+.ant-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Tabs ---------- */
+.ant-tabs {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ant-tabs-nav {
+  margin-bottom: 24px;
+}
+
+.ant-tabs-nav::before {
+  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.ant-tabs-tab {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  padding: 12px 20px;
+  transition: all 0.25s;
+}
+
+.ant-tabs-tab:hover {
+  color: #c9a227;
+}
+
+.ant-tabs-tab-active {
+  color: #c9a227 !important;
+}
+
+.ant-tabs-ink-bar {
+  background: linear-gradient(90deg, #c9a227 0%, #2ec4b6 100%);
+  height: 3px;
+}
+
+/* ---------- Divider ---------- */
+.ant-divider {
+  border-color: rgba(201, 162, 39, 0.2);
+}
+
+.ant-divider-horizontal.ant-divider-with-text {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ---------- Alert ---------- */
+.ant-alert {
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 12px 16px;
+}
+
+.ant-alert-info {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+}
+
+.ant-alert-success {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.ant-alert-warning {
+  background: rgba(251, 146, 60, 0.12);
+  border-color: rgba(251, 146, 60, 0.3);
+  color: #fb923c;
+}
+
+.ant-alert-error {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* ---------- Tooltip & Popover ---------- */
+.ant-tooltip-inner,
+.ant-popover-inner {
+  background: rgba(18, 24, 49, 0.98);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.ant-tooltip-arrow-content,
+.ant-popover-arrow-content {
+  background: rgba(18, 24, 49, 0.98);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+/* ---------- Light theme overrides ---------- */
+body:not(.dark-theme) .ant-modal .ant-modal-content {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+body:not(.dark-theme) .ant-modal .ant-modal-header {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.15) 0%, rgba(46, 196, 182, 0.1) 100%);
+  border-bottom-color: rgba(201, 162, 39, 0.3);
+}
+
+body:not(.dark-theme) .ant-modal .ant-modal-title {
+  color: rgba(0, 0, 0, 0.95);
+}
+
+body:not(.dark-theme) .ant-modal .ant-modal-close {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+body:not(.dark-theme) .ant-modal .ant-modal-close:hover {
+  color: #8a6d13;
+}
+
+body:not(.dark-theme) .ant-form-item-label > label {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+body:not(.dark-theme) .ant-input,
+body:not(.dark-theme) .ant-input-number,
+body:not(.dark-theme) .ant-select-selector,
+body:not(.dark-theme) .ant-picker,
+body:not(.dark-theme) .ant-input-affix-wrapper {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(201, 162, 39, 0.25) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+body:not(.dark-theme) .ant-input:hover,
+body:not(.dark-theme) .ant-input-number:hover,
+body:not(.dark-theme) .ant-select-selector:hover,
+body:not(.dark-theme) .ant-picker:hover,
+body:not(.dark-theme) .ant-input-affix-wrapper:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(201, 162, 39, 0.4) !important;
+}
+
+body:not(.dark-theme) .ant-input:focus,
+body:not(.dark-theme) .ant-input-focused,
+body:not(.dark-theme) .ant-input-number:focus,
+body:not(.dark-theme) .ant-input-number-focused,
+body:not(.dark-theme) .ant-select-focused .ant-select-selector,
+body:not(.dark-theme) .ant-picker-focused,
+body:not(.dark-theme) .ant-input-affix-wrapper-focused {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: #a88820 !important;
+}
+
+body:not(.dark-theme) .ant-select-dropdown {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+body:not(.dark-theme) .ant-select-item {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body:not(.dark-theme) .ant-select-item:hover {
+  background: rgba(201, 162, 39, 0.15) !important;
+  color: #8a6d13;
+}
+
+body:not(.dark-theme) .ant-select-item-option-selected {
+  background: rgba(201, 162, 39, 0.25) !important;
+  color: #8a6d13 !important;
+}
+
+body:not(.dark-theme) .ant-radio-wrapper,
+body:not(.dark-theme) .ant-checkbox-wrapper {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+body:not(.dark-theme) .ant-radio-inner,
+body:not(.dark-theme) .ant-checkbox-inner {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+body:not(.dark-theme) .ant-radio-checked .ant-radio-inner,
+body:not(.dark-theme) .ant-checkbox-checked .ant-checkbox-inner {
+  background: #a88820;
+  border-color: #a88820;
+}
+
+body:not(.dark-theme) .ant-btn-default {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(201, 162, 39, 0.25);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+body:not(.dark-theme) .ant-btn-default:hover:not(:disabled) {
+  background: rgba(201, 162, 39, 0.15);
+  border-color: rgba(201, 162, 39, 0.45);
+  color: #8a6d13;
+}
+
+body:not(.dark-theme) .ant-tabs-tab {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+body:not(.dark-theme) .ant-tabs-tab:hover {
+  color: #8a6d13;
+}
+
+body:not(.dark-theme) .ant-tabs-tab-active {
+  color: #8a6d13 !important;
+}
+
+body:not(.dark-theme) .ant-divider-horizontal.ant-divider-with-text {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body:not(.dark-theme) .ant-tooltip-inner,
+body:not(.dark-theme) .ant-popover-inner {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(201, 162, 39, 0.35);
+  color: rgba(0, 0, 0, 0.9);
+}
