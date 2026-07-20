@@ -36,6 +36,15 @@ type LoginForm = LoginFormValues;
 const basePath = window.X_UI_BASE_PATH || '';
 const QUOTE_INTERVAL_MS = 7000;
 
+// heritage backdrops — a random one is chosen on every page load
+const HERO_IMAGES = [
+  { src: 'img/cyrus.jpg', pos: 'center 18%' },
+  { src: 'img/pasargadae.jpg', pos: 'center 62%' },
+  { src: 'img/persepolis.jpg', pos: 'center 45%' },
+  { src: 'img/faravahar.jpg', pos: 'center 40%' },
+];
+const heroImage = HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)];
+
 export default function LoginPage() {
   const { t } = useTranslation();
   const { isDark, isUltra, toggleTheme, toggleUltra, antdThemeConfig } = useTheme();
@@ -151,9 +160,10 @@ export default function LoginPage() {
           <aside className="login-hero" aria-hidden="true">
             <div className="hero-arch">
               <img
-                src={`${basePath}img/cyrus.jpg`}
+                src={`${basePath}${heroImage.src}`}
                 alt=""
                 className="hero-image"
+                style={{ objectPosition: heroImage.pos }}
                 loading="eager"
                 decoding="async"
               />

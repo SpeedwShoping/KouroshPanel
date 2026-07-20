@@ -22,6 +22,7 @@ import {
 import {
   AndroidOutlined,
   AppleOutlined,
+  CheckOutlined,
   CopyOutlined,
   DownOutlined,
   MoonFilled,
@@ -39,13 +40,16 @@ import { setMessageInstance } from '@/utils/messageBus';
 import { pauseAnimationsUntilLeave, useTheme } from '@/hooks/useTheme';
 import KouroshLogo from '@/components/ui/KouroshLogo';
 import SubUsageSummary from './SubUsageSummary';
-import { nextQuote } from './quotes';
+import { QUOTES, nextQuote } from './quotes';
 import './SubPage.css';
 
 const QR_SIZE = 240;
+const QUOTE_SLIDE_MS = 8000;
 
-// picked once per page load → a fresh quote on every visit
-const visitQuote = nextQuote();
+// starting quote picked once per page load → fresh on every visit,
+// then the card keeps sliding through the rest of the collection
+const initialQuote = nextQuote();
+const initialQuoteIndex = Math.max(0, QUOTES.indexOf(initialQuote));
 
 const subData = window.__SUB_PAGE_DATA__ || {};
 
@@ -89,6 +93,15 @@ export default function SubPage() {
 
   const [isMobile, setIsMobile] = useState<boolean>(() => window.innerWidth < 576);
   const [lang, setLang] = useState<string>(() => LanguageManager.getLanguage());
+  const [quoteIndex, setQuoteIndex] = useState(initialQuoteIndex);
+  const [copiedKey, setCopiedKey] = useState<string>('');
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setQuoteIndex((i) => (i + 1) % QUOTES.length);
+    }, QUOTE_SLIDE_MS);
+    return () => window.clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 576);
@@ -117,7 +130,11 @@ export default function SubPage() {
   const copy = useCallback(async (value: string) => {
     if (!value) return;
     const ok = await ClipboardManager.copyText(value);
-    if (ok) messageApi.success(t('copied'));
+    if (ok) {
+      messageApi.success(t('copied'));
+      setCopiedKey(value);
+      window.setTimeout(() => setCopiedKey((k) => (k === value ? '' : k)), 1400);
+    }
   }, [t, messageApi]);
 
   const copyAll = useCallback(async () => {
@@ -293,13 +310,18 @@ export default function SubPage() {
                 <div className="kp-quote-mark" aria-hidden="true">
                   <KouroshLogo size={40} />
                 </div>
-                <p className="kp-quote-text">
-                  {lang.startsWith('fa') ? visitQuote.fa : visitQuote.en}
+                <p className="kp-quote-text" key={quoteIndex}>
+                  {lang.startsWith('fa') ? QUOTES[quoteIndex].fa : QUOTES[quoteIndex].en}
                 </p>
                 <div className="kp-divider">
-                  <span className="kp-quote-author">
-                    {lang.startsWith('fa') ? visitQuote.authorFa : visitQuote.authorEn}
+                  <span className="kp-quote-author" key={`a-${quoteIndex}`}>
+                    {lang.startsWith('fa') ? QUOTES[quoteIndex].authorFa : QUOTES[quoteIndex].authorEn}
                   </span>
+                </div>
+                <div className="kp-quote-dots" aria-hidden="true">
+                  {[0, 1, 2].map((d) => (
+                    <span key={d} className={quoteIndex % 3 === d ? 'is-on' : ''} />
+                  ))}
                 </div>
               </div>
               <Card hoverable className="subscription-card kp-rise kp-rise-1" title={cardTitle} extra={cardExtra}>
@@ -342,7 +364,7 @@ export default function SubPage() {
                             {sId}
                           </a>
                           <div className="sub-link-actions">
-                            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(subUrl)} aria-label={t('copy')} title={t('copy')} />
+                            <Button size="small" className={copiedKey === subUrl ? "kp-copied" : ""} icon={copiedKey === subUrl ? <CheckOutlined /> : <CopyOutlined />} onClick={() => copy(subUrl)} aria-label={t('copy')} title={t('copy')} />
                             <Popover
                               trigger="click"
                               placement="left"
@@ -372,7 +394,7 @@ export default function SubPage() {
                             {sId}
                           </a>
                           <div className="sub-link-actions">
-                            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(subJsonUrl)} aria-label={t('copy')} title={t('copy')} />
+                            <Button size="small" className={copiedKey === subJsonUrl ? "kp-copied" : ""} icon={copiedKey === subJsonUrl ? <CheckOutlined /> : <CopyOutlined />} onClick={() => copy(subJsonUrl)} aria-label={t('copy')} title={t('copy')} />
                             <Popover
                               trigger="click"
                               placement="left"
@@ -404,7 +426,7 @@ export default function SubPage() {
                             {sId}
                           </a>
                           <div className="sub-link-actions">
-                            <Button size="small" icon={<CopyOutlined />} onClick={() => copy(subClashUrl)} aria-label={t('copy')} title={t('copy')} />
+                            <Button size="small" className={copiedKey === subClashUrl ? "kp-copied" : ""} icon={copiedKey === subClashUrl ? <CheckOutlined /> : <CopyOutlined />} onClick={() => copy(subClashUrl)} aria-label={t('copy')} title={t('copy')} />
                             <Popover
                               trigger="click"
                               placement="left"

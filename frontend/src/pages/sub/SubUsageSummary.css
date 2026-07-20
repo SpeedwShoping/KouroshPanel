@@ -1,87 +1,124 @@
-.usage-summary {
-  margin-top: 12px;
-  padding: 14px 16px;
-  background: var(--ant-color-fill-alter);
-  border: 1px solid var(--ant-color-border-secondary);
-  border-radius: 12px;
-}
-
-.usage-summary.is-inactive {
-  opacity: 0.7;
-  border-color: var(--ant-color-error-border);
-}
-
-.usage-summary-head {
+/* ---------- Kourosh usage ring ---------- */
+.usage-ring-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 26px;
+  margin-top: 14px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: var(--ant-color-fill-alter);
+  border: 1px solid rgba(201, 162, 39, 0.2);
 }
 
-.usage-summary-labels {
+.usage-ring-wrap.is-inactive {
+  opacity: 0.55;
+  filter: grayscale(0.5);
+}
+
+.usage-ring {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.usage-ring svg {
+  display: block;
+}
+
+.usage-ring-rail {
+  stroke: rgba(201, 162, 39, 0.14);
+}
+
+.usage-ring-fill {
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: stroke-dashoffset;
+}
+
+.usage-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.usage-ring-pct {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #c9a227, #2ec4b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.usage-ring-infinity {
+  font-size: 44px;
+  font-weight: 700;
+  color: #c9a227;
+  line-height: 1;
+}
+
+.usage-ring-caption {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ant-color-text-tertiary);
+}
+
+.usage-ring-side {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.usage-ring-row {
   display: flex;
   align-items: baseline;
-  gap: 6px;
-  font-variant-numeric: tabular-nums;
-  min-width: 0;
-}
-
-.usage-summary-used {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ant-color-text);
-}
-
-.usage-summary-sep {
-  color: var(--ant-color-text-quaternary);
-  font-size: 16px;
-}
-
-.usage-summary-total {
-  font-size: 14px;
-  color: var(--ant-color-text-secondary);
-  font-weight: 500;
-}
-
-.usage-summary-chips {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.usage-summary-chips .ant-tag {
-  margin: 0;
-}
-
-.usage-summary-bar.ant-progress {
-  margin-bottom: 6px;
-}
-
-.usage-summary-bar .ant-progress-outer {
-  padding-inline-end: 0;
-}
-
-.usage-summary-bar .ant-progress-inner {
-  background: var(--ant-color-fill-secondary);
-}
-
-.usage-summary-foot {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(201, 162, 39, 0.18);
+}
+
+.usage-ring-row:last-of-type {
+  border-bottom: none;
+}
+
+.usage-ring-key {
+  font-size: 12.5px;
   color: var(--ant-color-text-tertiary);
+}
+
+.usage-ring-val {
+  font-size: 15px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  min-height: 16px;
 }
 
-.usage-summary-remained::before {
-  content: '';
+.usage-ring-val.is-gold {
+  color: #c9a227;
 }
 
-.usage-summary-pct {
-  font-weight: 600;
-  color: var(--ant-color-text-secondary);
+.usage-ring-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+  .usage-ring-wrap {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .usage-ring-side {
+    width: 100%;
+  }
 }
