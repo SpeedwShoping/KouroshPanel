@@ -1,12 +1,5 @@
 #!/bin/bash
 
-red='\033[0;31m'
-green='\033[0;32m'
-blue='\033[0;34m'
-yellow='\033[0;33m'
-plain='\033[0m'
-#!/bin/bash
-
 # Colors
 red='\033[0;31m'
 green='\033[0;32m'
@@ -81,7 +74,7 @@ spinner() {
 
 cur_dir=$(pwd)
 
-kui_folder="${XUI_MAIN_FOLDER:=/usr/local/k-ui}"
+kui_folder="${XUI_MAIN_FOLDER:=/usr/local/kourosh}"
 kui_service="${XUI_SERVICE:=/etc/systemd/system}"
 
 show_install_banner
@@ -229,9 +222,9 @@ prompt_or_default() {
 # Postgres env file (/etc/default/kourosh).
 write_install_result() {
     local u="$1" p="$2" port="$3" wbp="$4" scheme="$5" host="$6" token="$7" dbtype="$8"
-    local result_file="/etc/k-ui/install-result.env"
+    local result_file="/etc/kourosh/install-result.env"
     local url_host="${host:-SERVER_IP_UNKNOWN}"
-    install -d -m 755 /etc/k-ui 2> /dev/null
+    install -d -m 755 /etc/kourosh 2> /dev/null
     local prev_umask
     prev_umask=$(umask)
     umask 077
@@ -483,7 +476,7 @@ setup_ssl_certificate() {
     ~/.acme.sh/acme.sh --installcert --force -d ${domain} \
         --key-file /root/cert/${domain}/privkey.pem \
         --fullchain-file /root/cert/${domain}/fullchain.pem \
-        --reloadcmd "systemctl restart k-ui" > /dev/null 2>&1
+        --reloadcmd "systemctl restart kourosh" > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
         echo -e "${yellow}Failed to install certificate${plain}"
@@ -501,7 +494,7 @@ setup_ssl_certificate() {
     local webKeyFile="/root/cert/${domain}/privkey.pem"
 
     if [[ -f "$webCertFile" && -f "$webKeyFile" ]]; then
-        ${kui_folder}/k-ui cert -webCert "$webCertFile" -webCertKey "$webKeyFile" > /dev/null 2>&1
+        ${kui_folder}/kourosh cert -webCert "$webCertFile" -webCertKey "$webKeyFile" > /dev/null 2>&1
         echo -e "${green}SSL certificate installed and configured successfully!${plain}"
         return 0
     else
@@ -552,7 +545,7 @@ setup_ip_certificate() {
     fi
 
     # Set reload command for auto-renewal (add || true so it doesn't fail during first install)
-    local reloadCmd="systemctl restart k-ui 2>/dev/null || rc-service k-ui restart 2>/dev/null || true"
+    local reloadCmd="systemctl restart kourosh 2>/dev/null || rc-service kourosh restart 2>/dev/null || true"
 
     # Choose port for HTTP-01 listener (default 80, prompt override)
     local WebPort=""
@@ -650,7 +643,7 @@ setup_ip_certificate() {
 
     # Configure panel to use the certificate
     echo -e "${green}Setting certificate paths for the panel...${plain}"
-    ${kui_folder}/k-ui cert -webCert "${certDir}/fullchain.pem" -webCertKey "${certDir}/privkey.pem"
+    ${kui_folder}/kourosh cert -webCert "${certDir}/fullchain.pem" -webCertKey "${certDir}/privkey.pem"
 
     if [ $? -ne 0 ]; then
         echo -e "${yellow}Warning: Could not set certificate paths automatically${plain}"
@@ -669,8 +662,8 @@ setup_ip_certificate() {
 
 # Comprehensive manual SSL certificate issuance via acme.sh
 ssl_cert_issue() {
-    local existing_webBasePath=$(${kui_folder}/k-ui setting -show true | grep 'webBasePath:' | awk -F': ' '{print $2}' | tr -d '[:space:]' | sed 's#^/##')
-    local existing_port=$(${kui_folder}/k-ui setting -show true | grep 'port:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
+    local existing_webBasePath=$(${kui_folder}/kourosh setting -show true | grep 'webBasePath:' | awk -F': ' '{print $2}' | tr -d '[:space:]' | sed 's#^/##')
+    local existing_port=$(${kui_folder}/kourosh setting -show true | grep 'port:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
 
     # check for acme.sh first
     if ! command -v ~/.acme.sh/acme.sh &> /dev/null; then
@@ -763,7 +756,7 @@ ssl_cert_issue() {
 
     # Stop panel temporarily
     echo -e "${yellow}Stopping panel temporarily...${plain}"
-    systemctl stop k-ui 2> /dev/null || rc-service k-ui stop 2> /dev/null
+    systemctl stop kourosh 2> /dev/null || rc-service kourosh stop 2> /dev/null
 
     if [[ ${cert_exists} -eq 0 ]]; then
         # issue the certificate
@@ -773,7 +766,7 @@ ssl_cert_issue() {
         if [ $? -ne 0 ]; then
             echo -e "${red}Issuing certificate failed, please check logs.${plain}"
             rm -rf ~/.acme.sh/${domain} ~/.acme.sh/${domain}_ecc
-            systemctl start k-ui 2> /dev/null || rc-service k-ui start 2> /dev/null
+            systemctl start kourosh 2> /dev/null || rc-service kourosh start 2> /dev/null
             return 1
         else
             echo -e "${green}Issuing certificate succeeded, installing certificates...${plain}"
@@ -783,8 +776,8 @@ ssl_cert_issue() {
     fi
 
     # Setup reload command
-    reloadCmd="systemctl restart k-ui || rc-service k-ui restart"
-    echo -e "${green}Default --reloadcmd for ACME is: ${yellow}systemctl restart k-ui || rc-service k-ui restart${plain}"
+    reloadCmd="systemctl restart kourosh || rc-service kourosh restart"
+    echo -e "${green}Default --reloadcmd for ACME is: ${yellow}systemctl restart kourosh || rc-service kourosh restart${plain}"
     echo -e "${green}This command will run on every certificate issue and renew.${plain}"
     if [[ "$NONINTERACTIVE" == "1" ]]; then
         setReloadcmd="n"
@@ -792,14 +785,14 @@ ssl_cert_issue() {
         read -rp "Would you like to modify --reloadcmd for ACME? (y/n): " setReloadcmd
     fi
     if [[ "$setReloadcmd" == "y" || "$setReloadcmd" == "Y" ]]; then
-        echo -e "\n${green}\t1.${plain} Preset: systemctl reload nginx ; systemctl restart k-ui"
+        echo -e "\n${green}\t1.${plain} Preset: systemctl reload nginx ; systemctl restart kourosh"
         echo -e "${green}\t2.${plain} Input your own command"
         echo -e "${green}\t0.${plain} Keep default reloadcmd"
         read -rp "Choose an option: " choice
         case "$choice" in
             1)
-                echo -e "${green}Reloadcmd is: systemctl reload nginx ; systemctl restart k-ui${plain}"
-                reloadCmd="systemctl reload nginx ; systemctl restart k-ui"
+                echo -e "${green}Reloadcmd is: systemctl reload nginx ; systemctl restart kourosh${plain}"
+                reloadCmd="systemctl reload nginx ; systemctl restart kourosh"
                 ;;
             2)
                 echo -e "${yellow}It's recommended to put kourosh restart at the end${plain}"
@@ -832,7 +825,7 @@ ssl_cert_issue() {
         if [[ ${cert_exists} -eq 0 ]]; then
             rm -rf ~/.acme.sh/${domain} ~/.acme.sh/${domain}_ecc
         fi
-        systemctl start k-ui 2> /dev/null || rc-service k-ui start 2> /dev/null
+        systemctl start kourosh 2> /dev/null || rc-service kourosh start 2> /dev/null
         return 1
     fi
 
@@ -853,7 +846,7 @@ ssl_cert_issue() {
     fi
 
     # start panel
-    systemctl start k-ui 2> /dev/null || rc-service k-ui start 2> /dev/null
+    systemctl start kourosh 2> /dev/null || rc-service kourosh start 2> /dev/null
 
     # Prompt user to set panel paths after successful certificate installation
     if [[ "$NONINTERACTIVE" == "1" ]]; then
@@ -866,14 +859,14 @@ ssl_cert_issue() {
         local webKeyFile="/root/cert/${domain}/privkey.pem"
 
         if [[ -f "$webCertFile" && -f "$webKeyFile" ]]; then
-            ${kui_folder}/k-ui cert -webCert "$webCertFile" -webCertKey "$webKeyFile"
+            ${kui_folder}/kourosh cert -webCert "$webCertFile" -webCertKey "$webKeyFile"
             echo -e "${green}Certificate paths set for the panel${plain}"
             echo -e "${green}Certificate File: $webCertFile${plain}"
             echo -e "${green}Private Key File: $webKeyFile${plain}"
             echo ""
             echo -e "${green}Access URL: https://${domain}:${existing_port}/${existing_webBasePath}${plain}"
             echo -e "${yellow}Panel will restart to apply SSL certificate...${plain}"
-            systemctl restart k-ui 2> /dev/null || rc-service k-ui restart 2> /dev/null
+            systemctl restart kourosh 2> /dev/null || rc-service kourosh restart 2> /dev/null
         else
             echo -e "${red}Error: Certificate or private key file not found for domain: $domain.${plain}"
         fi
@@ -972,9 +965,9 @@ prompt_and_setup_ssl() {
 
             # Stop panel if running (port 80 needed)
             if [[ $release == "alpine" ]]; then
-                rc-service k-ui stop > /dev/null 2>&1
+                rc-service kourosh stop > /dev/null 2>&1
             else
-                systemctl stop k-ui > /dev/null 2>&1
+                systemctl stop kourosh > /dev/null 2>&1
             fi
 
             setup_ip_certificate "${server_ip}" "${ipv6_addr}"
@@ -1032,7 +1025,7 @@ prompt_and_setup_ssl() {
             done
 
             # 3.4 Apply Settings via kourosh binary
-            ${kui_folder}/k-ui cert -webCert "$custom_cert" -webCertKey "$custom_key" > /dev/null 2>&1
+            ${kui_folder}/kourosh cert -webCert "$custom_cert" -webCertKey "$custom_key" > /dev/null 2>&1
 
             # Set SSL_HOST for composing Panel URL
             if [[ -n "$custom_domain" ]]; then
@@ -1044,7 +1037,7 @@ prompt_and_setup_ssl() {
             echo -e "${green}✓ Custom certificate paths applied.${plain}"
             echo -e "${yellow}Note: You are responsible for renewing these files externally.${plain}"
 
-            systemctl restart k-ui > /dev/null 2>&1 || rc-service k-ui restart > /dev/null 2>&1
+            systemctl restart kourosh > /dev/null 2>&1 || rc-service kourosh restart > /dev/null 2>&1
             ;;
         4)
             echo ""
@@ -1066,7 +1059,7 @@ prompt_and_setup_ssl() {
                 read -rp "Bind the panel to 127.0.0.1 only? (recommended — forces SSH tunnel / reverse-proxy access) [y/N]: " bind_local
             fi
             if [[ "$bind_local" == "y" || "$bind_local" == "Y" ]]; then
-                ${kui_folder}/k-ui setting -listenIP "127.0.0.1" > /dev/null 2>&1
+                ${kui_folder}/kourosh setting -listenIP "127.0.0.1" > /dev/null 2>&1
                 SSL_HOST="127.0.0.1"
                 echo -e "${green}✓ Panel bound to 127.0.0.1 only. It is now unreachable from the public internet.${plain}"
                 echo ""
@@ -1083,7 +1076,7 @@ prompt_and_setup_ssl() {
                 echo -e "${yellow}Panel will listen on all interfaces over plain HTTP. Make sure something else is terminating TLS in front of it.${plain}"
             fi
 
-            systemctl restart k-ui > /dev/null 2>&1 || rc-service k-ui restart > /dev/null 2>&1
+            systemctl restart kourosh > /dev/null 2>&1 || rc-service kourosh restart > /dev/null 2>&1
             echo -e "${green}✓ SSL setup skipped.${plain}"
             ;;
         *)
@@ -1094,11 +1087,11 @@ prompt_and_setup_ssl() {
 }
 
 config_after_install() {
-    local existing_hasDefaultCredential=$(${kui_folder}/k-ui setting -show true | grep -Eo 'hasDefaultCredential: .+' | awk '{print $2}')
-    local existing_webBasePath=$(${kui_folder}/k-ui setting -show true | grep -Eo 'webBasePath: .+' | awk '{print $2}' | sed 's#^/##')
-    local existing_port=$(${kui_folder}/k-ui setting -show true | grep -Eo 'port: .+' | awk '{print $2}')
+    local existing_hasDefaultCredential=$(${kui_folder}/kourosh setting -show true | grep -Eo 'hasDefaultCredential: .+' | awk '{print $2}')
+    local existing_webBasePath=$(${kui_folder}/kourosh setting -show true | grep -Eo 'webBasePath: .+' | awk '{print $2}' | sed 's#^/##')
+    local existing_port=$(${kui_folder}/kourosh setting -show true | grep -Eo 'port: .+' | awk '{print $2}')
     # Properly detect empty cert by checking if cert: line exists and has content after it
-    local existing_cert=$(${kui_folder}/k-ui setting -getCert true | grep 'cert:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
+    local existing_cert=$(${kui_folder}/kourosh setting -getCert true | grep 'cert:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
     local URL_lists=(
         "https://api4.ipify.org"
         "https://ipv4.icanhazip.com"
@@ -1143,7 +1136,7 @@ config_after_install() {
             local config_password="${XUI_PASSWORD:-$(gen_random_string 10)}"
             local config_port=""
 
-            local db_label="SQLite (/etc/k-ui/kourosh.db)"
+            local db_label="SQLite (/etc/kourosh/kourosh.db)"
             echo ""
             echo -e "${green}═══════════════════════════════════════════${plain}"
             echo -e "${green}     Database Selection                    ${plain}"
@@ -1290,7 +1283,7 @@ EOF
                 fi
             fi
 
-            ${kui_folder}/k-ui setting -username "${config_username}" -password "${config_password}" -port "${config_port}" -webBasePath "${config_webBasePath}"
+            ${kui_folder}/kourosh setting -username "${config_username}" -password "${config_password}" -port "${config_port}" -webBasePath "${config_webBasePath}"
 
             echo ""
             echo -e "${green}═══════════════════════════════════════════${plain}"
@@ -1304,7 +1297,7 @@ EOF
             prompt_and_setup_ssl "${config_port}" "${config_webBasePath}" "${server_ip}"
 
             # Retrieve the API token for display
-            local config_apiToken=$(${kui_folder}/k-ui setting -getApiToken true | grep -Eo 'apiToken: .+' | awk '{print $2}')
+            local config_apiToken=$(${kui_folder}/kourosh setting -getApiToken true | grep -Eo 'apiToken: .+' | awk '{print $2}')
 
             # Display final credentials and access information
             echo ""
@@ -1365,7 +1358,7 @@ EOF
         else
             local config_webBasePath=$(gen_random_string 18)
             echo -e "${yellow}WebBasePath is missing or too short. Generating a new one...${plain}"
-            ${kui_folder}/k-ui setting -webBasePath "${config_webBasePath}"
+            ${kui_folder}/kourosh setting -webBasePath "${config_webBasePath}"
             echo -e "${green}New WebBasePath: ${config_webBasePath}${plain}"
 
             # If the panel is already installed but no certificate is configured, prompt for SSL now
@@ -1389,7 +1382,7 @@ EOF
             local config_password="${XUI_PASSWORD:-$(gen_random_string 10)}"
 
             echo -e "${yellow}Default credentials detected. Security update required...${plain}"
-            ${kui_folder}/k-ui setting -username "${config_username}" -password "${config_password}"
+            ${kui_folder}/kourosh setting -username "${config_username}" -password "${config_password}"
             echo -e "Generated new random login credentials:"
             echo -e "###############################################"
             echo -e "${green}Username: ${config_username}${plain}"
@@ -1398,7 +1391,7 @@ EOF
 
             # Persist a machine-parseable credentials file for cloud-init / MOTD.
             local config_apiToken
-            config_apiToken=$(${kui_folder}/k-ui setting -getApiToken true | grep -Eo 'apiToken: .+' | awk '{print $2}')
+            config_apiToken=$(${kui_folder}/kourosh setting -getApiToken true | grep -Eo 'apiToken: .+' | awk '{print $2}')
             : "${SSL_SCHEME:=https}"
             : "${SSL_HOST:=${server_ip}}"
             write_install_result "${config_username}" "${config_password}" "${existing_port}" \
@@ -1409,7 +1402,7 @@ EOF
 
         # Existing install: if no cert configured, prompt user for SSL setup
         # Properly detect empty cert by checking if cert: line exists and has content after it
-        existing_cert=$(${kui_folder}/k-ui setting -getCert true | grep 'cert:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
+        existing_cert=$(${kui_folder}/kourosh setting -getCert true | grep 'cert:' | awk -F': ' '{print $2}' | tr -d '[:space:]')
         if [[ -z "$existing_cert" ]]; then
             echo ""
             echo -e "${green}═══════════════════════════════════════════${plain}"
@@ -1424,7 +1417,7 @@ EOF
         fi
     fi
 
-    ${kui_folder}/k-ui migrate
+    ${kui_folder}/kourosh migrate
 }
 
 # setup_fail2ban auto-installs and configures fail2ban for the IP Limit feature
@@ -1556,9 +1549,9 @@ install_kourosh() {
     # Stop kourosh service and remove old resources
     if [[ -e ${kui_folder}/ ]]; then
         if [[ $release == "alpine" ]]; then
-            rc-service k-ui stop
+            rc-service kourosh stop
         else
-            systemctl stop k-ui
+            systemctl stop kourosh
         fi
         # Kill any leftover mtg (MTProto) sidecars. kourosh runs them outside its own
         # lifecycle, so on Linux a stale one can survive the stop and keep holding
@@ -1569,14 +1562,14 @@ install_kourosh() {
     fi
 
     # Extract resources and set permissions
-    tar zxvf k-ui-linux-$(arch).tar.gz
+    tar zxvf ${kui_folder}-linux-$(arch).tar.gz
     if [[ $? -ne 0 ]]; then
-        rm k-ui-linux-$(arch).tar.gz -f
+        rm ${kui_folder}-linux-$(arch).tar.gz -f
         rm -f "${kourosh_script_temp}"
         echo -e "${red}Failed to extract the kourosh release archive -- the previous installation has already been removed, so the panel will not start until this is fixed; try running the installer again${plain}"
         exit 1
     fi
-    rm k-ui-linux-$(arch).tar.gz -f
+    rm ${kui_folder}-linux-$(arch).tar.gz -f
 
     cd kourosh
     if [[ $? -ne 0 || ! -s kourosh ]]; then
@@ -1652,7 +1645,7 @@ install_kourosh() {
         fi
         chmod +x /etc/init.d/kourosh
         rc-update add kourosh
-        rc-service k-ui start
+        rc-service kourosh start
     else
         # Install systemd service file
         service_installed=false
@@ -1721,7 +1714,7 @@ install_kourosh() {
             chmod 644 ${kui_service}/kourosh.service > /dev/null 2>&1
             systemctl daemon-reload
             systemctl enable kourosh
-            systemctl start k-ui
+            systemctl start kourosh
         else
             echo -e "${red}Failed to install kourosh.service file${plain}"
             exit 1
