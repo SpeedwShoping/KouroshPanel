@@ -60,7 +60,7 @@ k-ui
 bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/install.sh)
 ```
 
-پس از نصب، پورت و مسیر وب به‌صورت تصادفی و امن ساخته می‌شود و در پایان نصب نمایش داده می‌شود. برای مدیریت پنل کافیست دستور `kourosh` را در ترمینال بزنید.
+پس از نصب، پورت و مسیر وب به‌صورت تصادفی و امن ساخته می‌شود و در پایان نصب نمایش داده می‌شود. برای مدیریت پنل کافیست دستور `k-ui` را در ترمینال بزنید.
 
 ---
 
@@ -90,7 +90,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/mai
 bash <(curl -Ls https://raw.githubusercontent.com/SpeedwShoping/KouroshPanel/main/install.sh)
 ```
 
-Manage the panel any time by running `kourosh` in your terminal.
+Manage the panel any time by running `k-ui` in your terminal.
 
 ---
 
@@ -128,23 +128,4 @@ If this project helps you, consider a donation — اگر این پروژه بر
 
 ---
 
-## 💰 Support & Donation — حمایت مالی
-
-If you find this project helpful, consider supporting its development:
-
-اگر این پروژه برایتان مفید بود، از توسعه آن حمایت کنید:
-
-### Cryptocurrency Wallets — کیف پول‌های ارز دیجیتال
-
-**USDT (BEP-20 — Binance Smart Chain):**
-```
-0xEaE80700A282970C2d7d7993F9F31a2689e37E31
-```
-
-**TRX (TRC-20 — TRON Network):**
-```
-TWUcNhGugfjTdMiREsWfDbrZR2yq5WLsyR
-```
-
----
 
