@@ -157,6 +157,16 @@ export default function LoginPage() {
         </div>
 
         <div className="login-wrap">
+          <aside className="login-figure" aria-hidden="true">
+            <img
+              className="login-figure-img"
+              src={`${basePath}img/cyrus.jpg`}
+              alt=""
+              loading="eager"
+              decoding="async"
+            />
+          </aside>
+
           {!fetched ? (
             <div className="login-loading">
               <Spin size="large" />
