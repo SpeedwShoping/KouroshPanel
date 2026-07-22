@@ -50,6 +50,7 @@ import { LazyMount } from '@/components/utility';
 import { setMessageInstance } from '@/utils/messageBus';
 import StatusCard from './StatusCard';
 import XrayStatusCard from './XrayStatusCard';
+import LiveActivityFeed from './LiveActivityFeed';
 import type { PanelUpdateInfo } from './PanelUpdateModal';
 const JsonEditor = lazy(() => import('@/components/form/JsonEditor'));
 const PanelUpdateModal = lazy(() => import('./PanelUpdateModal'));
@@ -419,6 +420,15 @@ export default function IndexPage() {
                   </Row>
 
                   <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-4">
+                    <Col span={24}>
+                      <LiveActivityFeed
+                        accessLogEnable={accessLogEnable}
+                        onOpenFullLog={() => setXrayLogsOpen(true)}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-5">
                     <Col span={24}>
                       <Card
                         className="kp-bento-mini kp-bento-ips"

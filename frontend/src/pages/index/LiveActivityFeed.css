@@ -1,0 +1,224 @@
+/* ============================================================
+   LIVE ACTIVITY FEED (Phase 3)
+   Realtime Xray access log strip at the bottom of the Bento Grid.
+   Polls every 5s. New entries slide down with a soft shimmer flash.
+   ============================================================ */
+
+.kp-live-feed .ant-card-body {
+  padding: 12px 14px 14px;
+}
+
+/* --- Title -------------------------------------------------- */
+.kp-feed-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.kp-feed-title-icon {
+  color: var(--kp-gold, #c9a227);
+  font-size: 15px;
+}
+.kp-feed-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #2ec4b6;
+  box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.5);
+  animation: kp-feed-pulse 1.8s ease-in-out infinite;
+}
+.kp-feed-live-label {
+  color: #2ec4b6;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+@keyframes kp-feed-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(46, 196, 182, 0);   }
+  100% { box-shadow: 0 0 0 0 rgba(46, 196, 182, 0);     }
+}
+
+/* --- List --------------------------------------------------- */
+.kp-feed-list {
+  max-height: 280px;
+  min-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 4px;
+  /* thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 162, 39, 0.35) transparent;
+}
+.kp-feed-list::-webkit-scrollbar {
+  width: 6px;
+}
+.kp-feed-list::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.35);
+  border-radius: 3px;
+}
+
+/* --- Row ---------------------------------------------------- */
+.kp-feed-row {
+  display: grid;
+  grid-template-columns: 68px auto 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  background: transparent;
+  transition: background-color 200ms ease;
+  position: relative;
+  overflow: hidden;
+}
+.kp-feed-row:hover {
+  background: rgba(201, 162, 39, 0.05);
+}
+
+/* Fresh row: brief golden shimmer + soft slide-in */
+.kp-feed-row.is-fresh {
+  animation: kp-feed-in 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.kp-feed-row.is-fresh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 162, 39, 0.18) 50%, transparent 100%);
+  animation: kp-feed-shimmer 1.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes kp-feed-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes kp-feed-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* --- Row cells --------------------------------------------- */
+.kp-feed-time {
+  color: var(--kp-gold, #c9a227);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+.kp-feed-event {
+  margin: 0;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0 6px;
+  line-height: 18px;
+  height: 20px;
+}
+.kp-feed-route {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+.kp-feed-addr {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+  opacity: 0.9;
+}
+.kp-feed-arrow {
+  color: rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
+}
+body.light .kp-feed-arrow {
+  color: rgba(0, 0, 0, 0.4);
+}
+.kp-feed-email {
+  color: #2ec4b6;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(46, 196, 182, 0.1);
+  white-space: nowrap;
+}
+.kp-feed-inbound {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+}
+body.light .kp-feed-inbound {
+  color: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* --- Skeleton --------------------------------------------- */
+.kp-feed-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+.kp-feed-skeleton .ant-skeleton-title {
+  margin: 0;
+  height: 14px;
+}
+
+/* --- Open full log button --------------------------------- */
+.kp-feed-open-full {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(201, 162, 39, 0.35);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--kp-gold, #c9a227);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+.kp-feed-open-full:hover {
+  border-color: rgba(201, 162, 39, 0.7);
+  background: rgba(201, 162, 39, 0.06);
+}
+
+/* --- Mobile ----------------------------------------------- */
+@media (max-width: 768px) {
+  .kp-feed-row {
+    grid-template-columns: 60px auto 1fr;
+    row-gap: 4px;
+  }
+  .kp-feed-email,
+  .kp-feed-inbound {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+  .kp-feed-addr {
+    max-width: 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-feed-live-dot,
+  .kp-feed-row.is-fresh,
+  .kp-feed-row.is-fresh::before {
+    animation: none;
+  }
+}
