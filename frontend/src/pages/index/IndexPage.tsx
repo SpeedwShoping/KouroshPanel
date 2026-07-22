@@ -5,6 +5,7 @@ import {
   Card,
   Col,
   ConfigProvider,
+  Flex,
   Layout,
   message,
   Modal,
@@ -191,9 +192,9 @@ export default function IndexPage() {
                   extra={<Button type="primary" onClick={refresh}>{t('refresh')}</Button>}
                 />
               ) : (
-                <Row gutter={[isMobile ? 8 : 16, 12]}>
-                  <Col span={24}>
-                    <div className="kp-hero kp-rise">
+                <div className="kp-bento">
+                  <div className="kp-bento-row kp-rise">
+                    <div className="kp-hero">
                       <div className="kp-hero-glyph" aria-hidden="true">
                         <KouroshLogo size={isMobile ? 44 : 60} />
                       </div>
@@ -203,277 +204,264 @@ export default function IndexPage() {
                       </div>
                       <div className="kp-hero-frieze" aria-hidden="true" />
                     </div>
-                  </Col>
-                  <Col span={24}>
-                    <StatusCard status={status} isMobile={isMobile} />
-                  </Col>
+                  </div>
 
-                  <Col xs={24} lg={12}>
-                    <XrayStatusCard
-                      status={status}
-                      isMobile={isMobile}
-                      accessLogEnable={accessLogEnable}
-                      onStopXray={stopXray}
-                      onRestartXray={restartXray}
-                      onOpenXrayLogs={() => setXrayLogsOpen(true)}
-                      onOpenLogs={() => setLogsOpen(true)}
-                      onOpenVersionSwitch={() => setVersionOpen(true)}
-                    />
-                  </Col>
+                  <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-1">
+                    <Col xs={24} lg={16}>
+                      <StatusCard status={status} isMobile={isMobile} />
+                    </Col>
+                    <Col xs={24} lg={8}>
+                      <Flex vertical gap={isMobile ? 8 : 16} className="kp-bento-stack">
+                        <Card className="kp-bento-mini kp-bento-mini-speed" title={t('pages.index.overallSpeed')}>
+                          <Row gutter={8}>
+                            <Col span={12}>
+                              <Statistic
+                                title={t('pages.index.upload')}
+                                value={SizeFormatter.sizeFormat(status.netIO.up)}
+                                prefix={<ArrowUpOutlined />}
+                                suffix="/s"
+                              />
+                            </Col>
+                            <Col span={12}>
+                              <Statistic
+                                title={t('pages.index.download')}
+                                value={SizeFormatter.sizeFormat(status.netIO.down)}
+                                prefix={<ArrowDownOutlined />}
+                                suffix="/s"
+                              />
+                            </Col>
+                          </Row>
+                        </Card>
+                        <Card className="kp-bento-mini kp-bento-mini-total" title={t('pages.index.totalData')}>
+                          <Row gutter={8}>
+                            <Col span={12}>
+                              <Statistic
+                                title={t('pages.index.sent')}
+                                value={SizeFormatter.sizeFormat(status.netTraffic.sent)}
+                                prefix={<CloudUploadOutlined />}
+                              />
+                            </Col>
+                            <Col span={12}>
+                              <Statistic
+                                title={t('pages.index.received')}
+                                value={SizeFormatter.sizeFormat(status.netTraffic.recv)}
+                                prefix={<CloudDownloadOutlined />}
+                              />
+                            </Col>
+                          </Row>
+                        </Card>
+                        <Card className="kp-bento-mini kp-bento-mini-conn" title={t('pages.index.connectionCount')}>
+                          <Row gutter={8}>
+                            <Col span={12}>
+                              <Statistic title="TCP" value={status.tcpCount} prefix={<SwapOutlined />} />
+                            </Col>
+                            <Col span={12}>
+                              <Statistic title="UDP" value={status.udpCount} prefix={<SwapOutlined />} />
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Flex>
+                    </Col>
+                  </Row>
 
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={t('menu.link')}
-                      hoverable
-                      actions={[
-                        <Space className="action" key="logs" role="button" tabIndex={0} aria-label={t('pages.index.logs')} onClick={() => setLogsOpen(true)} onKeyDown={activateOnKey(() => setLogsOpen(true))}>
-                          <BarsOutlined />
-                          {!isMobile && <span>{t('pages.index.logs')}</span>}
-                        </Space>,
-                        <Space className="action" key="config" role="button" tabIndex={0} aria-label={t('pages.index.config')} onClick={openConfig} onKeyDown={activateOnKey(openConfig)}>
-                          <ControlOutlined />
-                          {!isMobile && <span>{t('pages.index.config')}</span>}
-                        </Space>,
-                        <Space className="action" key="backup" role="button" tabIndex={0} aria-label={t('pages.index.backupTitle')} onClick={() => setBackupOpen(true)} onKeyDown={activateOnKey(() => setBackupOpen(true))}>
-                          <CloudServerOutlined />
-                          {!isMobile && <span>{t('pages.index.backupTitle')}</span>}
-                        </Space>,
-                      ]}
-                    />
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={
-                        <Space>
-                          <span>KOUROSH</span>
-                          {isMobile && displayVersion && (
-                            <Tag color={panelUpdateInfo.updateAvailable ? 'orange' : 'green'}>
-                              {panelUpdateInfo.updateAvailable
-                                ? formatPanelVersion(panelUpdateInfo.latestVersion)
-                                : formatPanelVersion(displayVersion)}
-                            </Tag>
-                          )}
-                        </Space>
-                      }
-                      hoverable
-                      actions={[
-                        <Space className="action" key="tg" role="button" tabIndex={0} aria-label="@Speedw_IT" onClick={openTelegram} onKeyDown={activateOnKey(openTelegram)}>
-                          <TelegramFilled className="tg-icon" aria-hidden="true" />
-                          {!isMobile && <span>@Speedw_IT</span>}
-                        </Space>,
-                        <Space
-                          key="panel-version"
-                          className={`action ${panelUpdateInfo.updateAvailable ? 'action-update' : ''}`}
-                          role="button"
-                          tabIndex={0}
-                          aria-label={t('pages.index.updatePanel')}
-                          onClick={openPanelVersion}
-                          onKeyDown={activateOnKey(openPanelVersion)}
-                        >
-                          <CloudDownloadOutlined />
-                          {!isMobile && (
-                            <span>
-                              {panelUpdateInfo.updateAvailable
-                                ? `${t('update')} ${formatPanelVersion(panelUpdateInfo.latestVersion)}`
-                                : formatPanelVersion(displayVersion)}
-                            </span>
-                          )}
-                        </Space>,
-                      ]}
-                    />
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={t('pages.index.charts')}
-                      hoverable
-                      actions={[
-                        <Space
-                          className="action"
-                          key="sys-history"
-                          role="button"
-                          tabIndex={0}
-                          aria-label={t('pages.index.systemHistoryTitle')}
-                          onClick={() => setSysHistoryOpen(true)}
-                          onKeyDown={activateOnKey(() => setSysHistoryOpen(true))}
-                        >
-                          <AreaChartOutlined />
-                          {!isMobile && <span>{t('pages.index.systemHistoryTitle')}</span>}
-                        </Space>,
-                        <Space
-                          className="action"
-                          key="xray-metrics"
-                          role="button"
-                          tabIndex={0}
-                          aria-label={t('pages.index.xrayMetricsTitle')}
-                          onClick={() => setXrayMetricsOpen(true)}
-                          onKeyDown={activateOnKey(() => setXrayMetricsOpen(true))}
-                        >
-                          <AreaChartOutlined />
-                          {!isMobile && <span>{t('pages.index.xrayMetricsTitle')}</span>}
-                        </Space>,
-                      ]}
-                    />
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card title={t('pages.index.operationHours')} hoverable>
-                      <Row gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={12}>
-                          <Statistic
-                            title="Xray"
-                            value={TimeFormatter.formatSecond(status.appStats.uptime)}
-                            prefix={<ThunderboltOutlined />}
-                          />
-                        </Col>
-                        <Col span={12}>
-                          <Statistic
-                            title="OS"
-                            value={TimeFormatter.formatSecond(status.uptime)}
-                            prefix={<DesktopOutlined />}
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card title={t('usage')} hoverable>
-                      <Row gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.memory')}
-                            value={SizeFormatter.sizeFormat(status.appStats.mem)}
-                            prefix={<DatabaseOutlined />}
-                          />
-                        </Col>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.threads')}
-                            value={status.appStats.threads}
-                            prefix={<ForkOutlined />}
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card title={t('pages.index.overallSpeed')} hoverable>
-                      <Row gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.upload')}
-                            value={SizeFormatter.sizeFormat(status.netIO.up)}
-                            prefix={<ArrowUpOutlined />}
-                            suffix="/s"
-                          />
-                        </Col>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.download')}
-                            value={SizeFormatter.sizeFormat(status.netIO.down)}
-                            prefix={<ArrowDownOutlined />}
-                            suffix="/s"
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card title={t('pages.index.totalData')} hoverable>
-                      <Row gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.sent')}
-                            value={SizeFormatter.sizeFormat(status.netTraffic.sent)}
-                            prefix={<CloudUploadOutlined />}
-                          />
-                        </Col>
-                        <Col span={12}>
-                          <Statistic
-                            title={t('pages.index.received')}
-                            value={SizeFormatter.sizeFormat(status.netTraffic.recv)}
-                            prefix={<CloudDownloadOutlined />}
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-
-                  <Col xs={24} lg={12}>
-                    <Card
-                      title={t('pages.index.ipAddresses')}
-                      hoverable
-                      extra={
-                        <Tooltip
-                          title={t('pages.index.toggleIpVisibility')}
-                          placement={isMobile ? 'topRight' : 'top'}
-                        >
-                          {showIp ? (
-                            <EyeOutlined
-                              className="ip-toggle-icon"
-                              role="button"
-                              tabIndex={0}
-                              aria-label={t('pages.index.toggleIpVisibility')}
-                              onClick={() => setShowIp(false)}
-                              onKeyDown={activateOnKey(() => setShowIp(false))}
+                  <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-2">
+                    <Col xs={24} lg={16}>
+                      <XrayStatusCard
+                        status={status}
+                        isMobile={isMobile}
+                        accessLogEnable={accessLogEnable}
+                        onStopXray={stopXray}
+                        onRestartXray={restartXray}
+                        onOpenXrayLogs={() => setXrayLogsOpen(true)}
+                        onOpenLogs={() => setLogsOpen(true)}
+                        onOpenVersionSwitch={() => setVersionOpen(true)}
+                      />
+                    </Col>
+                    <Col xs={24} lg={8}>
+                      <Card className="kp-bento-mini kp-bento-uptime" title={t('pages.index.operationHours')}>
+                        <Row gutter={isMobile ? [8, 8] : 8}>
+                          <Col span={12}>
+                            <Statistic
+                              title="Xray"
+                              value={TimeFormatter.formatSecond(status.appStats.uptime)}
+                              prefix={<ThunderboltOutlined />}
                             />
-                          ) : (
-                            <EyeInvisibleOutlined
-                              className="ip-toggle-icon"
-                              role="button"
-                              tabIndex={0}
-                              aria-label={t('pages.index.toggleIpVisibility')}
-                              onClick={() => setShowIp(true)}
-                              onKeyDown={activateOnKey(() => setShowIp(true))}
+                          </Col>
+                          <Col span={12}>
+                            <Statistic
+                              title="OS"
+                              value={TimeFormatter.formatSecond(status.uptime)}
+                              prefix={<DesktopOutlined />}
                             />
-                          )}
-                        </Tooltip>
-                      }
-                    >
-                      <Row className={showIp ? 'ip-visible' : 'ip-hidden'} gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={isMobile ? 24 : 12}>
-                          <Statistic
-                            title="IPv4"
-                            value={status.publicIP.ipv4}
-                            prefix={<GlobalOutlined />}
-                          />
-                        </Col>
-                        <Col span={isMobile ? 24 : 12}>
-                          <Statistic
-                            title="IPv6"
-                            value={status.publicIP.ipv6}
-                            prefix={<GlobalOutlined />}
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
+                          </Col>
+                        </Row>
+                      </Card>
+                    </Col>
+                  </Row>
 
-                  <Col xs={24} lg={12}>
-                    <Card title={t('pages.index.connectionCount')} hoverable>
-                      <Row gutter={isMobile ? [8, 8] : 0}>
-                        <Col span={12}>
-                          <Statistic
-                            title="TCP"
-                            value={status.tcpCount}
-                            prefix={<SwapOutlined />}
-                          />
-                        </Col>
-                        <Col span={12}>
-                          <Statistic
-                            title="UDP"
-                            value={status.udpCount}
-                            prefix={<SwapOutlined />}
-                          />
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
+                  <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-3">
+                    <Col xs={24} sm={12} lg={6}>
+                      <Card
+                        className="kp-bento-mini kp-bento-action"
+                        title={t('menu.link')}
+                        actions={[
+                          <Space className="action" key="logs" role="button" tabIndex={0} aria-label={t('pages.index.logs')} onClick={() => setLogsOpen(true)} onKeyDown={activateOnKey(() => setLogsOpen(true))}>
+                            <BarsOutlined />
+                            {!isMobile && <span>{t('pages.index.logs')}</span>}
+                          </Space>,
+                          <Space className="action" key="config" role="button" tabIndex={0} aria-label={t('pages.index.config')} onClick={openConfig} onKeyDown={activateOnKey(openConfig)}>
+                            <ControlOutlined />
+                            {!isMobile && <span>{t('pages.index.config')}</span>}
+                          </Space>,
+                          <Space className="action" key="backup" role="button" tabIndex={0} aria-label={t('pages.index.backupTitle')} onClick={() => setBackupOpen(true)} onKeyDown={activateOnKey(() => setBackupOpen(true))}>
+                            <CloudServerOutlined />
+                            {!isMobile && <span>{t('pages.index.backupTitle')}</span>}
+                          </Space>,
+                        ]}
+                      />
+                    </Col>
+
+                    <Col xs={24} sm={12} lg={6}>
+                      <Card
+                        className="kp-bento-mini kp-bento-action"
+                        title={
+                          <Space>
+                            <span>KOUROSH</span>
+                            {isMobile && displayVersion && (
+                              <Tag color={panelUpdateInfo.updateAvailable ? 'orange' : 'green'}>
+                                {panelUpdateInfo.updateAvailable
+                                  ? formatPanelVersion(panelUpdateInfo.latestVersion)
+                                  : formatPanelVersion(displayVersion)}
+                              </Tag>
+                            )}
+                          </Space>
+                        }
+                        actions={[
+                          <Space className="action" key="tg" role="button" tabIndex={0} aria-label="@Speedw_IT" onClick={openTelegram} onKeyDown={activateOnKey(openTelegram)}>
+                            <TelegramFilled className="tg-icon" aria-hidden="true" />
+                            {!isMobile && <span>@Speedw_IT</span>}
+                          </Space>,
+                          <Space
+                            key="panel-version"
+                            className={`action ${panelUpdateInfo.updateAvailable ? 'action-update' : ''}`}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={t('pages.index.updatePanel')}
+                            onClick={openPanelVersion}
+                            onKeyDown={activateOnKey(openPanelVersion)}
+                          >
+                            <CloudDownloadOutlined />
+                            {!isMobile && (
+                              <span>
+                                {panelUpdateInfo.updateAvailable
+                                  ? `${t('update')} ${formatPanelVersion(panelUpdateInfo.latestVersion)}`
+                                  : formatPanelVersion(displayVersion)}
+                              </span>
+                            )}
+                          </Space>,
+                        ]}
+                      />
+                    </Col>
+
+                    <Col xs={24} sm={12} lg={6}>
+                      <Card
+                        className="kp-bento-mini kp-bento-action"
+                        title={t('pages.index.charts')}
+                        actions={[
+                          <Space
+                            className="action"
+                            key="sys-history"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={t('pages.index.systemHistoryTitle')}
+                            onClick={() => setSysHistoryOpen(true)}
+                            onKeyDown={activateOnKey(() => setSysHistoryOpen(true))}
+                          >
+                            <AreaChartOutlined />
+                            {!isMobile && <span>{t('pages.index.systemHistoryTitle')}</span>}
+                          </Space>,
+                          <Space
+                            className="action"
+                            key="xray-metrics"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={t('pages.index.xrayMetricsTitle')}
+                            onClick={() => setXrayMetricsOpen(true)}
+                            onKeyDown={activateOnKey(() => setXrayMetricsOpen(true))}
+                          >
+                            <AreaChartOutlined />
+                            {!isMobile && <span>{t('pages.index.xrayMetricsTitle')}</span>}
+                          </Space>,
+                        ]}
+                      />
+                    </Col>
+
+                    <Col xs={24} sm={12} lg={6}>
+                      <Card className="kp-bento-mini" title={t('usage')}>
+                        <Row gutter={8}>
+                          <Col span={12}>
+                            <Statistic
+                              title={t('pages.index.memory')}
+                              value={SizeFormatter.sizeFormat(status.appStats.mem)}
+                              prefix={<DatabaseOutlined />}
+                            />
+                          </Col>
+                          <Col span={12}>
+                            <Statistic
+                              title={t('pages.index.threads')}
+                              value={status.appStats.threads}
+                              prefix={<ForkOutlined />}
+                            />
+                          </Col>
+                        </Row>
+                      </Card>
+                    </Col>
+                  </Row>
+
+                  <Row gutter={[isMobile ? 8 : 16, isMobile ? 8 : 16]} className="kp-bento-row kp-rise kp-rise-4">
+                    <Col span={24}>
+                      <Card
+                        className="kp-bento-mini kp-bento-ips"
+                        title={t('pages.index.ipAddresses')}
+                        extra={
+                          <Tooltip
+                            title={t('pages.index.toggleIpVisibility')}
+                            placement={isMobile ? 'topRight' : 'top'}
+                          >
+                            {showIp ? (
+                              <EyeOutlined
+                                className="ip-toggle-icon"
+                                role="button"
+                                tabIndex={0}
+                                aria-label={t('pages.index.toggleIpVisibility')}
+                                onClick={() => setShowIp(false)}
+                                onKeyDown={activateOnKey(() => setShowIp(false))}
+                              />
+                            ) : (
+                              <EyeInvisibleOutlined
+                                className="ip-toggle-icon"
+                                role="button"
+                                tabIndex={0}
+                                aria-label={t('pages.index.toggleIpVisibility')}
+                                onClick={() => setShowIp(true)}
+                                onKeyDown={activateOnKey(() => setShowIp(true))}
+                              />
+                            )}
+                          </Tooltip>
+                        }
+                      >
+                        <Row className={showIp ? 'ip-visible' : 'ip-hidden'} gutter={isMobile ? [8, 8] : 16}>
+                          <Col xs={24} md={12}>
+                            <Statistic title="IPv4" value={status.publicIP.ipv4} prefix={<GlobalOutlined />} />
+                          </Col>
+                          <Col xs={24} md={12}>
+                            <Statistic title="IPv6" value={status.publicIP.ipv6} prefix={<GlobalOutlined />} />
+                          </Col>
+                        </Row>
+                      </Card>
+                    </Col>
+                  </Row>
+                </div>
               )}
             </Spin>
           </Layout.Content>

@@ -390,3 +390,109 @@
     padding: 16px;
   }
 }
+
+/* ============================================================
+   BENTO GRID (Phase 2)
+   Modern SaaS layout: big status card + side stack, xray card +
+   uptime side, then a row of 4 action minis, IPs full-width.
+   Cards use gradient accent seams (see page-cards.css) and rise
+   into view in staggered order via .kp-rise-N helpers.
+   ============================================================ */
+
+.kp-bento {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .kp-bento { gap: 12px; }
+}
+
+.kp-bento-row {
+  width: 100%;
+}
+
+/* Right-column stack (Speed / Total / Connections) — flex fills
+   the full height of StatusCard/XrayStatusCard on the left */
+.kp-bento-stack {
+  height: 100%;
+}
+.kp-bento-stack > .ant-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.kp-bento-stack > .ant-card .ant-card-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Bento mini cards: tighter padding, no bloated header */
+.kp-bento-mini .ant-card-head {
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--kp-gold, #c9a227);
+}
+.kp-bento-mini .ant-card-head-title {
+  padding: 10px 0;
+}
+.kp-bento-mini .ant-card-body {
+  padding: 14px 16px;
+}
+.kp-bento-mini .ant-statistic-title {
+  font-size: 11.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.kp-bento-mini .ant-statistic-content {
+  font-size: 17px !important;
+  font-weight: 700;
+}
+.kp-bento-mini .ant-statistic-content-prefix {
+  margin-inline-end: 6px;
+  color: var(--kp-gold, #c9a227);
+  opacity: 0.85;
+}
+
+/* Action mini cards (Link / KOUROSH / Charts / Xray Usage) fixed
+   height so the four-in-a-row stays tidy on desktop */
+@media (min-width: 992px) {
+  .kp-bento-action {
+    min-height: 168px;
+  }
+  .kp-bento-action .ant-card-body {
+    min-height: 60px;
+  }
+}
+
+/* Subtle gradient wash top-left → bottom-right on every bento tile */
+.kp-bento-mini {
+  position: relative;
+  overflow: hidden;
+}
+.kp-bento-mini::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, transparent 45%, transparent 55%, rgba(46, 196, 182, 0.04) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.kp-bento-mini:hover::before {
+  opacity: 1;
+}
+
+/* Row-level entrance stagger (kp-rise-4 wasn't defined before) */
+.kp-rise-4 { animation-delay: 0.32s !important; }
+.kp-rise-5 { animation-delay: 0.42s !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-bento-mini::before { transition: none; }
+}
