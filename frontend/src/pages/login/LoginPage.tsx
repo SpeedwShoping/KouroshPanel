@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -21,7 +22,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { HttpUtil, LanguageManager } from '@/utils';
 import { FormField, rhfZodValidate } from '@/components/form/rhf';
 import { setMessageInstance } from '@/utils/messageBus';
@@ -34,16 +35,24 @@ import './LoginPage.css';
 type LoginForm = LoginFormValues;
 
 const basePath = window.X_UI_BASE_PATH || '';
-const QUOTE_INTERVAL_MS = 7000;
+const initialQuoteIndex = Math.floor(Math.random() * QUOTES.length);
 
-// heritage backdrops — a random one is chosen on every page load
-const HERO_IMAGES = [
-  { src: 'img/cyrus.jpg', pos: 'center 18%' },
-  { src: 'img/pasargadae.jpg', pos: 'center 62%' },
-  { src: 'img/persepolis.jpg', pos: 'center 45%' },
-  { src: 'img/faravahar.jpg', pos: 'center 40%' },
-];
-const heroImage = HERO_IMAGES[Math.floor(Math.random() * HERO_IMAGES.length)];
+interface FloatingProps {
+  filled: boolean;
+  label: string;
+  children: ReactNode;
+}
+
+function Floating({ filled, label, children }: FloatingProps) {
+  const [focused, setFocused] = useState(false);
+  const cls = `lp-field${focused ? ' is-focused' : ''}${filled ? ' is-filled' : ''}`;
+  return (
+    <div className={cls} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}>
+      {children}
+      <label className="lp-label">{label}</label>
+    </div>
+  );
+}
 
 export default function LoginPage() {
   const { t } = useTranslation();
@@ -57,17 +66,11 @@ export default function LoginPage() {
   const [fetched, setFetched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [twoFactorEnable, setTwoFactorEnable] = useState(false);
-  const [quoteIndex, setQuoteIndex] = useState(() => Math.floor(Math.random() * QUOTES.length));
+  const [quoteIndex] = useState(initialQuoteIndex);
   const methods = useForm<LoginForm>({ defaultValues: { username: '', password: '', twoFactorCode: '' } });
+  const values = useWatch({ control: methods.control });
   const [lang, setLang] = useState<string>(() => LanguageManager.getLanguage());
   const isFa = lang.startsWith('fa');
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setQuoteIndex((i) => (i + 1) % QUOTES.length);
-    }, QUOTE_INTERVAL_MS);
-    return () => window.clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,10 +83,10 @@ export default function LoginPage() {
     return () => { cancelled = true; };
   }, []);
 
-  const onSubmit = useCallback(async (values: LoginForm) => {
+  const onSubmit = useCallback(async (v: LoginForm) => {
     setSubmitting(true);
     try {
-      const msg = await HttpUtil.post('/login', values);
+      const msg = await HttpUtil.post('/login', v);
       if (msg.success) window.location.href = basePath + 'panel/';
     } finally {
       setSubmitting(false);
@@ -124,14 +127,11 @@ export default function LoginPage() {
     <ConfigProvider theme={antdThemeConfig}>
       {messageContextHolder}
       <div className={`login-page${isDark ? ' is-dark' : ''}${isUltra ? ' is-ultra' : ''}`}>
+        <div className="lp-aurora" aria-hidden="true" />
+        <div className="lp-grid" aria-hidden="true" />
+
         <div className="login-toolbar">
-          <button
-            type="button"
-            className="login-toolbar-btn"
-            aria-label={t('menu.theme')}
-            title={t('menu.theme')}
-            onClick={cycleTheme}
-          >
+          <button type="button" className="login-toolbar-btn" aria-label={t('menu.theme')} title={t('menu.theme')} onClick={cycleTheme}>
             {themeIcon}
           </button>
           <Popover
@@ -156,113 +156,68 @@ export default function LoginPage() {
           </Popover>
         </div>
 
-        <div className="login-split">
-          <aside className="login-hero" aria-hidden="true">
-            <div className="hero-arch">
-              <img
-                src={`${basePath}${heroImage.src}`}
-                alt=""
-                className="hero-image"
-                style={{ objectPosition: heroImage.pos }}
-                loading="eager"
-                decoding="async"
-              />
-              <div className="hero-image-veil" />
+        <div className="login-wrap">
+          {!fetched ? (
+            <div className="login-loading">
+              <Spin size="large" />
             </div>
-            <div className="hero-caption" dir={isFa ? 'rtl' : 'ltr'}>
-              <p className="hero-quote" key={quoteIndex}>
+          ) : (
+            <div className="login-card">
+              <div className="login-brand">
+                <div className="login-logo-wrap">
+                  <KouroshLogo size={54} />
+                </div>
+                <div className="login-headline">
+                  <h1 className="login-headline-main">KOUROSH</h1>
+                  <p className="login-headline-sub">{t('pages.login.title')}</p>
+                </div>
+              </div>
+
+              <div className="login-quote" dir={isFa ? 'rtl' : 'ltr'} key={quoteIndex}>
                 {isFa ? quote.fa : quote.en}
-              </p>
-              <span className="hero-author">
-                {isFa ? quote.authorFa : quote.authorEn}
-              </span>
-            </div>
-            <div className="hero-frieze" />
-          </aside>
-
-          <main className="login-side">
-            {!fetched ? (
-              <div className="login-loading">
-                <Spin size="large" />
+                <strong>{isFa ? quote.authorFa : quote.authorEn}</strong>
               </div>
-            ) : (
-              <div className="login-container">
-                <div className="login-brand">
-                  <div className="login-logo-wrap">
-                    <KouroshLogo size={62} />
-                  </div>
-                  <div className="login-headline">
-                    <h1 className="login-headline-main">KOUROSH</h1>
-                    <p className="login-headline-sub">{t('pages.login.title')}</p>
-                  </div>
-                </div>
 
-                <FormProvider {...methods}>
-                  <Form
-                    layout="vertical"
-                    className="login-form"
-                    onFinish={methods.handleSubmit(onSubmit)}
+              <FormProvider {...methods}>
+                <Form layout="vertical" className="login-form" onFinish={methods.handleSubmit(onSubmit)}>
+                  <FormField
+                    name="username"
+                    rules={{ validate: rhfZodValidate(LoginFormSchema.shape.username) }}
                   >
+                    <Floating filled={!!values.username} label={t('username')}>
+                      <Input prefix={<UserOutlined />} autoComplete="username" size="large" autoFocus />
+                    </Floating>
+                  </FormField>
+
+                  <FormField
+                    name="password"
+                    rules={{ validate: rhfZodValidate(LoginFormSchema.shape.password) }}
+                  >
+                    <Floating filled={!!values.password} label={t('password')}>
+                      <Input.Password prefix={<LockOutlined />} autoComplete="current-password" size="large" />
+                    </Floating>
+                  </FormField>
+
+                  {twoFactorEnable && (
                     <FormField
-                      name="username"
-                      rules={{ validate: rhfZodValidate(LoginFormSchema.shape.username) }}
+                      name="twoFactorCode"
+                      rules={{ validate: rhfZodValidate(TwoFactorCodeSchema) }}
                     >
-                      <Input
-                        prefix={<UserOutlined />}
-                        autoComplete="username"
-                        size="large"
-                        placeholder={t('username')}
-                        autoFocus
-                      />
+                      <Floating filled={!!values.twoFactorCode} label={t('twoFactorCode')}>
+                        <Input prefix={<KeyOutlined />} autoComplete="one-time-code" size="large" />
+                      </Floating>
                     </FormField>
+                  )}
 
-                    <FormField
-                      name="password"
-                      rules={{ validate: rhfZodValidate(LoginFormSchema.shape.password) }}
-                    >
-                      <Input.Password
-                        prefix={<LockOutlined />}
-                        autoComplete="current-password"
-                        size="large"
-                        placeholder={t('password')}
-                      />
-                    </FormField>
-
-                    {twoFactorEnable && (
-                      <FormField
-                        name="twoFactorCode"
-                        rules={{ validate: rhfZodValidate(TwoFactorCodeSchema) }}
-                      >
-                        <Input
-                          prefix={<KeyOutlined />}
-                          autoComplete="one-time-code"
-                          size="large"
-                          placeholder={t('twoFactorCode')}
-                        />
-                      </FormField>
-                    )}
-
-                    <Form.Item className="submit-row">
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        loading={submitting}
-                        size="large"
-                        block
-                      >
-                        {t('login')}
-                      </Button>
-                    </Form.Item>
-                  </Form>
-                </FormProvider>
-
-                <div className="login-mobile-quote" dir={isFa ? 'rtl' : 'ltr'}>
-                  <p key={quoteIndex}>{isFa ? quote.fa : quote.en}</p>
-                  <span>{isFa ? quote.authorFa : quote.authorEn}</span>
-                </div>
-              </div>
-            )}
-          </main>
+                  <Form.Item className="submit-row">
+                    <Button type="primary" htmlType="submit" loading={submitting} size="large" block>
+                      {t('login')}
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </FormProvider>
+            </div>
+          )}
         </div>
       </div>
     </ConfigProvider>

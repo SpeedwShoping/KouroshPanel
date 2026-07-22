@@ -38,7 +38,7 @@ if (typeof document !== 'undefined' && !document.querySelector('.kp-grid-bg')) {
   document.body.prepend(gridBg);
 }
 
-const KP_FONT = "'Vazirmatn', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+const KP_FONT = "'Inter', 'Vazirmatn', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
 
 const DARK_TOKENS = {
   colorBgBase: '#0a0e1a',

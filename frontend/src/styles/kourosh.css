@@ -25,6 +25,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --kp-gold: #c9a227;
@@ -38,7 +52,8 @@
   --kp-glass: rgba(23, 30, 51, 0.62);
   --kp-glass-border: rgba(201, 162, 39, 0.16);
   --kp-grid-line: rgba(201, 162, 39, 0.055);
-  --kp-font: 'Vazirmatn', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --kp-font: 'Plus Jakarta Sans', 'Inter', 'Vazirmatn', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --kp-font-display: 'Plus Jakarta Sans', 'Inter', 'Vazirmatn', -apple-system, sans-serif;
 }
 
 body.light {
@@ -255,4 +270,203 @@ body.light .ant-table-tbody > tr:hover > td {
 }
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(201, 162, 39, 0.5);
+}
+
+/* ---------- Modal / drawer premium blur ---------- */
+.ant-modal-mask,
+.ant-drawer-mask {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(5, 7, 14, 0.55) !important;
+}
+body.light .ant-modal-mask,
+body.light .ant-drawer-mask {
+  background: rgba(30, 24, 6, 0.28) !important;
+}
+
+.ant-modal .ant-modal-content {
+  animation: kp-modal-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes kp-modal-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- Skeleton polish ---------- */
+.ant-skeleton .ant-skeleton-content .ant-skeleton-title,
+.ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph > li,
+.ant-skeleton .ant-skeleton-image,
+.ant-skeleton .ant-skeleton-avatar,
+.ant-skeleton .ant-skeleton-button,
+.ant-skeleton .ant-skeleton-input {
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.05) 0%, rgba(201, 162, 39, 0.14) 50%, rgba(201, 162, 39, 0.05) 100%) !important;
+  background-size: 220% 100% !important;
+  animation: kp-skeleton 1.6s ease-in-out infinite !important;
+  border-radius: 8px !important;
+}
+@keyframes kp-skeleton {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ---------- Card hover lift ---------- */
+.ant-card {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.3s ease;
+}
+.ant-card.ant-card-hoverable:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Global page fade-in ---------- */
+.content-area {
+  animation: kp-page-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes kp-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Interaction polish ---------- */
+.ant-btn:focus-visible,
+.ant-input-affix-wrapper:focus-within,
+.ant-select-focused .ant-select-selector {
+  outline: none;
+}
+
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* status dot indicator utility */
+.kp-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-inline-end: 6px;
+  background: #64748b;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.18);
+}
+.kp-status-dot.is-on {
+  background: #2ec4b6;
+  box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.22);
+  animation: kp-pulse-dot 2s ease-in-out infinite;
+}
+.kp-status-dot.is-warn {
+  background: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.22);
+}
+.kp-status-dot.is-off {
+  background: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.22);
+}
+@keyframes kp-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.22); }
+  50%      { box-shadow: 0 0 0 6px rgba(46, 196, 182, 0.10); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-area,
+  .ant-modal .ant-modal-content,
+  .kp-status-dot.is-on,
+  .ant-skeleton .ant-skeleton-content .ant-skeleton-title,
+  .ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph > li { animation: none; }
+}
+
+/* ---------- SaaS polish: modal + drawer backdrop blur ---------- */
+.ant-modal-mask,
+.ant-drawer-mask {
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  background: rgba(6, 10, 20, 0.55) !important;
+}
+body.light .ant-modal-mask,
+body.light .ant-drawer-mask {
+  background: rgba(30, 24, 6, 0.28) !important;
+}
+.ant-modal .ant-modal-content {
+  animation: kp-modal-in 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes kp-modal-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- SaaS-style skeleton loaders ---------- */
+.ant-skeleton .ant-skeleton-content .ant-skeleton-title,
+.ant-skeleton .ant-skeleton-content .ant-skeleton-paragraph > li,
+.ant-skeleton-button,
+.ant-skeleton-input,
+.ant-skeleton-image,
+.ant-skeleton-avatar {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 162, 39, 0.06) 0%,
+    rgba(201, 162, 39, 0.14) 40%,
+    rgba(46, 196, 182, 0.12) 60%,
+    rgba(201, 162, 39, 0.06) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: kp-shimmer-slide 1.4s ease-in-out infinite !important;
+  border-radius: 8px !important;
+}
+@keyframes kp-shimmer-slide {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ---------- Sidebar collapse: smooth easing ---------- */
+.ant-layout-sider {
+  transition: flex 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.ant-menu-item,
+.ant-menu-submenu-title,
+.ant-menu-title-content {
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              padding-left 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              padding-right 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ---------- Route/page transition (fades in the content area) ---------- */
+.content-area,
+.content-shell > .ant-layout-content {
+  animation: kp-page-in 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes kp-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Rounded, SaaS-tone data tables ---------- */
+.ant-table-container {
+  border-radius: 14px;
+  overflow: hidden;
+}
+.ant-table {
+  border-radius: 14px;
+}
+.ant-table-cell {
+  transition: background-color 0.2s ease;
+}
+.ant-tag {
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: none;
+}
+
+/* ---------- Focus visibility (a11y) ---------- */
+button:focus-visible,
+a:focus-visible,
+.ant-btn:focus-visible {
+  outline: 2px solid rgba(232, 197, 71, 0.55);
+  outline-offset: 2px;
 }
