@@ -47,6 +47,7 @@ import { useClients } from '@/hooks/useClients';
 import { HttpUtil, SizeFormatter } from '@/utils';
 import { setMessageInstance } from '@/utils/messageBus';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import { LazyMount } from '@/components/utility';
 import { keys } from '@/api/queryKeys';
 import {
@@ -465,7 +466,7 @@ export default function GroupsPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={!fetched} delay={200} description={t('loading')} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="table" />
               ) : fetchError ? (
                 <Result
                   status="error"

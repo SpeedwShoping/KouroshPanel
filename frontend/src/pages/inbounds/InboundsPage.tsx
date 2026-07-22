@@ -32,6 +32,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useNodesQuery } from '@/api/queries/useNodesQuery';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 const TextModal = lazy(() => import('@/components/feedback/TextModal'));
 import type { TextModalTab } from '@/components/feedback/TextModal';
 const PromptModal = lazy(() => import('@/components/feedback/PromptModal'));
@@ -569,7 +570,7 @@ export default function InboundsPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={!fetched} delay={200} description={t('loading')} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="table" />
               ) : fetchError ? (
                 <Result
                   status="error"

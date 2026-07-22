@@ -9,6 +9,7 @@ import { useHostsQuery, type HostRecord } from '@/api/queries/useHostsQuery';
 import { useHostMutations } from '@/api/queries/useHostMutations';
 import { useInboundOptions } from '@/api/queries/useInboundOptions';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import { setMessageInstance } from '@/utils/messageBus';
 import type { BulkAddHostValues } from '@/schemas/api/host';
 import HostList, { sortHosts } from './HostList';
@@ -123,7 +124,7 @@ export default function HostsPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={!fetched} delay={200} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="table" />
               ) : fetchError ? (
                 <Result
                   status="error"

@@ -496,3 +496,62 @@
 @media (prefers-reduced-motion: reduce) {
   .kp-bento-mini::before { transition: none; }
 }
+
+/* ============================================================
+   BENTO GRID (Phase 2)
+   Asymmetric rows for KPIs + live feed. Cards stagger in.
+   ============================================================ */
+.kp-bento {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kp-bento-row {
+  animation: kp-bento-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes kp-bento-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.kp-bento .kp-bento-row .ant-card {
+  height: 100%;
+  border-radius: 16px;
+}
+
+.kp-bento-mini .ant-card-head {
+  border-bottom: 1px solid rgba(201, 162, 39, 0.14);
+  padding-inline: 16px;
+  min-height: 44px;
+}
+
+.kp-bento-mini .ant-card-body {
+  padding: 14px 16px;
+}
+
+/* Row action icon buttons — floating pill style */
+.kp-bento .ant-card-actions {
+  background: transparent;
+  border-top: 1px dashed rgba(201, 162, 39, 0.18);
+  padding: 6px 8px;
+}
+.kp-bento .ant-card-actions .action {
+  transition: color 200ms ease, transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: var(--kp-gold, #c9a227);
+  font-weight: 600;
+}
+.kp-bento .ant-card-actions .action:hover {
+  transform: translateY(-1px);
+  background: rgba(201, 162, 39, 0.08);
+}
+.kp-bento .ant-card-actions .action-update {
+  color: #f0b429;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-bento-row { animation: none; }
+}

@@ -22,6 +22,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useXraySetting } from '@/hooks/useXraySetting';
 import type { XraySettingsValue } from '@/hooks/useXraySetting';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import { JsonEditor } from '@/components/form';
 import { setMessageInstance } from '@/utils/messageBus';
 
@@ -314,7 +315,7 @@ export default function XrayPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={spinning || !fetched} delay={200} description={t('loading')} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="form" />
               ) : fetchError ? (
                 <Result
                   status="error"

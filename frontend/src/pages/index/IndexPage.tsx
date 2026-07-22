@@ -45,6 +45,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { useStatusQuery } from '@/api/queries/useStatusQuery';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import KouroshLogo from '@/components/ui/KouroshLogo';
 import { LazyMount } from '@/components/utility';
 import { setMessageInstance } from '@/utils/messageBus';
@@ -184,7 +185,7 @@ export default function IndexPage() {
               size="large"
             >
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="dashboard" />
               ) : fetchError ? (
                 <Result
                   status="error"

@@ -64,6 +64,7 @@ import ClientTrafficCell from '@/components/clients/ClientTrafficCell';
 import ClientSpeedTag, { isActiveSpeed } from '@/components/clients/ClientSpeedTag';
 import ClientCardComment from '@/components/clients/ClientCardComment';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import { IntlUtil, SizeFormatter } from '@/utils';
 import { setMessageInstance } from '@/utils/messageBus';
 import { LazyMount } from '@/components/utility';
@@ -991,7 +992,7 @@ export default function ClientsPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={!fetched} delay={200} description={t('loading')} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="table" />
               ) : fetchError ? (
                 <Result
                   status="error"

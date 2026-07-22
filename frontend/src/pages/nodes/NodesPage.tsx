@@ -15,6 +15,7 @@ import { useNodesQuery } from '@/api/queries/useNodesQuery';
 import type { NodeRecord } from '@/api/queries/useNodesQuery';
 import { useNodeMutations } from '@/api/queries/useNodeMutations';
 import AppSidebar from '@/layouts/AppSidebar';
+import PageSkeleton from '@/components/ui/PageSkeleton';
 import NodeList from './NodeList';
 import NodeFormModal from './NodeFormModal';
 import { setMessageInstance } from '@/utils/messageBus';
@@ -231,7 +232,7 @@ export default function NodesPage() {
           <Layout.Content id="content-layout" className="content-area">
             <Spin spinning={!fetched} delay={200} description={t('loading')} size="large">
               {!fetched ? (
-                <div className="loading-spacer" />
+                <PageSkeleton variant="table" />
               ) : fetchError ? (
                 <Result
                   status="error"
