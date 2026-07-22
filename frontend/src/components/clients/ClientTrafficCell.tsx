@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Popover, Progress } from 'antd';
 
@@ -17,7 +17,7 @@ export interface ClientTrafficCellProps {
   compact?: boolean;
 }
 
-export default function ClientTrafficCell({
+function ClientTrafficCellBase({
   up = 0,
   down = 0,
   total = 0,
@@ -84,3 +84,6 @@ export default function ClientTrafficCell({
     </Popover>
   );
 }
+
+const ClientTrafficCell = memo(ClientTrafficCellBase);
+export default ClientTrafficCell;

@@ -1,9 +1,10 @@
+import { memo } from 'react';
 type ClientCardCommentProps = {
   comment?: string;
   className?: string;
 };
 
-export default function ClientCardComment({ comment, className = 'client-card-comment' }: ClientCardCommentProps) {
+function ClientCardCommentBase({ comment, className = 'client-card-comment' }: ClientCardCommentProps) {
   if (!comment) return null;
 
   return (
@@ -12,3 +13,6 @@ export default function ClientCardComment({ comment, className = 'client-card-co
     </span>
   );
 }
+
+const ClientCardComment = memo(ClientCardCommentBase);
+export default ClientCardComment;
