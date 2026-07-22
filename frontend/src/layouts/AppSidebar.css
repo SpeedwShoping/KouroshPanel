@@ -367,3 +367,176 @@ body.light .sidebar-footer {
 body.light .sidebar-version {
   color: rgba(0, 0, 0, 0.5);
 }
+
+/* ============================================================
+   HYBRID SIDEBAR (Vercel-style hover expand)
+   Base: 68px rail — hover on strip expands to 240px.
+   Width transition on Sider is driven by antd via inline style;
+   we chain label fade/slide on top with a short delay so text
+   only shows AFTER the rail has finished widening.
+   ============================================================ */
+
+.kp-hybrid-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.kp-hybrid-sidebar > .ant-layout-sider {
+  transition: width 220ms cubic-bezier(0.4, 0, 0.2, 1),
+              min-width 220ms cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 220ms cubic-bezier(0.4, 0, 0.2, 1),
+              flex 220ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: width;
+  overflow: hidden;
+}
+
+/* Wide, glowing edge on the outer border so the rail feels alive */
+.kp-hybrid-sidebar > .ant-layout-sider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(201, 162, 39, 0.35) 40%, rgba(46, 196, 182, 0.28) 70%, transparent 100%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 220ms ease;
+}
+.kp-hybrid-sidebar.is-expanded > .ant-layout-sider::after {
+  opacity: 1;
+}
+
+/* --- Collapsed rail: hide long labels, keep icons ---------- */
+.kp-hybrid-sidebar:not(.is-expanded) .brand-text {
+  opacity: 0;
+  max-width: 0;
+  transform: translateX(-4px);
+  pointer-events: none;
+  transition: opacity 120ms ease, transform 120ms ease, max-width 120ms ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.kp-hybrid-sidebar.is-expanded .brand-text {
+  opacity: 1;
+  max-width: 180px;
+  transform: translateX(0);
+  transition: opacity 200ms 100ms ease, transform 220ms 100ms ease, max-width 220ms 100ms ease;
+}
+
+.kp-hybrid-sidebar:not(.is-expanded) .brand-actions {
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease, max-width 120ms ease;
+  overflow: hidden;
+}
+.kp-hybrid-sidebar.is-expanded .brand-actions {
+  opacity: 1;
+  max-width: 160px;
+  transition: opacity 200ms 120ms ease, max-width 220ms 100ms ease;
+}
+
+.kp-hybrid-sidebar .sider-brand {
+  padding: 16px 12px;
+  overflow: hidden;
+  gap: 8px;
+  transition: padding 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.kp-hybrid-sidebar:not(.is-expanded) .sider-brand {
+  padding: 16px 0;
+  justify-content: center;
+}
+.kp-hybrid-sidebar:not(.is-expanded) .brand-block {
+  justify-content: center;
+  width: 100%;
+}
+
+/* Menu labels: fade in only after width transition */
+.kp-hybrid-sidebar .ant-menu-title-content {
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-title-content {
+  opacity: 0;
+  transform: translateX(-6px);
+}
+.kp-hybrid-sidebar.is-expanded .ant-menu-title-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 200ms 120ms ease, transform 200ms 120ms ease;
+}
+
+/* Center icons perfectly when collapsed (avoid antd jitter) */
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu.ant-menu-inline-collapsed {
+  width: 68px !important;
+}
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-item,
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-submenu-title {
+  padding-inline: 0 !important;
+  justify-content: center;
+  transform: translateX(0) !important;
+}
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-item .anticon,
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-submenu-title .anticon {
+  margin: 0 !important;
+  font-size: 19px !important;
+}
+
+/* Version footer: hide text in rail */
+.kp-hybrid-sidebar:not(.is-expanded) .sider-version-text {
+  opacity: 0;
+  max-width: 0;
+  pointer-events: none;
+  transition: opacity 100ms ease, max-width 100ms ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.kp-hybrid-sidebar.is-expanded .sider-version-text {
+  opacity: 1;
+  max-width: 160px;
+  transition: opacity 200ms 120ms ease, max-width 220ms 100ms ease;
+}
+.kp-hybrid-sidebar:not(.is-expanded) .sider-version {
+  padding: 8px 0;
+  justify-content: center;
+}
+
+/* Submenu arrows: hidden in rail */
+.kp-hybrid-sidebar:not(.is-expanded) .ant-menu-submenu-arrow {
+  opacity: 0;
+  transition: opacity 100ms ease;
+}
+.kp-hybrid-sidebar.is-expanded .ant-menu-submenu-arrow {
+  opacity: 0.7;
+  transition: opacity 200ms 120ms ease;
+}
+
+/* Overlay behavior on tablet+ so page content doesn't jump */
+@media (min-width: 1024px) {
+  .kp-hybrid-sidebar {
+    width: 68px;
+  }
+  .kp-hybrid-sidebar > .ant-layout-sider {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.4);
+  }
+  .kp-hybrid-sidebar.is-expanded {
+    z-index: 30;
+  }
+}
+
+/* Respect users who want less motion */
+@media (prefers-reduced-motion: reduce) {
+  .kp-hybrid-sidebar > .ant-layout-sider,
+  .kp-hybrid-sidebar .brand-text,
+  .kp-hybrid-sidebar .brand-actions,
+  .kp-hybrid-sidebar .ant-menu-title-content,
+  .kp-hybrid-sidebar .sider-version-text {
+    transition: none !important;
+  }
+}

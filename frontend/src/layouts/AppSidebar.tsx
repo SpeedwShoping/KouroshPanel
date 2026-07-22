@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ComponentType } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -40,11 +40,13 @@ import { useAllSettings } from '@/api/queries/useAllSettings';
 import KouroshLogo from '@/components/ui/KouroshLogo';
 import './AppSidebar.css';
 
-const SIDEBAR_COLLAPSED_KEY = 'isSidebarCollapsed';
 const DONATE_URL = 'https://github.com/SpeedwiT/KouroshPanel#-support--حمایت';
 const DOCS_URL = 'https://github.com/SpeedwiT/KouroshPanel#readme';
 const REPO_URL = 'https://github.com/SpeedwiT/KouroshPanel';
 const LOGOUT_KEY = '__logout__';
+
+const HOVER_OPEN_DELAY = 80;
+const HOVER_CLOSE_DELAY = 220;
 
 type IconName = 'dashboard' | 'inbound' | 'team' | 'groups' | 'setting' | 'tool' | 'cluster' | 'hosts' | 'logout' | 'apidocs' | 'outbound' | 'routing';
 
@@ -62,14 +64,6 @@ const iconByName: Record<IconName, ComponentType> = {
   outbound: ExportOutlined,
   routing: SwapOutlined,
 };
-
-function readCollapsed(): boolean {
-  try {
-    return JSON.parse(localStorage.getItem(SIDEBAR_COLLAPSED_KEY) || 'false');
-  } catch {
-    return false;
-  }
-}
 
 function DonateButton({ ariaLabel }: { ariaLabel: string }) {
   return (
@@ -149,9 +143,23 @@ export default function AppSidebar() {
   const { allSetting } = useAllSettings();
   const showSubFormats = !!(allSetting.subJsonEnable || allSetting.subClashEnable);
 
-  const [collapsed, setCollapsed] = useState<boolean>(() => readCollapsed());
+  // Hybrid Vercel-style: always start collapsed (rail), hover to expand
+  const [expanded, setExpanded] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const hoverTimerRef = useRef<number | undefined>(undefined);
 
+  useEffect(() => () => window.clearTimeout(hoverTimerRef.current), []);
+
+  const onRailEnter = useCallback(() => {
+    window.clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = window.setTimeout(() => setExpanded(true), HOVER_OPEN_DELAY);
+  }, []);
+  const onRailLeave = useCallback(() => {
+    window.clearTimeout(hoverTimerRef.current);
+    hoverTimerRef.current = window.setTimeout(() => setExpanded(false), HOVER_CLOSE_DELAY);
+  }, []);
+
+  const collapsed = !expanded;
   const currentTheme: 'light' | 'dark' = isDark ? 'dark' : 'light';
   const panelVersion = window.X_UI_CUR_VER || '';
 
@@ -236,13 +244,6 @@ export default function AppSidebar() {
     openLink(String(key));
   }, [openLink]);
 
-  const onSiderCollapse = useCallback((isCollapsed: boolean, type: 'clickTrigger' | 'responsive') => {
-    if (type === 'clickTrigger') {
-      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(isCollapsed));
-      setCollapsed(isCollapsed);
-    }
-  }, []);
-
   const cycleTheme = useCallback((id: string) => {
     pauseAnimationsUntilLeave(id);
     if (!isDark) {
@@ -257,37 +258,39 @@ export default function AppSidebar() {
   }, [isDark, isUltra, toggleTheme, toggleUltra]);
 
   return (
-    <div className="ant-sidebar">
+    <div
+      className={`ant-sidebar kp-hybrid-sidebar${expanded ? ' is-expanded' : ''}`}
+      onMouseEnter={onRailEnter}
+      onMouseLeave={onRailLeave}
+    >
       <Layout.Sider
         theme={currentTheme}
-        width={220}
-        collapsible
+        width={240}
+        collapsedWidth={68}
         collapsed={collapsed}
-        breakpoint="md"
-        onCollapse={onSiderCollapse}
+        trigger={null}
       >
         <div className={`sider-brand${collapsed ? ' sider-brand-collapsed' : ''}`}>
           <div className="brand-block">
-            <KouroshLogo size={collapsed ? 30 : 32} />
-            {!collapsed && <span className="brand-text kp-shimmer">KOUROSH</span>}
+            <KouroshLogo size={30} />
+            <span className="brand-text kp-shimmer">KOUROSH</span>
           </div>
-          {!collapsed && (
-            <div className="brand-actions">
-              <DocsButton ariaLabel={t('menu.docs') || 'Documentation'} />
-              <DonateButton ariaLabel={t('menu.donate') || 'Donate'} />
-              <ThemeCycleButton
-                id="theme-cycle"
-                isDark={isDark}
-                isUltra={isUltra}
-                onCycle={() => cycleTheme('theme-cycle')}
-                ariaLabel={t('menu.theme')}
-              />
-            </div>
-          )}
+          <div className="brand-actions">
+            <DocsButton ariaLabel={t('menu.docs') || 'Documentation'} />
+            <DonateButton ariaLabel={t('menu.donate') || 'Donate'} />
+            <ThemeCycleButton
+              id="theme-cycle"
+              isDark={isDark}
+              isUltra={isUltra}
+              onCycle={() => cycleTheme('theme-cycle')}
+              ariaLabel={t('menu.theme')}
+            />
+          </div>
         </div>
         <Menu
           theme={currentTheme}
           mode="inline"
+          inlineCollapsed={collapsed}
           selectedKeys={[selectedKey]}
           openKeys={collapsed ? undefined : openKeys}
           onOpenChange={(keys) => setOpenKeys(keys as string[])}
@@ -298,6 +301,7 @@ export default function AppSidebar() {
         <Menu
           theme={currentTheme}
           mode="inline"
+          inlineCollapsed={collapsed}
           selectedKeys={[selectedKey]}
           className="sider-utility"
           items={toMenuItems(utilItems)}
